@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://helpers/terminal_text.gd" type="Script" id=1]
+[ext_resource path="res://tasks/task_container.gd" type="Script" id=2]
+
+[node name="TaskContainer" type="VBoxContainer"]
+margin_left = 1500.0
+margin_top = 559.0
+margin_right = 1900.0
+margin_bottom = 1059.0
+rect_min_size = Vector2( 350, 500 )
+alignment = 2
+script = ExtResource( 2 )
+
+[node name="Title" type="RichTextLabel" parent="."]
+margin_top = 460.0
+margin_right = 400.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 400, 40 )
+bbcode_enabled = true
+bbcode_text = "[right][b]YOUR TASKS[/b][/right]"
+text = "YOUR TASKS"
+script = ExtResource( 1 )

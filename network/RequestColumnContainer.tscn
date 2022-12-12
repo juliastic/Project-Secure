@@ -1,0 +1,19 @@
+[gd_scene format=2]
+
+[node name="RequestContainer" type="HBoxContainer"]
+margin_right = 800.0
+margin_bottom = 100.0
+
+[node name="Origin" type="RichTextLabel" parent="."]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+text = "Dummy Origin"
+
+[node name="Description" type="RichTextLabel" parent="."]
+margin_left = 104.0
+margin_right = 504.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 100 )
+text = "Dummy Description
+"

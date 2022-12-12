@@ -9,13 +9,37 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Button",
+"class": "DefaultButton",
+"language": "GDScript",
+"path": "res://helpers/default_button.gd"
+}, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "DefaultButton",
+"class": "NetworkNode",
+"language": "GDScript",
+"path": "res://network/network_node.gd"
+}, {
+"base": "TerminalText",
+"class": "SmallTerminalText",
+"language": "GDScript",
+"path": "res://helpers/small_terminal_text.gd"
+}, {
+"base": "RichTextLabel",
+"class": "TerminalText",
+"language": "GDScript",
+"path": "res://helpers/terminal_text.gd"
 } ]
 _global_script_class_icons={
-"GitAPI": ""
+"DefaultButton": "",
+"GitAPI": "",
+"NetworkNode": "",
+"SmallTerminalText": "",
+"TerminalText": ""
 }
 
 [application]
@@ -24,9 +48,20 @@ config/name="Project Secure"
 run/main_scene="res://main/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+KeyConstants="*res://helpers/key_constants.gd"
+GameProgress="*res://player_progress/game_progress.gd"
+TerminalCommands="*res://helpers/terminal_commands.gd"
+NodeDescriptions="*res://helpers/node_descriptions.gd"
+
 [display]
 
-mouse_cursor/custom_image="res://imgs/cursor-pointer.png"
+window/size/width=1920
+window/size/height=1080
+mouse_cursor/custom_image="res://imgs/cursor-sample.png"
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor]
 
@@ -36,6 +71,7 @@ version_control_plugin_name="GitAPI"
 [global]
 
 application=false
+Display=false
 
 [gui]
 
@@ -50,4 +86,5 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.0941176, 0.0784314, 0.0784314, 1 )
 environment/default_environment="res://default_env.tres"
