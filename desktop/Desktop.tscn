@@ -1,18 +1,111 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://desktop/desktop.gd" type="Script" id=1]
 [ext_resource path="res://desktop/terminal_intro_display.gd" type="Script" id=2]
 [ext_resource path="res://desktop/coffee_overlay_display.gd" type="Script" id=3]
 [ext_resource path="res://helpers/terminal_text.gd" type="Script" id=4]
 [ext_resource path="res://helpers/default_button.gd" type="Script" id=5]
-[ext_resource path="res://tasks/TaskContainer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://network/Network.tscn" type="PackedScene" id=7]
+[ext_resource path="res://tasks/task_container.gd" type="Script" id=6]
+[ext_resource path="res://network/request_container.gd" type="Script" id=7]
+[ext_resource path="res://network/network.gd" type="Script" id=8]
+[ext_resource path="res://helpers/small_terminal_text.gd" type="Script" id=9]
+[ext_resource path="res://font/bold_font_big.tres" type="DynamicFont" id=10]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_4.png" type="Texture" id=11]
+[ext_resource path="res://font/bold_font_default.tres" type="DynamicFont" id=12]
+[ext_resource path="res://font/normal_font_default.tres" type="DynamicFont" id=13]
+[ext_resource path="res://font/italic_font_default.tres" type="DynamicFont" id=14]
+[ext_resource path="res://firewall/firewall.gd" type="Script" id=15]
+[ext_resource path="res://firewall/honeypot.gd" type="Script" id=16]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_3.png" type="Texture" id=17]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_5.png" type="Texture" id=18]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_6.png" type="Texture" id=19]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_33.png" type="Texture" id=20]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_21.png" type="Texture" id=21]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_16.png" type="Texture" id=22]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_29.png" type="Texture" id=23]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_22.png" type="Texture" id=24]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_19.png" type="Texture" id=25]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_15.png" type="Texture" id=26]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_25.png" type="Texture" id=27]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_24.png" type="Texture" id=28]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_42.png" type="Texture" id=29]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_18.png" type="Texture" id=30]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_37.png" type="Texture" id=31]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_41.png" type="Texture" id=32]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_30.png" type="Texture" id=33]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_36.png" type="Texture" id=34]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_34.png" type="Texture" id=35]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_38.png" type="Texture" id=36]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_35.png" type="Texture" id=37]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_20.png" type="Texture" id=38]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_28.png" type="Texture" id=39]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_23.png" type="Texture" id=40]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_39.png" type="Texture" id=41]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_40.png" type="Texture" id=42]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_31.png" type="Texture" id=43]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_32.png" type="Texture" id=44]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_26.png" type="Texture" id=45]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_27.png" type="Texture" id=46]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_17.png" type="Texture" id=47]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_2.png" type="Texture" id=48]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_43.png" type="Texture" id=49]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_48.png" type="Texture" id=50]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_46.png" type="Texture" id=51]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_50.png" type="Texture" id=52]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_49.png" type="Texture" id=53]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_47.png" type="Texture" id=54]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_0.png" type="Texture" id=55]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_1.png" type="Texture" id=56]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_44.png" type="Texture" id=57]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_45.png" type="Texture" id=58]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_51.png" type="Texture" id=59]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_12.png" type="Texture" id=60]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_14.png" type="Texture" id=61]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_9.png" type="Texture" id=62]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_13.png" type="Texture" id=63]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_11.png" type="Texture" id=64]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_7.png" type="Texture" id=65]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_10.png" type="Texture" id=66]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_8.png" type="Texture" id=67]
+[ext_resource path="res://font/bold_font_big_overlay.tres" type="DynamicFont" id=68]
+[ext_resource path="res://font/normal_font_small.tres" type="DynamicFont" id=69]
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Theme" id=6]
 RichTextLabel/styles/normal = SubResource( 5 )
+
+[sub_resource type="Animation" id=17]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "MinimiseTerminal"
@@ -74,6 +167,106 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=11]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 55 ), ExtResource( 56 ), ExtResource( 48 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 65 ), ExtResource( 67 ), ExtResource( 62 ), ExtResource( 66 ), ExtResource( 64 ), ExtResource( 60 ), ExtResource( 63 ), ExtResource( 61 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 47 ), ExtResource( 30 ), ExtResource( 25 ), ExtResource( 38 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 40 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 39 ), ExtResource( 23 ), ExtResource( 33 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 20 ), ExtResource( 35 ), ExtResource( 37 ), ExtResource( 34 ), ExtResource( 31 ), ExtResource( 36 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 32 ), ExtResource( 29 ), ExtResource( 49 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 51 ), ExtResource( 54 ), ExtResource( 50 ), ExtResource( 53 ), ExtResource( 52 ), ExtResource( 59 ) ],
+"loop": false,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="Animation" id=13]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
 [node name="Desktop" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -82,15 +275,20 @@ position = Vector2( -4, -1 )
 z_index = 1
 
 [node name="TerminalIntroDisplay" type="RichTextLabel" parent="IntroNode"]
-margin_left = -1.0
-margin_top = 13.9772
-margin_right = 1917.0
-margin_bottom = 1050.98
+modulate = Color( 0, 0, 0, 1 )
+margin_top = 15.0
+margin_right = 1936.0
+margin_bottom = 1069.0
 rect_scale = Vector2( 0.997697, 1.0253 )
 rect_pivot_offset = Vector2( 879, 536 )
 theme = SubResource( 6 )
+bbcode_enabled = true
 fit_content_height = true
 script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IntroNode/TerminalIntroDisplay"]
+anims/Fade = SubResource( 17 )
+anims/RESET = SubResource( 18 )
 
 [node name="AnimationNode" type="Node2D" parent="."]
 position = Vector2( -4, -7 )
@@ -101,14 +299,16 @@ anims/MinimiseTerminal = SubResource( 4 )
 anims/ShowTerminal = SubResource( 8 )
 
 [node name="TerminalDisplay" type="RichTextLabel" parent="AnimationNode/TerminalAnimationPlayer"]
-margin_left = 69.0
-margin_top = 123.0
-margin_right = 1235.0
-margin_bottom = 728.0
+margin_left = 54.0
+margin_top = 125.0
+margin_right = 1220.0
+margin_bottom = 730.0
 rect_pivot_offset = Vector2( 1410, 854 )
 theme = SubResource( 6 )
+custom_fonts/italics_font = ExtResource( 14 )
+custom_fonts/bold_font = ExtResource( 12 )
+custom_fonts/normal_font = ExtResource( 13 )
 bbcode_enabled = true
-script = ExtResource( 4 )
 
 [node name="NetworkButton" type="Button" parent="."]
 margin_left = 986.0
@@ -135,18 +335,501 @@ script = ExtResource( 5 )
 z_index = 1
 
 [node name="CoffeeOverlayDisplay" type="RichTextLabel" parent="OverlayNode"]
+modulate = Color( 0, 0, 0, 1 )
 margin_left = 486.0
 margin_top = 276.513
 margin_right = 1536.0
 margin_bottom = 702.513
+bbcode_text = "
+"
+text = "
+"
 script = ExtResource( 3 )
 
-[node name="TaskContainer" parent="." instance=ExtResource( 6 )]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OverlayNode/CoffeeOverlayDisplay"]
+anims/Fade = SubResource( 11 )
+anims/RESET = SubResource( 12 )
 
-[node name="Network" parent="." instance=ExtResource( 7 )]
+[node name="Network" type="WindowDialog" parent="."]
+margin_left = 680.0
+margin_top = 398.0
+margin_right = 1270.0
+margin_bottom = 653.0
+script = ExtResource( 8 )
+
+[node name="RequestOverlay" type="WindowDialog" parent="Network"]
+visible = true
+margin_left = 68.0
+margin_top = 116.0
+margin_right = 1117.0
+margin_bottom = 645.0
+window_title = "Requests"
+
+[node name="MainRequestContainer" type="VBoxContainer" parent="Network/RequestOverlay"]
+margin_right = 100.0
+margin_bottom = 522.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="HeaderContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer"]
+margin_right = 1070.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1042, 40 )
+
+[node name="IncomingHeaderText" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/HeaderContainer"]
+margin_right = 900.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 900, 40 )
+custom_fonts/normal_font = ExtResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center]Internal Requests[/center]"
+text = "Internal Requests"
+
+[node name="NetworkOptionsButton" type="OptionButton" parent="Network/RequestOverlay/MainRequestContainer/HeaderContainer"]
+margin_left = 950.0
+margin_right = 1050.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = ExtResource( 69 )
+
+[node name="RequestContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer"]
+margin_top = 44.0
+margin_right = 1070.0
+margin_bottom = 138.0
+rect_min_size = Vector2( 1070, 0 )
+alignment = 1
+script = ExtResource( 7 )
+
+[node name="IncomingRequests" type="VBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer"]
+margin_left = 6.0
+margin_right = 506.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 500, 0 )
+
+[node name="IncomingHeaderText" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests"]
+margin_right = 500.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/normal_font = ExtResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center]Incoming Requests[/center]"
+text = "Incoming Requests"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests"]
+margin_top = 44.0
+margin_right = 500.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="OriginLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 150, 50 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_text = "Origin
+"
+text = "Origin
+"
+
+[node name="URLLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
+margin_left = 154.0
+margin_right = 304.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 150, 50 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_text = "Requested URL
+"
+text = "Requested URL
+"
+
+[node name="RoleLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
+margin_left = 308.0
+margin_right = 408.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 100, 50 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_text = "Role
+"
+text = "Role
+"
+
+[node name="CountLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
+margin_left = 412.0
+margin_right = 492.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 80, 50 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_text = "Count
+"
+text = "Count
+"
+
+[node name="LineContainer" type="VBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer"]
+margin_left = 510.0
+margin_right = 560.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 50, 0 )
+alignment = 1
+
+[node name="Line" type="Line2D" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/LineContainer"]
+position = Vector2( 0, 220 )
+rotation = 0.959931
+points = PoolVector2Array( -5, -3, 29, -14, 32, 21 )
+default_color = Color( 0.898039, 0.12549, 0.12549, 1 )
+
+[node name="BlockedRequests" type="VBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer"]
+margin_left = 564.0
+margin_right = 1064.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 500, 0 )
+
+[node name="BlockedHeaderText" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests"]
+margin_right = 500.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 100, 40 )
+custom_fonts/normal_font = ExtResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center]Blocked Requests[/center]"
+text = "Blocked Requests"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests"]
+margin_top = 44.0
+margin_right = 500.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="OriginLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 150, 50 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_text = "Origin
+"
+text = "Origin
+"
+
+[node name="URLLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
+margin_left = 154.0
+margin_right = 304.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 150, 50 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_text = "Requested URL
+"
+text = "Requested URL
+"
+
+[node name="RoleLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
+margin_left = 308.0
+margin_right = 408.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 100, 50 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_text = "Role
+"
+text = "Role
+"
+
+[node name="CountLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
+margin_left = 412.0
+margin_right = 492.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 80, 50 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_text = "Count
+"
+text = "Count
+"
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Network"]
+margin_left = 1.0
+margin_top = 81.0
+margin_right = 588.0
+margin_bottom = 171.0
+alignment = 1
+
+[node name="RequestOverviewButton" type="Button" parent="Network/ButtonContainer"]
+margin_left = 64.0
+margin_right = 214.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 0 )
+text = "Requests"
+script = ExtResource( 5 )
+
+[node name="FirewallOverviewButton" type="Button" parent="Network/ButtonContainer"]
+margin_left = 218.0
+margin_right = 368.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 0 )
+text = "Firewall"
+script = ExtResource( 5 )
+
+[node name="ComputerOverviewButton" type="Button" parent="Network/ButtonContainer"]
+margin_left = 372.0
+margin_right = 522.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 0 )
+text = "Computers"
+script = ExtResource( 5 )
+
+[node name="TutorialText" type="RichTextLabel" parent="Network"]
+margin_right = 591.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 591, 97 )
+bbcode_enabled = true
+bbcode_text = "[center]This is the tutorial :)[/center]"
+text = "This is the tutorial :)"
+script = ExtResource( 4 )
+
+[node name="FirewallOverlay" type="WindowDialog" parent="Network"]
+margin_left = 342.0
+margin_top = 108.0
+margin_right = 813.0
+margin_bottom = 375.0
+script = ExtResource( 15 )
+
+[node name="FirewallText" type="RichTextLabel" parent="Network/FirewallOverlay"]
+margin_left = 4.0
+margin_top = 19.0
+margin_right = 468.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/bold_font = ExtResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center][b]FIREWALL SETUP[/b][/center]"
+text = "FIREWALL SETUP"
+
+[node name="CheckboxContainer" type="VBoxContainer" parent="Network/FirewallOverlay"]
+margin_top = 82.0
+margin_right = 467.0
+margin_bottom = 176.0
+
+[node name="AuthenticatedUserColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
+margin_right = 467.0
+margin_bottom = 24.0
+
+[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn"]
+margin_left = 28.0
+margin_right = 378.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 350, 20 )
+bbcode_enabled = true
+bbcode_text = "Only allow authenticated users"
+text = "Only allow authenticated users"
+script = ExtResource( 4 )
+
+[node name="RequestLimitColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
+margin_top = 28.0
+margin_right = 467.0
+margin_bottom = 52.0
+
+[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn"]
+margin_left = 28.0
+margin_right = 408.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 380, 20 )
+bbcode_enabled = true
+bbcode_text = "Enable Reasonable Request Limit"
+text = "Enable Reasonable Request Limit"
+script = ExtResource( 4 )
+
+[node name="NetworkLoggingColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
+margin_top = 56.0
+margin_right = 467.0
+margin_bottom = 80.0
+
+[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn"]
+margin_left = 28.0
+margin_right = 408.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 380, 20 )
+bbcode_enabled = true
+bbcode_text = "Enable Network Logging"
+text = "Enable Network Logging"
+script = ExtResource( 4 )
+
+[node name="HoneypotButton" type="Button" parent="Network/FirewallOverlay"]
+margin_left = 350.0
+margin_top = 215.0
+margin_right = 464.0
+margin_bottom = 251.0
+text = "Honeypot Setup"
+script = ExtResource( 5 )
+
+[node name="HoneypotOverlay" type="WindowDialog" parent="Network/FirewallOverlay"]
+visible = true
+margin_left = 128.0
+margin_top = 69.0
+margin_right = 549.0
+margin_bottom = 349.0
+script = ExtResource( 16 )
+
+[node name="HoneypotText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay"]
+margin_left = 4.0
+margin_top = 19.0
+margin_right = 421.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/bold_font = ExtResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center][b]HONEYPOT SETUP[/b][/center]"
+text = "HONEYPOT SETUP"
+script = ExtResource( 4 )
+
+[node name="CheckboxContainer" type="VBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay"]
+margin_top = 50.0
+margin_right = 417.0
+margin_bottom = 234.0
+
+[node name="HoneypotText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_right = 417.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/bold_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "[b]LOGGING"
+text = "LOGGING"
+
+[node name="AttackInformatinColumn" type="HBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_top = 34.0
+margin_right = 417.0
+margin_bottom = 58.0
+
+[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
+margin_left = 28.0
+margin_right = 368.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 340, 20 )
+bbcode_enabled = true
+bbcode_text = "Attack Information"
+text = "Attack Information"
+script = ExtResource( 4 )
+
+[node name="AccessedDataColumn" type="HBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_top = 62.0
+margin_right = 417.0
+margin_bottom = 86.0
+
+[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
+margin_left = 28.0
+margin_right = 368.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 340, 20 )
+bbcode_enabled = true
+bbcode_text = "Accessed Data"
+text = "Accessed Data"
+script = ExtResource( 4 )
+
+[node name="FileLureText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_top = 90.0
+margin_right = 417.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 350, 30 )
+custom_fonts/bold_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "[b]Which file to lure attackers with?"
+text = "Which file to lure attackers with?"
+script = ExtResource( 4 )
+
+[node name="Filename" type="LineEdit" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_top = 124.0
+margin_right = 417.0
+margin_bottom = 148.0
+
+[node name="HoneypotSaveButton" type="Button" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_top = 152.0
+margin_right = 417.0
+margin_bottom = 185.0
+custom_fonts/font = ExtResource( 10 )
+text = "Save Honeypot"
+
+[node name="TaskContainer" type="VBoxContainer" parent="."]
+margin_left = 1500.0
+margin_top = 560.0
+margin_right = 1900.0
+margin_bottom = 1060.0
+rect_min_size = Vector2( 350, 500 )
+alignment = 2
+script = ExtResource( 6 )
+
+[node name="Title" type="RichTextLabel" parent="TaskContainer"]
+margin_top = 460.0
+margin_right = 400.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 400, 40 )
+bbcode_enabled = true
+bbcode_text = "[right][b]YOUR TASKS[/b][/right]"
+text = "YOUR TASKS"
+script = ExtResource( 9 )
+
+[node name="LevelNode" type="Node2D" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 2, 431 )
+z_index = 11
+
+[node name="LevelColorRect" type="ColorRect" parent="LevelNode"]
+margin_left = -5.0
+margin_top = -432.0
+margin_right = 1924.0
+margin_bottom = 649.0
+color = Color( 0.0117647, 0, 0, 1 )
+
+[node name="LevelTextOverlay" type="RichTextLabel" parent="LevelNode"]
+margin_right = 1913.0
+margin_bottom = 93.0
+custom_fonts/normal_font = ExtResource( 68 )
+bbcode_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelNode"]
+anims/Fade = SubResource( 15 )
+anims/RESET = SubResource( 16 )
+
+[node name="Coffee" type="AnimatedSprite" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1572, 452 )
+scale = Vector2( 1.0625, 1.01562 )
+z_index = 10
+frames = SubResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Coffee"]
+anims/Fade = SubResource( 13 )
+anims/RESET = SubResource( 14 )
 
 [connection signal="coffee_grabbed" from="." to="OverlayNode/CoffeeOverlayDisplay" method="_on_Desktop_coffee_grabbed"]
 [connection signal="pressed" from="NetworkButton" to="." method="_on_NetworkButton_pressed"]
 [connection signal="pressed" from="TerminalButton" to="." method="_on_TerminalButton_pressed"]
 [connection signal="coffee_finished" from="OverlayNode/CoffeeOverlayDisplay" to="." method="_on_CoffeeOverlayDisplay_coffee_finished"]
 [connection signal="hide" from="Network" to="." method="_on_Network_hide"]
+[connection signal="item_selected" from="Network/RequestOverlay/MainRequestContainer/HeaderContainer/NetworkOptionsButton" to="Network" method="_on_NetworkOptionsButton_item_selected"]
+[connection signal="item_selected" from="Network/RequestOverlay/MainRequestContainer/HeaderContainer/NetworkOptionsButton" to="Network/RequestOverlay/MainRequestContainer/RequestContainer" method="_on_NetworkOptionsButton_item_selected"]
+[connection signal="pressed" from="Network/ButtonContainer/RequestOverviewButton" to="Network" method="_on_Requests_pressed"]
+[connection signal="pressed" from="Network/ButtonContainer/FirewallOverviewButton" to="Network" method="_on_Firewall_pressed"]
+[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "authenticated_user" ]]
+[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "request_limit" ]]
+[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "network_logging" ]]
+[connection signal="pressed" from="Network/FirewallOverlay/HoneypotButton" to="Network" method="_on_HoneypotButton_pressed"]
+[connection signal="toggled" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn/CheckBox" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "attack_information" ]]
+[connection signal="toggled" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn/CheckBox" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "accessed_data" ]]
+[connection signal="pressed" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/HoneypotSaveButton" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_HoneypotSaveButton_pressed"]
+[connection signal="level_completed" from="TaskContainer" to="." method="_on_TaskContainer_level_completed"]

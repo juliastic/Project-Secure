@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://helpers/terminal_text.gd" type="Script" id=1]
+[ext_resource path="res://network/request_container.gd" type="Script" id=2]
 [ext_resource path="res://network/network.gd" type="Script" id=3]
 [ext_resource path="res://helpers/default_button.gd" type="Script" id=4]
-[ext_resource path="res://network/RequestColumnContainer.tscn" type="PackedScene" id=5]
 
 [node name="Network" type="WindowDialog"]
 margin_left = 784.0
@@ -22,15 +22,17 @@ margin_bottom = 645.0
 window_title = "Requests"
 
 [node name="RequestContainer" type="HBoxContainer" parent="RequestOverlay"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 1047.0
+margin_bottom = 522.0
+script = ExtResource( 2 )
 
 [node name="IncomingRequests" type="VBoxContainer" parent="RequestOverlay/RequestContainer"]
-margin_right = 504.0
-margin_bottom = 248.0
+margin_right = 200.0
+margin_bottom = 522.0
+rect_min_size = Vector2( 200, 0 )
 
 [node name="IncomingHeaderText" type="RichTextLabel" parent="RequestOverlay/RequestContainer/IncomingRequests"]
-margin_right = 504.0
+margin_right = 200.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 bbcode_enabled = true
@@ -38,23 +40,14 @@ bbcode_text = "[center][b]Incoming Requests[/b][/center]"
 text = "Incoming Requests"
 script = ExtResource( 1 )
 
-[node name="RequestContainer" parent="RequestOverlay/RequestContainer/IncomingRequests" instance=ExtResource( 5 )]
-margin_top = 44.0
-margin_right = 504.0
-margin_bottom = 144.0
-
-[node name="RequestContainer2" parent="RequestOverlay/RequestContainer/IncomingRequests" instance=ExtResource( 5 )]
-margin_top = 148.0
-margin_right = 504.0
-margin_bottom = 248.0
-
 [node name="BlockedRequests" type="VBoxContainer" parent="RequestOverlay/RequestContainer"]
-margin_left = 508.0
-margin_right = 1012.0
-margin_bottom = 248.0
+margin_left = 204.0
+margin_right = 404.0
+margin_bottom = 522.0
+rect_min_size = Vector2( 200, 0 )
 
 [node name="BlockedHeaderText" type="RichTextLabel" parent="RequestOverlay/RequestContainer/BlockedRequests"]
-margin_right = 504.0
+margin_right = 200.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
 bbcode_enabled = true
@@ -62,25 +55,36 @@ bbcode_text = "[center][b]Blocked Requests[/b][/center]"
 text = "Blocked Requests"
 script = ExtResource( 1 )
 
-[node name="RequestContainer" parent="RequestOverlay/RequestContainer/BlockedRequests" instance=ExtResource( 5 )]
-margin_top = 44.0
-margin_right = 504.0
-margin_bottom = 144.0
-
-[node name="Requests" type="Button" parent="."]
-margin_left = 106.0
-margin_top = 94.0
-margin_right = 231.0
-margin_bottom = 173.0
+[node name="RequestOverviewButton" type="Button" parent="."]
+margin_left = 50.0
+margin_top = 89.0
+margin_right = 175.0
+margin_bottom = 168.0
 text = "Requests"
 script = ExtResource( 4 )
 
-[node name="Computers" type="Button" parent="."]
-margin_left = 327.0
-margin_top = 91.0
-margin_right = 452.0
-margin_bottom = 170.0
+[node name="FirewallOverviewButton" type="Button" parent="."]
+margin_left = 446.0
+margin_top = 89.0
+margin_right = 571.0
+margin_bottom = 168.0
+text = "Firewall"
+
+[node name="ComputerOverviewButton" type="Button" parent="."]
+margin_left = 243.0
+margin_top = 89.0
+margin_right = 368.0
+margin_bottom = 168.0
 text = "Computers"
 script = ExtResource( 4 )
 
-[connection signal="pressed" from="Requests" to="." method="_on_Requests_pressed"]
+[node name="TutorialText" type="RichTextLabel" parent="."]
+margin_right = 591.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 591, 97 )
+bbcode_enabled = true
+bbcode_text = "[center]This is the tutorial :)[/center]"
+text = "This is the tutorial :)"
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="RequestOverviewButton" to="." method="_on_Requests_pressed"]

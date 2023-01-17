@@ -1,19 +1,39 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://font/normal_font_default.tres" type="DynamicFont" id=1]
 
 [node name="RequestContainer" type="HBoxContainer"]
 margin_right = 800.0
 margin_bottom = 100.0
+rect_min_size = Vector2( 500, 100 )
 
 [node name="Origin" type="RichTextLabel" parent="."]
-margin_right = 100.0
+margin_right = 150.0
 margin_bottom = 100.0
-rect_min_size = Vector2( 100, 100 )
-text = "Dummy Origin"
+rect_min_size = Vector2( 150, 50 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
 
-[node name="Description" type="RichTextLabel" parent="."]
-margin_left = 104.0
-margin_right = 504.0
+[node name="URL" type="RichTextLabel" parent="."]
+margin_left = 154.0
+margin_right = 304.0
 margin_bottom = 100.0
-rect_min_size = Vector2( 400, 100 )
-text = "Dummy Description
-"
+rect_min_size = Vector2( 150, 50 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+
+[node name="Role" type="RichTextLabel" parent="."]
+margin_left = 308.0
+margin_right = 408.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 50 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+
+[node name="Count" type="RichTextLabel" parent="."]
+margin_left = 412.0
+margin_right = 512.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 50 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
