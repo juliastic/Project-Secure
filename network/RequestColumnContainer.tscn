@@ -2,38 +2,47 @@
 
 [ext_resource path="res://font/normal_font_default.tres" type="DynamicFont" id=1]
 
-[node name="RequestContainer" type="HBoxContainer"]
-margin_right = 800.0
+[node name="RequestButton" type="Button"]
+margin_right = 512.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 512, 50 )
+
+[node name="RequestContainer" type="HBoxContainer" parent="."]
+margin_right = 512.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 500, 100 )
 
-[node name="Origin" type="RichTextLabel" parent="."]
+[node name="Origin" type="RichTextLabel" parent="RequestContainer"]
 margin_right = 150.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 150, 50 )
+mouse_filter = 1
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 
-[node name="URL" type="RichTextLabel" parent="."]
+[node name="URL" type="RichTextLabel" parent="RequestContainer"]
 margin_left = 154.0
 margin_right = 304.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 150, 50 )
+mouse_filter = 1
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 
-[node name="Role" type="RichTextLabel" parent="."]
+[node name="Role" type="RichTextLabel" parent="RequestContainer"]
 margin_left = 308.0
 margin_right = 408.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 50 )
+mouse_filter = 1
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 
-[node name="Count" type="RichTextLabel" parent="."]
+[node name="Count" type="RichTextLabel" parent="RequestContainer"]
 margin_left = 412.0
 margin_right = 512.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 50 )
+mouse_filter = 1
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true

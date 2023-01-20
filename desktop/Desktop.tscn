@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://desktop/desktop.gd" type="Script" id=1]
 [ext_resource path="res://desktop/terminal_intro_display.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://tasks/task_container.gd" type="Script" id=6]
 [ext_resource path="res://network/request_container.gd" type="Script" id=7]
 [ext_resource path="res://network/network.gd" type="Script" id=8]
-[ext_resource path="res://helpers/small_terminal_text.gd" type="Script" id=9]
 [ext_resource path="res://font/bold_font_big.tres" type="DynamicFont" id=10]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_4.png" type="Texture" id=11]
 [ext_resource path="res://font/bold_font_default.tres" type="DynamicFont" id=12]
@@ -282,6 +281,9 @@ margin_bottom = 1069.0
 rect_scale = Vector2( 0.997697, 1.0253 )
 rect_pivot_offset = Vector2( 879, 536 )
 theme = SubResource( 6 )
+custom_fonts/italics_font = ExtResource( 14 )
+custom_fonts/bold_font = ExtResource( 12 )
+custom_fonts/normal_font = ExtResource( 13 )
 bbcode_enabled = true
 fit_content_height = true
 script = ExtResource( 2 )
@@ -359,21 +361,33 @@ script = ExtResource( 8 )
 
 [node name="RequestOverlay" type="WindowDialog" parent="Network"]
 visible = true
-margin_left = 68.0
+margin_left = 6.0
 margin_top = 116.0
-margin_right = 1117.0
-margin_bottom = 645.0
+margin_right = 1138.0
+margin_bottom = 674.0
 window_title = "Requests"
 
+[node name="SetupIncompleteText" type="RichTextLabel" parent="Network/RequestOverlay"]
+margin_left = 2.0
+margin_top = 207.0
+margin_right = 1130.0
+margin_bottom = 251.0
+custom_fonts/normal_font = ExtResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[center]Firewall is not yet enabled[/center]"
+text = "Firewall is not yet enabled"
+
 [node name="MainRequestContainer" type="VBoxContainer" parent="Network/RequestOverlay"]
-margin_right = 100.0
-margin_bottom = 522.0
-rect_min_size = Vector2( 100, 0 )
+visible = false
+margin_right = 1139.0
+margin_bottom = 556.0
+rect_min_size = Vector2( 1000, 0 )
+mouse_filter = 0
 
 [node name="HeaderContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer"]
-margin_right = 1070.0
+margin_right = 1139.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 1042, 40 )
+rect_min_size = Vector2( 1070, 40 )
 
 [node name="IncomingHeaderText" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/HeaderContainer"]
 margin_right = 900.0
@@ -385,28 +399,28 @@ bbcode_text = "[center]Internal Requests[/center]"
 text = "Internal Requests"
 
 [node name="NetworkOptionsButton" type="OptionButton" parent="Network/RequestOverlay/MainRequestContainer/HeaderContainer"]
-margin_left = 950.0
-margin_right = 1050.0
+margin_left = 904.0
+margin_right = 1004.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 100, 0 )
+rect_min_size = Vector2( 100, 40 )
 custom_fonts/font = ExtResource( 69 )
 
 [node name="RequestContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer"]
 margin_top = 44.0
-margin_right = 1070.0
-margin_bottom = 138.0
+margin_right = 1139.0
+margin_bottom = 248.0
 rect_min_size = Vector2( 1070, 0 )
 alignment = 1
 script = ExtResource( 7 )
 
 [node name="IncomingRequests" type="VBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer"]
-margin_left = 6.0
-margin_right = 506.0
-margin_bottom = 94.0
+margin_left = 18.0
+margin_right = 540.0
+margin_bottom = 204.0
 rect_min_size = Vector2( 500, 0 )
 
 [node name="IncomingHeaderText" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests"]
-margin_right = 500.0
+margin_right = 522.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 custom_fonts/normal_font = ExtResource( 10 )
@@ -416,7 +430,7 @@ text = "Incoming Requests"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests"]
 margin_top = 44.0
-margin_right = 500.0
+margin_right = 522.0
 margin_bottom = 94.0
 rect_min_size = Vector2( 0, 30 )
 
@@ -432,9 +446,9 @@ text = "Origin
 
 [node name="URLLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
 margin_left = 154.0
-margin_right = 304.0
+margin_right = 314.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 150, 50 )
+rect_min_size = Vector2( 160, 50 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Requested URL
 "
@@ -442,10 +456,10 @@ text = "Requested URL
 "
 
 [node name="RoleLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
-margin_left = 308.0
-margin_right = 408.0
+margin_left = 318.0
+margin_right = 438.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 100, 50 )
+rect_min_size = Vector2( 120, 50 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Role
 "
@@ -453,8 +467,8 @@ text = "Role
 "
 
 [node name="CountLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
-margin_left = 412.0
-margin_right = 492.0
+margin_left = 442.0
+margin_right = 522.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 80, 50 )
 custom_fonts/normal_font = ExtResource( 12 )
@@ -463,27 +477,43 @@ bbcode_text = "Count
 text = "Count
 "
 
-[node name="LineContainer" type="VBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer"]
-margin_left = 510.0
-margin_right = 560.0
-margin_bottom = 94.0
-rect_min_size = Vector2( 50, 0 )
-alignment = 1
+[node name="HBoxContainer" type="VBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer"]
+margin_left = 544.0
+margin_right = 594.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 50, 200 )
 
-[node name="Line" type="Line2D" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/LineContainer"]
-position = Vector2( 0, 220 )
+[node name="BlockButton" type="Button" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer"]
+margin_right = 50.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 50, 100 )
+
+[node name="Line" type="Line2D" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer/BlockButton"]
+position = Vector2( 10, 30 )
 rotation = 0.959931
 points = PoolVector2Array( -5, -3, 29, -14, 32, 21 )
 default_color = Color( 0.898039, 0.12549, 0.12549, 1 )
 
+[node name="UnblockButton" type="Button" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer"]
+margin_top = 104.0
+margin_right = 50.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 50, 100 )
+
+[node name="Line" type="Line2D" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer/UnblockButton"]
+position = Vector2( 39, 67 )
+rotation = 4.18879
+points = PoolVector2Array( -5, -3, 8.15674, -7.25653, 29, -14, 32, 21 )
+default_color = Color( 0.898039, 0.12549, 0.12549, 1 )
+
 [node name="BlockedRequests" type="VBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer"]
-margin_left = 564.0
-margin_right = 1064.0
-margin_bottom = 94.0
+margin_left = 598.0
+margin_right = 1120.0
+margin_bottom = 204.0
 rect_min_size = Vector2( 500, 0 )
 
 [node name="BlockedHeaderText" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests"]
-margin_right = 500.0
+margin_right = 522.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
 custom_fonts/normal_font = ExtResource( 10 )
@@ -493,7 +523,7 @@ text = "Blocked Requests"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests"]
 margin_top = 44.0
-margin_right = 500.0
+margin_right = 522.0
 margin_bottom = 94.0
 rect_min_size = Vector2( 0, 30 )
 
@@ -509,9 +539,9 @@ text = "Origin
 
 [node name="URLLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
 margin_left = 154.0
-margin_right = 304.0
+margin_right = 314.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 150, 50 )
+rect_min_size = Vector2( 160, 50 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Requested URL
 "
@@ -519,10 +549,10 @@ text = "Requested URL
 "
 
 [node name="RoleLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
-margin_left = 308.0
-margin_right = 408.0
+margin_left = 318.0
+margin_right = 438.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 100, 50 )
+rect_min_size = Vector2( 120, 50 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Role
 "
@@ -530,8 +560,8 @@ text = "Role
 "
 
 [node name="CountLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
-margin_left = 412.0
-margin_right = 492.0
+margin_left = 442.0
+margin_right = 522.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 80, 50 )
 custom_fonts/normal_font = ExtResource( 12 )
@@ -605,55 +635,58 @@ margin_bottom = 176.0
 
 [node name="AuthenticatedUserColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
 margin_right = 467.0
-margin_bottom = 24.0
+margin_bottom = 30.0
+mouse_filter = 0
 
 [node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn"]
 margin_right = 24.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 
 [node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn"]
 margin_left = 28.0
 margin_right = 378.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 350, 20 )
+margin_bottom = 30.0
+rect_min_size = Vector2( 350, 30 )
 bbcode_enabled = true
 bbcode_text = "Only allow authenticated users"
 text = "Only allow authenticated users"
 script = ExtResource( 4 )
 
 [node name="RequestLimitColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
-margin_top = 28.0
+margin_top = 34.0
 margin_right = 467.0
-margin_bottom = 52.0
+margin_bottom = 64.0
+mouse_filter = 0
 
 [node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn"]
 margin_right = 24.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 
 [node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn"]
 margin_left = 28.0
 margin_right = 408.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 380, 20 )
+margin_bottom = 30.0
+rect_min_size = Vector2( 380, 30 )
 bbcode_enabled = true
 bbcode_text = "Enable Reasonable Request Limit"
 text = "Enable Reasonable Request Limit"
 script = ExtResource( 4 )
 
 [node name="NetworkLoggingColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
-margin_top = 56.0
+margin_top = 68.0
 margin_right = 467.0
-margin_bottom = 80.0
+margin_bottom = 98.0
+mouse_filter = 0
 
 [node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn"]
 margin_right = 24.0
-margin_bottom = 24.0
+margin_bottom = 30.0
 
 [node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn"]
 margin_left = 28.0
 margin_right = 408.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 380, 20 )
+margin_bottom = 30.0
+rect_min_size = Vector2( 380, 30 )
 bbcode_enabled = true
 bbcode_text = "Enable Network Logging"
 text = "Enable Network Logging"
@@ -668,7 +701,6 @@ text = "Honeypot Setup"
 script = ExtResource( 5 )
 
 [node name="HoneypotOverlay" type="WindowDialog" parent="Network/FirewallOverlay"]
-visible = true
 margin_left = 128.0
 margin_top = 69.0
 margin_right = 549.0
@@ -691,6 +723,7 @@ script = ExtResource( 4 )
 margin_top = 50.0
 margin_right = 417.0
 margin_bottom = 234.0
+mouse_filter = 0
 
 [node name="HoneypotText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
 margin_right = 417.0
@@ -705,6 +738,7 @@ text = "LOGGING"
 margin_top = 34.0
 margin_right = 417.0
 margin_bottom = 58.0
+mouse_filter = 0
 
 [node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
 margin_right = 24.0
@@ -724,6 +758,7 @@ script = ExtResource( 4 )
 margin_top = 62.0
 margin_right = 417.0
 margin_bottom = 86.0
+mouse_filter = 0
 
 [node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
 margin_right = 24.0
@@ -760,6 +795,7 @@ margin_top = 152.0
 margin_right = 417.0
 margin_bottom = 185.0
 custom_fonts/font = ExtResource( 10 )
+disabled = true
 text = "Save Honeypot"
 
 [node name="TaskContainer" type="VBoxContainer" parent="."]
@@ -776,10 +812,10 @@ margin_top = 460.0
 margin_right = 400.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 400, 40 )
+custom_fonts/normal_font = ExtResource( 10 )
 bbcode_enabled = true
-bbcode_text = "[right][b]YOUR TASKS[/b][/right]"
+bbcode_text = "[right][color=black]YOUR TASKS[/color][/right]"
 text = "YOUR TASKS"
-script = ExtResource( 9 )
 
 [node name="LevelNode" type="Node2D" parent="."]
 visible = false
@@ -816,20 +852,27 @@ frames = SubResource( 10 )
 anims/Fade = SubResource( 13 )
 anims/RESET = SubResource( 14 )
 
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="coffee_grabbed" from="." to="OverlayNode/CoffeeOverlayDisplay" method="_on_Desktop_coffee_grabbed"]
+[connection signal="level_started" from="." to="TaskContainer" method="_on_Desktop_level_started"]
 [connection signal="pressed" from="NetworkButton" to="." method="_on_NetworkButton_pressed"]
 [connection signal="pressed" from="TerminalButton" to="." method="_on_TerminalButton_pressed"]
 [connection signal="coffee_finished" from="OverlayNode/CoffeeOverlayDisplay" to="." method="_on_CoffeeOverlayDisplay_coffee_finished"]
 [connection signal="hide" from="Network" to="." method="_on_Network_hide"]
 [connection signal="item_selected" from="Network/RequestOverlay/MainRequestContainer/HeaderContainer/NetworkOptionsButton" to="Network" method="_on_NetworkOptionsButton_item_selected"]
 [connection signal="item_selected" from="Network/RequestOverlay/MainRequestContainer/HeaderContainer/NetworkOptionsButton" to="Network/RequestOverlay/MainRequestContainer/RequestContainer" method="_on_NetworkOptionsButton_item_selected"]
+[connection signal="button_down" from="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer/BlockButton" to="Network" method="_on_LineButton_button_down" binds= [ true ]]
+[connection signal="button_down" from="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer/UnblockButton" to="Network" method="_on_LineButton_button_down" binds= [ false ]]
 [connection signal="pressed" from="Network/ButtonContainer/RequestOverviewButton" to="Network" method="_on_Requests_pressed"]
 [connection signal="pressed" from="Network/ButtonContainer/FirewallOverviewButton" to="Network" method="_on_Firewall_pressed"]
-[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "authenticated_user" ]]
+[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "authenticated_users" ]]
 [connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "request_limit" ]]
 [connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "network_logging" ]]
 [connection signal="pressed" from="Network/FirewallOverlay/HoneypotButton" to="Network" method="_on_HoneypotButton_pressed"]
 [connection signal="toggled" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn/CheckBox" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "attack_information" ]]
 [connection signal="toggled" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn/CheckBox" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "accessed_data" ]]
+[connection signal="text_changed" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/Filename" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_Filename_text_changed"]
 [connection signal="pressed" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/HoneypotSaveButton" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_HoneypotSaveButton_pressed"]
 [connection signal="level_completed" from="TaskContainer" to="." method="_on_TaskContainer_level_completed"]
+[connection signal="task_completed" from="TaskContainer" to="." method="_on_TaskContainer_task_completed"]

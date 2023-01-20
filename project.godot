@@ -74,7 +74,7 @@ version_control_plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gif-importer/plugin.cfg", "res://addons/godot-gif-importer-main/addons/gif-importer/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [global]
 
@@ -84,6 +84,12 @@ Display=false
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+mp3={
+"loop": false
+}
 
 [physics]
 

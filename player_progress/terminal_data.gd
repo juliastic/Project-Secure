@@ -42,9 +42,9 @@ func generate_help_text(level: int) -> String:
 	if "GRAB COFFEE" in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]GRAB COFFEE[/b]: Humans also need a sometimes break (even though I don't understand why - they're so unproductive). Might have side effects."
 	if "BACKSTORY" in SUPPORTED_COMMANDS[level]:
-		help_text += "\n[b]BACKSTORY[/b]: I give you a backstory to the current chapter. It's ok. Humans are forgetful"
+		help_text += "\n[b]BACKSTORY[/b]: I give you a backstory to the current chapter. It's ok. Humans are forgetful."
 	if "LIST TERMS" in SUPPORTED_COMMANDS[level]:
-		help_text += "\n[b]LIST TERMS[/b]: List all terms understood by me. List might expand as you progress in your tasks."
+		help_text += "\n[b]LIST TERMS[/b]: List all terms understood by me. The list might expand as you progress in your tasks."
 	if "EXPLAIN" in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]EXPLAIN <TERM>[/b]: Explains a specific term. I'm all-knowing, you know."
 	return help_text

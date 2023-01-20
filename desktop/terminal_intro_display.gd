@@ -13,7 +13,7 @@ func _ready() -> void:
 		self.queue_free()
 
 func _input(event) -> void:
-	if event is InputEventKey and event.pressed and !(GameProgress.intro_completed or intro_animation_started) and event.scancode == KEY_SPACE:
+	if event is InputEventKey and event.pressed and !(GameProgress.intro_completed or intro_animation_started) and (event.scancode == KEY_SPACE or event.scancode == KEY_ENTER):
 		if _game_step_progress < len(ConsoleDialogue.INTRO_DIALOGUE):
 			_append_to_intro_text()
 		else:

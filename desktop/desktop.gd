@@ -1,11 +1,14 @@
 extends Node2D
 
 signal coffee_grabbed()
+signal level_started()
 
 onready var terminal_animation_player = $AnimationNode/TerminalAnimationPlayer
 onready var terminal_display = $AnimationNode/TerminalAnimationPlayer/TerminalDisplay
 onready var coffee_overlay_display = $OverlayNode/CoffeeOverlayDisplay
 onready var network_window = $Network
+
+var task_completion_sound := preload("res://sounds/task_completed.mp3")
 
 const START_LINE = ">> "
 const NEW_LINE = str("\n", START_LINE)
@@ -29,7 +32,7 @@ func _input(event) -> void:
 				_terminalToggle()
 			elif terminal_input == TerminalCommands.GRAB_COFFEE:
 				overlay_displayed = true
-				emit_signal("coffee_grabbed")
+				self.emit_signal("coffee_grabbed")
 			elif terminal_input == TerminalCommands.HELP:
 				GameProgress.terminal_text += str("\n", TerminalData.generate_help_text(level))
 			elif terminal_input.begins_with(TerminalCommands.EXPLAIN):
@@ -114,14 +117,21 @@ func _terminalToggle() -> void:
 func _on_TaskContainer_level_completed():
 	_handle_level_switch()
 
+func _on_TaskContainer_task_completed():
+	if !$AudioPlayer.is_playing():
+		$AudioPlayer.stream = task_completion_sound
+		$AudioPlayer.play()
+
 func _handle_level_switch() -> void:
 	GameProgress.set_next_level()
 	if GameProgress.get_level_name() == "":
+		self.emit_signal("level_started")
 		return
 	$LevelNode.show()
 	$LevelNode/LevelTextOverlay.bbcode_text = str("[center]", GameProgress.get_level_name(), "[/center]")
 	$LevelNode/AnimationPlayer.play_backwards("Fade")
 	yield(get_tree().create_timer(1.5), "timeout")
 	$LevelNode/AnimationPlayer.play("Fade")
+	self.emit_signal("level_started")
 	yield(get_node("LevelNode/AnimationPlayer"), "animation_finished")
 	$LevelNode.hide()

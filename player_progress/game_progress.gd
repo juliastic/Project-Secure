@@ -20,17 +20,22 @@ var honeypot_settings := {
 }
 
 const _tasks_tutorial := {
-	0: ["Execute one command in the terminal", "0"], 
-	1: ["Open the Network Tab", "0"]
+	0: ["Execute one command in the terminal", "0", "1"], 
+	1: ["Open the Network Tab", "0", "1"]
 }
 const _tasks_ransomware_trigger := {
-	2: ["Execute Grab Coffee Command", "0"]
+	2: ["Execute Grab Coffee Command", "0", "1"]
 }
 const _tasks_ransomware := {
-	3: ["Setup Firewall", "0"]
+	3: ["Enable Firewall", "0", "1"],
+	4: ["Enable Honeypot", "0", "1"],
+	5: ["Mark Suspicious Internal Requests", "0", "0"]
+}
+const _tasks_ddos := {
+	6: ["Defend against the attacks", "0", "1"]
 }
 
-var tasks := {Level.TUTORIAL: _tasks_tutorial, Level.RANSOMWARE_TRIGGER: _tasks_ransomware_trigger, Level.RANSOMWARE: _tasks_ransomware}
+var tasks := {Level.TUTORIAL: _tasks_tutorial, Level.RANSOMWARE_TRIGGER: _tasks_ransomware_trigger, Level.RANSOMWARE: _tasks_ransomware, Level.DDoS: _tasks_ddos}
 
 enum Level {
 	TUTORIAL,

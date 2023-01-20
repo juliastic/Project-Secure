@@ -19,5 +19,5 @@ margin_bottom = 500.0
 rect_min_size = Vector2( 400, 40 )
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
-bbcode_text = "[color=black][right]YOUR TASKS[/right][black]"
-text = "YOUR TASKS[black]"
+bbcode_text = "[color=black][right]YOUR TASKS[/right][/color]"
+text = "YOUR TASKS"
