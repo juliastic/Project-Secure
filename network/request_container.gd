@@ -1,42 +1,42 @@
 extends HBoxContainer
 
 var _current_level = GameProgress.level
-var _active_requests = Requests.INCOMING_REQUESTS
+var _active_requests = Requests.INTERNAL_REQUESTS
 var _request_containers = []
+var _active_request_display = Requests.Type.INTERNAL
 
-# TODO: handle deletion of rows
+onready var container := preload("RequestColumnContainer.tscn")
+
 func _ready() -> void:
 	pass
 	
 func _process(_delta) -> void:
-	if _current_level != GameProgress.level and GameProgress.level in _active_requests:
+	if _current_level != GameProgress.level:
 		_current_level = GameProgress.level
-		preload_requests()
+		_preload_requests()
 	
-func preload_requests() -> void:
+func _preload_requests() -> void:
 	for request_container in _request_containers:
 		request_container.queue_free()
 	_request_containers = []
 	
-	var requestContainer = preload("RequestColumnContainer.tscn")
 	if !GameProgress.level in _active_requests:
-		# remove rows here
 		return
+	
 	var requests = _active_requests[GameProgress.level]
-
 	for key in requests:
-		if key in Requests.blocked_requests:
-			continue
 		var request = requests[key]
-		var requestInstance = requestContainer.instance()
-		requestInstance.connect("button_down", get_parent().get_parent().get_parent(), "_on_Request_pressed", [str(key)])
+		var request_instance = container.instance()
+		request_instance.add_constant_override("separation", 10)
+		request_instance.connect("button_down", get_parent().get_parent().get_parent(), "_on_Request_pressed", [str(key)])
 		var i = 0
-		for child in requestInstance.get_node("RequestContainer").get_children():
+		for child in request_instance.get_node("RequestContainer").get_children():
 			child.bbcode_text = request[i]
 			i += 1
-		requestInstance.set_name(str(key))
-		_request_containers.append(requestInstance)
-		$IncomingRequests.add_child(requestInstance)
+		request_instance.set_name(str(key))
+		_request_containers.append(request_instance)
+		var parent = $BlockedRequests if key in Requests.blocked_requests[_active_request_display] else $IncomingRequests
+		parent.add_child(request_instance)
 
 func _on_Request_toggled(id: String, block: bool) -> void:
 	var from = $IncomingRequests if block else $BlockedRequests
@@ -46,8 +46,13 @@ func _on_Request_toggled(id: String, block: bool) -> void:
 	to.add_child(request)
 
 func _on_NetworkOptionsButton_item_selected(index):
-	if index == 0:
-		_active_requests = Requests.INCOMING_REQUESTS
-	else:
-		_active_requests = {}
-	preload_requests()
+	_active_request_display = index
+	if _active_request_display == Requests.Type.ALL:
+		_active_requests = Requests.ALL_REQUESTS
+	elif _active_request_display == Requests.Type.INTERNAL:
+		_active_requests = Requests.INTERNAL_REQUESTS
+	elif _active_request_display == Requests.Type.EXTERNAL:
+		_active_requests = Requests.EXTERNAL_REQUESTS
+	elif _active_request_display == Requests.Type.HONEYPOT:
+		_active_requests = Requests.HONEYPOT_REQUESTS
+	_preload_requests()

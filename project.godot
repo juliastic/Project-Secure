@@ -51,13 +51,12 @@ config/icon="res://icon.png"
 [autoload]
 
 KeyConstants="*res://helpers/key_constants.gd"
-GameProgress="*res://player_progress/game_progress.gd"
+GameProgress="*res://game_data/game_progress.gd"
 TerminalCommands="*res://helpers/terminal_commands.gd"
-NodeDescriptions="*res://helpers/node_descriptions.gd"
 ConsoleScripts="*res://dialgoue/console_scripts.gd"
 ConsoleDialogue="*res://dialgoue/console_dialogue.gd"
-Requests="*res://player_progress/requests.gd"
-TerminalData="*res://player_progress/terminal_data.gd"
+Requests="*res://game_data/requests.gd"
+TerminalData="*res://game_data/terminal_data.gd"
 
 [display]
 

@@ -7,6 +7,7 @@ const INTRO_DIALOGUE := [
 	str("\n> We've been regularly receiving threats ever since our CEO tweeted about a random celebrity. Don't ask me, I can't understand human emotions.",
 		"Such a waste of time when you could be working. Anyway, I'll be here to support you and lend you my expertise and knowledge.",
 		"You'll be focusing on different types of threats on different days. Unfortunately I don't have a body yet so I'll be stuck in this terminal for the time being."),
+	"\n> Customers can store their data on our servers for free. Funnily enough, People think they're not the product. Funny, I know.",
 	str("\n>> The terminal acts as the main interaction point between you and me.",
 		"Interacting with the terminal is straight forward. Enter any of the available commands to trigger certain actions.",
 		"The commands might seem a bit meta sometimes, but trust me - it's good that they are.",

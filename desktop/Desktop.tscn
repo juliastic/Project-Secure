@@ -1,13 +1,14 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=101 format=2]
 
 [ext_resource path="res://desktop/desktop.gd" type="Script" id=1]
 [ext_resource path="res://desktop/terminal_intro_display.gd" type="Script" id=2]
 [ext_resource path="res://desktop/coffee_overlay_display.gd" type="Script" id=3]
-[ext_resource path="res://helpers/terminal_text.gd" type="Script" id=4]
+[ext_resource path="res://font/bold_font_medium_overlay.tres" type="DynamicFont" id=4]
 [ext_resource path="res://helpers/default_button.gd" type="Script" id=5]
 [ext_resource path="res://tasks/task_container.gd" type="Script" id=6]
 [ext_resource path="res://network/request_container.gd" type="Script" id=7]
 [ext_resource path="res://network/network.gd" type="Script" id=8]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_14.png" type="Texture" id=9]
 [ext_resource path="res://font/bold_font_big.tres" type="DynamicFont" id=10]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_4.png" type="Texture" id=11]
 [ext_resource path="res://font/bold_font_default.tres" type="DynamicFont" id=12]
@@ -68,6 +69,20 @@
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_8.png" type="Texture" id=67]
 [ext_resource path="res://font/bold_font_big_overlay.tres" type="DynamicFont" id=68]
 [ext_resource path="res://font/normal_font_small.tres" type="DynamicFont" id=69]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_13.png" type="Texture" id=70]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_12.png" type="Texture" id=71]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_0.png" type="Texture" id=72]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_1.png" type="Texture" id=73]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_2.png" type="Texture" id=74]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_3.png" type="Texture" id=75]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_4.png" type="Texture" id=76]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_5.png" type="Texture" id=77]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_6.png" type="Texture" id=78]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_7.png" type="Texture" id=79]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_8.png" type="Texture" id=80]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_9.png" type="Texture" id=81]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_10.png" type="Texture" id=82]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_11.png" type="Texture" id=83]
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 1 )
@@ -197,6 +212,21 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 
+[sub_resource type="Animation" id=22]
+resource_name = "scale"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=15]
 resource_name = "Fade"
 length = 0.5
@@ -214,6 +244,44 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [ ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 76 ), ExtResource( 77 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 71 ), ExtResource( 70 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="Animation" id=20]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=21]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -286,6 +354,7 @@ custom_fonts/bold_font = ExtResource( 12 )
 custom_fonts/normal_font = ExtResource( 13 )
 bbcode_enabled = true
 fit_content_height = true
+scroll_following = true
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IntroNode/TerminalIntroDisplay"]
@@ -312,26 +381,34 @@ custom_fonts/bold_font = ExtResource( 12 )
 custom_fonts/normal_font = ExtResource( 13 )
 bbcode_enabled = true
 
-[node name="NetworkButton" type="Button" parent="."]
-margin_left = 986.0
-margin_top = 955.0
-margin_right = 1186.0
-margin_bottom = 1055.0
+[node name="ButtonContainer" type="HBoxContainer" parent="."]
+margin_top = 923.0
+margin_right = 1927.0
+margin_bottom = 1078.0
+alignment = 1
+
+[node name="NetworkButton" type="Button" parent="ButtonContainer"]
+margin_left = 711.0
+margin_right = 961.0
+margin_bottom = 155.0
+rect_min_size = Vector2( 250, 140 )
 focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 10 )
 enabled_focus_mode = 0
 text = "Network"
-script = ExtResource( 5 )
 
-[node name="TerminalButton" type="Button" parent="."]
-margin_left = 738.0
-margin_top = 955.0
-margin_right = 938.0
-margin_bottom = 1055.0
+[node name="TerminalButton" type="Button" parent="ButtonContainer"]
+margin_left = 965.0
+margin_right = 1215.0
+margin_bottom = 155.0
+rect_min_size = Vector2( 250, 140 )
 focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 10 )
 shortcut_in_tooltip = false
 enabled_focus_mode = 0
 text = "Terminal"
-script = ExtResource( 5 )
 
 [node name="OverlayNode" type="Node2D" parent="."]
 z_index = 1
@@ -342,6 +419,8 @@ margin_left = 486.0
 margin_top = 276.513
 margin_right = 1536.0
 margin_bottom = 702.513
+custom_fonts/normal_font = ExtResource( 4 )
+bbcode_enabled = true
 bbcode_text = "
 "
 text = "
@@ -357,9 +436,10 @@ margin_left = 680.0
 margin_top = 398.0
 margin_right = 1270.0
 margin_bottom = 653.0
+window_title = "Network Settings"
 script = ExtResource( 8 )
 
-[node name="RequestOverlay" type="WindowDialog" parent="Network"]
+[node name="RansomwareRequestMiniGame" type="WindowDialog" parent="Network"]
 visible = true
 margin_left = 6.0
 margin_top = 116.0
@@ -367,7 +447,7 @@ margin_right = 1138.0
 margin_bottom = 674.0
 window_title = "Requests"
 
-[node name="SetupIncompleteText" type="RichTextLabel" parent="Network/RequestOverlay"]
+[node name="InfoText" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame"]
 margin_left = 2.0
 margin_top = 207.0
 margin_right = 1130.0
@@ -377,19 +457,19 @@ bbcode_enabled = true
 bbcode_text = "[center]Firewall is not yet enabled[/center]"
 text = "Firewall is not yet enabled"
 
-[node name="MainRequestContainer" type="VBoxContainer" parent="Network/RequestOverlay"]
+[node name="MainRequestContainer" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame"]
 visible = false
 margin_right = 1139.0
 margin_bottom = 556.0
 rect_min_size = Vector2( 1000, 0 )
 mouse_filter = 0
 
-[node name="HeaderContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer"]
+[node name="HeaderContainer" type="HBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer"]
 margin_right = 1139.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1070, 40 )
 
-[node name="IncomingHeaderText" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/HeaderContainer"]
+[node name="IncomingHeaderText" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/HeaderContainer"]
 margin_right = 900.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 900, 40 )
@@ -398,14 +478,18 @@ bbcode_enabled = true
 bbcode_text = "[center]Internal Requests[/center]"
 text = "Internal Requests"
 
-[node name="NetworkOptionsButton" type="OptionButton" parent="Network/RequestOverlay/MainRequestContainer/HeaderContainer"]
+[node name="Filter" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/HeaderContainer"]
+margin_right = 100.0
+margin_bottom = 40.0
+
+[node name="NetworkOptionsButton" type="OptionButton" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/HeaderContainer/Filter"]
 margin_left = 904.0
 margin_right = 1004.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
 custom_fonts/font = ExtResource( 69 )
 
-[node name="RequestContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer"]
+[node name="RequestContainer" type="HBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer"]
 margin_top = 44.0
 margin_right = 1139.0
 margin_bottom = 248.0
@@ -413,13 +497,13 @@ rect_min_size = Vector2( 1070, 0 )
 alignment = 1
 script = ExtResource( 7 )
 
-[node name="IncomingRequests" type="VBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer"]
+[node name="IncomingRequests" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer"]
 margin_left = 18.0
 margin_right = 540.0
 margin_bottom = 204.0
 rect_min_size = Vector2( 500, 0 )
 
-[node name="IncomingHeaderText" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests"]
+[node name="IncomingHeaderText" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingRequests"]
 margin_right = 522.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
@@ -428,91 +512,91 @@ bbcode_enabled = true
 bbcode_text = "[center]Incoming Requests[/center]"
 text = "Incoming Requests"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingRequests"]
 margin_top = 44.0
 margin_right = 522.0
 margin_bottom = 94.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="OriginLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
+[node name="OriginLabel" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
 margin_right = 150.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 150, 50 )
+margin_bottom = 55.0
+rect_min_size = Vector2( 150, 55 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Origin
 "
 text = "Origin
 "
 
-[node name="URLLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
+[node name="URLLabel" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
 margin_left = 154.0
 margin_right = 314.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 160, 50 )
+margin_bottom = 55.0
+rect_min_size = Vector2( 160, 55 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Requested URL
 "
 text = "Requested URL
 "
 
-[node name="RoleLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
+[node name="RoleLabel" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
 margin_left = 318.0
 margin_right = 438.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 120, 50 )
+margin_bottom = 55.0
+rect_min_size = Vector2( 120, 55 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Role
 "
 text = "Role
 "
 
-[node name="CountLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
+[node name="CountLabel" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingRequests/HBoxContainer"]
 margin_left = 442.0
 margin_right = 522.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 80, 50 )
+margin_bottom = 55.0
+rect_min_size = Vector2( 80, 55 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Count
 "
 text = "Count
 "
 
-[node name="HBoxContainer" type="VBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer"]
+[node name="ButtonContainer" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer"]
 margin_left = 544.0
 margin_right = 594.0
 margin_bottom = 204.0
 rect_min_size = Vector2( 50, 200 )
 
-[node name="BlockButton" type="Button" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer"]
+[node name="BlockButton" type="Button" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer"]
 margin_right = 50.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 50, 100 )
 
-[node name="Line" type="Line2D" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer/BlockButton"]
+[node name="Line" type="Line2D" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer/BlockButton"]
 position = Vector2( 10, 30 )
 rotation = 0.959931
 points = PoolVector2Array( -5, -3, 29, -14, 32, 21 )
 default_color = Color( 0.898039, 0.12549, 0.12549, 1 )
 
-[node name="UnblockButton" type="Button" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer"]
+[node name="UnblockButton" type="Button" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer"]
 margin_top = 104.0
 margin_right = 50.0
 margin_bottom = 204.0
 rect_min_size = Vector2( 50, 100 )
 
-[node name="Line" type="Line2D" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer/UnblockButton"]
+[node name="Line" type="Line2D" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer/UnblockButton"]
 position = Vector2( 39, 67 )
 rotation = 4.18879
 points = PoolVector2Array( -5, -3, 8.15674, -7.25653, 29, -14, 32, 21 )
 default_color = Color( 0.898039, 0.12549, 0.12549, 1 )
 
-[node name="BlockedRequests" type="VBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer"]
+[node name="BlockedRequests" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer"]
 margin_left = 598.0
 margin_right = 1120.0
 margin_bottom = 204.0
 rect_min_size = Vector2( 500, 0 )
 
-[node name="BlockedHeaderText" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests"]
+[node name="BlockedHeaderText" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedRequests"]
 margin_right = 522.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
@@ -521,49 +605,49 @@ bbcode_enabled = true
 bbcode_text = "[center]Blocked Requests[/center]"
 text = "Blocked Requests"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedRequests"]
 margin_top = 44.0
 margin_right = 522.0
 margin_bottom = 94.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="OriginLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
+[node name="OriginLabel" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
 margin_right = 150.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 150, 50 )
+margin_bottom = 55.0
+rect_min_size = Vector2( 150, 55 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Origin
 "
 text = "Origin
 "
 
-[node name="URLLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
+[node name="URLLabel" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
 margin_left = 154.0
 margin_right = 314.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 160, 50 )
+margin_bottom = 55.0
+rect_min_size = Vector2( 160, 55 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Requested URL
 "
 text = "Requested URL
 "
 
-[node name="RoleLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
+[node name="RoleLabel" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
 margin_left = 318.0
 margin_right = 438.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 120, 50 )
+margin_bottom = 55.0
+rect_min_size = Vector2( 120, 55 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Role
 "
 text = "Role
 "
 
-[node name="CountLabel" type="RichTextLabel" parent="Network/RequestOverlay/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
+[node name="CountLabel" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedRequests/HBoxContainer"]
 margin_left = 442.0
 margin_right = 522.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 80, 50 )
+margin_bottom = 55.0
+rect_min_size = Vector2( 80, 55 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_text = "Count
 "
@@ -578,50 +662,47 @@ margin_bottom = 171.0
 alignment = 1
 
 [node name="RequestOverviewButton" type="Button" parent="Network/ButtonContainer"]
-margin_left = 64.0
-margin_right = 214.0
+margin_left = 141.0
+margin_right = 291.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 10 )
 text = "Requests"
-script = ExtResource( 5 )
 
 [node name="FirewallOverviewButton" type="Button" parent="Network/ButtonContainer"]
-margin_left = 218.0
-margin_right = 368.0
+margin_left = 295.0
+margin_right = 445.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 10 )
 text = "Firewall"
-script = ExtResource( 5 )
 
-[node name="ComputerOverviewButton" type="Button" parent="Network/ButtonContainer"]
-margin_left = 372.0
-margin_right = 522.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 150, 0 )
-text = "Computers"
-script = ExtResource( 5 )
-
-[node name="TutorialText" type="RichTextLabel" parent="Network"]
+[node name="InfoText" type="RichTextLabel" parent="Network"]
+visible = false
 margin_right = 591.0
 margin_bottom = 97.0
 rect_min_size = Vector2( 591, 97 )
+custom_fonts/normal_font = ExtResource( 10 )
 bbcode_enabled = true
-bbcode_text = "[center]This is the tutorial :)[/center]"
-text = "This is the tutorial :)"
-script = ExtResource( 4 )
+bbcode_text = "[center]Network information will be displayed here.[/center]"
+text = "Network information will be displayed here."
 
 [node name="FirewallOverlay" type="WindowDialog" parent="Network"]
+visible = true
 margin_left = 342.0
 margin_top = 108.0
 margin_right = 813.0
 margin_bottom = 375.0
+window_title = "Firewall Setup"
 script = ExtResource( 15 )
 
 [node name="FirewallText" type="RichTextLabel" parent="Network/FirewallOverlay"]
 margin_left = 4.0
 margin_top = 19.0
 margin_right = 468.0
-margin_bottom = 45.0
+margin_bottom = 54.0
 rect_min_size = Vector2( 200, 30 )
 custom_fonts/bold_font = ExtResource( 10 )
 bbcode_enabled = true
@@ -647,10 +728,10 @@ margin_left = 28.0
 margin_right = 378.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 350, 30 )
+custom_fonts/normal_font = ExtResource( 13 )
 bbcode_enabled = true
 bbcode_text = "Only allow authenticated users"
 text = "Only allow authenticated users"
-script = ExtResource( 4 )
 
 [node name="RequestLimitColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
 margin_top = 34.0
@@ -667,10 +748,10 @@ margin_left = 28.0
 margin_right = 408.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 380, 30 )
+custom_fonts/normal_font = ExtResource( 13 )
 bbcode_enabled = true
 bbcode_text = "Enable Reasonable Request Limit"
 text = "Enable Reasonable Request Limit"
-script = ExtResource( 4 )
 
 [node name="NetworkLoggingColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
 margin_top = 68.0
@@ -687,10 +768,10 @@ margin_left = 28.0
 margin_right = 408.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 380, 30 )
+custom_fonts/normal_font = ExtResource( 13 )
 bbcode_enabled = true
 bbcode_text = "Enable Network Logging"
 text = "Enable Network Logging"
-script = ExtResource( 4 )
 
 [node name="HoneypotButton" type="Button" parent="Network/FirewallOverlay"]
 margin_left = 350.0
@@ -701,6 +782,7 @@ text = "Honeypot Setup"
 script = ExtResource( 5 )
 
 [node name="HoneypotOverlay" type="WindowDialog" parent="Network/FirewallOverlay"]
+visible = true
 margin_left = 128.0
 margin_top = 69.0
 margin_right = 549.0
@@ -711,18 +793,18 @@ script = ExtResource( 16 )
 margin_left = 4.0
 margin_top = 19.0
 margin_right = 421.0
-margin_bottom = 49.0
+margin_bottom = 54.0
 rect_min_size = Vector2( 200, 30 )
 custom_fonts/bold_font = ExtResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[center][b]HONEYPOT SETUP[/b][/center]"
 text = "HONEYPOT SETUP"
-script = ExtResource( 4 )
 
 [node name="CheckboxContainer" type="VBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay"]
 margin_top = 50.0
 margin_right = 417.0
-margin_bottom = 234.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 0, 200 )
 mouse_filter = 0
 
 [node name="HoneypotText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
@@ -737,7 +819,7 @@ text = "LOGGING"
 [node name="AttackInformatinColumn" type="HBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
 margin_top = 34.0
 margin_right = 417.0
-margin_bottom = 58.0
+margin_bottom = 69.0
 mouse_filter = 0
 
 [node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
@@ -747,17 +829,17 @@ margin_bottom = 24.0
 [node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
 margin_left = 28.0
 margin_right = 368.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 340, 20 )
+margin_bottom = 30.0
+rect_min_size = Vector2( 340, 30 )
+custom_fonts/normal_font = ExtResource( 13 )
 bbcode_enabled = true
 bbcode_text = "Attack Information"
 text = "Attack Information"
-script = ExtResource( 4 )
 
 [node name="AccessedDataColumn" type="HBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
 margin_top = 62.0
 margin_right = 417.0
-margin_bottom = 86.0
+margin_bottom = 97.0
 mouse_filter = 0
 
 [node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
@@ -767,12 +849,12 @@ margin_bottom = 24.0
 [node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
 margin_left = 28.0
 margin_right = 368.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 340, 20 )
+margin_bottom = 30.0
+rect_min_size = Vector2( 340, 30 )
+custom_fonts/normal_font = ExtResource( 13 )
 bbcode_enabled = true
 bbcode_text = "Accessed Data"
 text = "Accessed Data"
-script = ExtResource( 4 )
 
 [node name="FileLureText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
 margin_top = 90.0
@@ -783,7 +865,6 @@ custom_fonts/bold_font = ExtResource( 12 )
 bbcode_enabled = true
 bbcode_text = "[b]Which file to lure attackers with?"
 text = "Which file to lure attackers with?"
-script = ExtResource( 4 )
 
 [node name="Filename" type="LineEdit" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
 margin_top = 124.0
@@ -804,6 +885,7 @@ margin_top = 560.0
 margin_right = 1900.0
 margin_bottom = 1060.0
 rect_min_size = Vector2( 350, 500 )
+rect_pivot_offset = Vector2( 403, 500 )
 alignment = 2
 script = ExtResource( 6 )
 
@@ -816,6 +898,9 @@ custom_fonts/normal_font = ExtResource( 10 )
 bbcode_enabled = true
 bbcode_text = "[right][color=black]YOUR TASKS[/color][/right]"
 text = "YOUR TASKS"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TaskContainer"]
+anims/scale = SubResource( 22 )
 
 [node name="LevelNode" type="Node2D" parent="."]
 visible = false
@@ -840,6 +925,17 @@ bbcode_enabled = true
 anims/Fade = SubResource( 15 )
 anims/RESET = SubResource( 16 )
 
+[node name="MachineGun" type="AnimatedSprite" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1572, 452 )
+scale = Vector2( 1.0625, 1.01562 )
+frames = SubResource( 19 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MachineGun"]
+anims/Fade = SubResource( 20 )
+anims/RESET = SubResource( 21 )
+
 [node name="Coffee" type="AnimatedSprite" parent="."]
 visible = false
 modulate = Color( 0, 0, 0, 1 )
@@ -855,15 +951,16 @@ anims/RESET = SubResource( 14 )
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="coffee_grabbed" from="." to="OverlayNode/CoffeeOverlayDisplay" method="_on_Desktop_coffee_grabbed"]
+[connection signal="level_started" from="." to="Network" method="_on_Desktop_level_started"]
 [connection signal="level_started" from="." to="TaskContainer" method="_on_Desktop_level_started"]
-[connection signal="pressed" from="NetworkButton" to="." method="_on_NetworkButton_pressed"]
-[connection signal="pressed" from="TerminalButton" to="." method="_on_TerminalButton_pressed"]
+[connection signal="pressed" from="ButtonContainer/NetworkButton" to="." method="_on_NetworkButton_pressed"]
+[connection signal="pressed" from="ButtonContainer/TerminalButton" to="." method="_on_TerminalButton_pressed"]
 [connection signal="coffee_finished" from="OverlayNode/CoffeeOverlayDisplay" to="." method="_on_CoffeeOverlayDisplay_coffee_finished"]
 [connection signal="hide" from="Network" to="." method="_on_Network_hide"]
-[connection signal="item_selected" from="Network/RequestOverlay/MainRequestContainer/HeaderContainer/NetworkOptionsButton" to="Network" method="_on_NetworkOptionsButton_item_selected"]
-[connection signal="item_selected" from="Network/RequestOverlay/MainRequestContainer/HeaderContainer/NetworkOptionsButton" to="Network/RequestOverlay/MainRequestContainer/RequestContainer" method="_on_NetworkOptionsButton_item_selected"]
-[connection signal="button_down" from="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer/BlockButton" to="Network" method="_on_LineButton_button_down" binds= [ true ]]
-[connection signal="button_down" from="Network/RequestOverlay/MainRequestContainer/RequestContainer/HBoxContainer/UnblockButton" to="Network" method="_on_LineButton_button_down" binds= [ false ]]
+[connection signal="item_selected" from="Network/RansomwareRequestMiniGame/MainRequestContainer/HeaderContainer/Filter/NetworkOptionsButton" to="Network" method="_on_NetworkOptionsButton_item_selected"]
+[connection signal="item_selected" from="Network/RansomwareRequestMiniGame/MainRequestContainer/HeaderContainer/Filter/NetworkOptionsButton" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_NetworkOptionsButton_item_selected"]
+[connection signal="button_down" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer/BlockButton" to="Network" method="_on_LineButton_button_down" binds= [ true ]]
+[connection signal="button_down" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer/UnblockButton" to="Network" method="_on_LineButton_button_down" binds= [ false ]]
 [connection signal="pressed" from="Network/ButtonContainer/RequestOverviewButton" to="Network" method="_on_Requests_pressed"]
 [connection signal="pressed" from="Network/ButtonContainer/FirewallOverviewButton" to="Network" method="_on_Firewall_pressed"]
 [connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "authenticated_users" ]]

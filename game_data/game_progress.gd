@@ -2,7 +2,7 @@ extends Node
 
 var terminal_text = str(
 	"Welcome, as you know: I'm Bob. I know that this Terminal Thing might be a bit confusing to you. ",
-	"As a little heads up: Type HELP and press ENTER to understand how to use my features.\n>> ")
+	"As a little heads up: Type HELP and press ENTER to understand how to use my features or if you are lost. I should be able to help you.\n>> ")
 
 var terminal_shown = true
 var intro_completed = false
@@ -13,6 +13,7 @@ var firewall_settings := {
 	"request_limit": false,
 	"network_logging": false
 }
+
 var honeypot_settings := {
 	"attack_information": false,
 	"accessed_data": false,
@@ -23,16 +24,23 @@ const _tasks_tutorial := {
 	0: ["Execute one command in the terminal", "0", "1"], 
 	1: ["Open the Network Tab", "0", "1"]
 }
+
 const _tasks_ransomware_trigger := {
-	2: ["Execute Grab Coffee Command", "0", "1"]
+	2: ["Grab some Coffee", "0", "1"]
 }
+
 const _tasks_ransomware := {
-	3: ["Enable Firewall", "0", "1"],
-	4: ["Enable Honeypot", "0", "1"],
-	5: ["Mark Suspicious Internal Requests", "0", "0"]
+	3: ["Create Firewall", "0", "1"],
+	4: ["Listen to Network Requests", "0", "1"],
+	5: ["Enable Firewall", "0", "0"],
+	6: ["Enable Honeypot", "0", "0"],
+	7: ["Mark Suspicious Internal Requests", "0", "0"]
 }
+
 const _tasks_ddos := {
-	6: ["Defend against the attacks", "0", "1"]
+	8: ["Enable Intrusion Detection System", "0", "1"],
+	9: ["Check the server's capacity", "0", "1"],
+	10: ["Defend against the attacks", "0", "1"]
 }
 
 var tasks := {Level.TUTORIAL: _tasks_tutorial, Level.RANSOMWARE_TRIGGER: _tasks_ransomware_trigger, Level.RANSOMWARE: _tasks_ransomware, Level.DDoS: _tasks_ddos}
