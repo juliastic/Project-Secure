@@ -3,7 +3,7 @@
 [ext_resource path="res://font/normal_font_small.tres" type="DynamicFont" id=2]
 
 [node name="RequestButton" type="Button"]
-margin_right = 512.0
+margin_right = 616.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 512, 50 )
 
@@ -38,9 +38,18 @@ mouse_filter = 1
 custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
 
-[node name="Count" type="RichTextLabel" parent="RequestContainer"]
+[node name="Type" type="RichTextLabel" parent="RequestContainer"]
 margin_left = 412.0
 margin_right = 512.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 50 )
+mouse_filter = 1
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+
+[node name="Count" type="RichTextLabel" parent="RequestContainer"]
+margin_left = 516.0
+margin_right = 616.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 50 )
 mouse_filter = 1

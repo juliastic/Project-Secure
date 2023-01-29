@@ -1,12 +1,12 @@
 extends Node2D
 
-signal coffee_grabbed()
+signal overlay_triggered(id)
 signal level_started()
 signal coffee_completed()
+signal level_finished_triggered(game_over)
 
 onready var terminal_animation_player = $AnimationNode/TerminalAnimationPlayer
 onready var terminal_display = $AnimationNode/TerminalAnimationPlayer/TerminalDisplay
-onready var coffee_overlay_display = $OverlayNode/CoffeeOverlayDisplay
 onready var network_window = $Network
 
 var task_completion_sound := preload("res://sounds/task_completed.mp3")
@@ -29,6 +29,7 @@ func _ready() -> void:
 		animation.set_modulate(lerp(get_modulate(), Color(1, 1, 1, 0), 1))
 	terminal_display.text = GameProgress.terminal_text
 
+
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and GameProgress.intro_completed and not overlay_displayed and not $Network/FirewallOverlay/HoneypotOverlay.is_visible_in_tree():
 		var level = GameProgress.level
@@ -37,7 +38,7 @@ func _input(event) -> void:
 				_terminalToggle()
 			elif terminal_input == TerminalCommands.GRAB_COFFEE:
 				_toggle_overlay_displayed(true)
-				self.emit_signal("coffee_grabbed")
+				self.emit_signal("overlay_triggered", 0)
 			elif terminal_input == TerminalCommands.HELP:
 				GameProgress.terminal_text += str("\n", TerminalData.generate_help_text(level))
 			elif terminal_input.begins_with(TerminalCommands.EXPLAIN):
@@ -61,7 +62,7 @@ func _input(event) -> void:
 			elif terminal_input == TerminalCommands.ENABLE_IDS:
 				_print_command(terminal_input, TerminalData.ENABLE_IDS_VALUES, "\nIDS is already enabled..", 8)
 			else:
-				GameProgress.terminal_text += str("\nHm I somehow have yet to learn to understand what ", terminal_input, " means ...")
+				GameProgress.terminal_text += str("\nHm I somehow have yet to learn what [i]", terminal_input, "[/i] means. Sorry about that ...")
 			GameProgress.terminal_text += str("\n", START_LINE if not overlay_displayed else "")
 			terminal_display.bbcode_text = GameProgress.terminal_text
 			if level == GameProgress.Level.TUTORIAL and GameProgress.get_current_tasks()[0][1] == "0" and terminal_input in TerminalCommands.COMMANDS:
@@ -78,7 +79,7 @@ func _input(event) -> void:
 			terminal_input += letter
 
 func _print_command(command: String, data_list, terminal_text_enabled: String, task_id: int):
-	if not terminal_input in TerminalData.SUPPORTED_COMMANDS[GameProgress.level]:
+	if not command in TerminalData.SUPPORTED_COMMANDS[GameProgress.level]:
 		return
 
 	if GameProgress.get_current_tasks()[task_id][1] == "0":
@@ -87,12 +88,13 @@ func _print_command(command: String, data_list, terminal_text_enabled: String, t
 	else:
 		GameProgress.terminal_text += terminal_text_enabled
 	GameProgress.get_current_tasks()[task_id][1] = "1"
-				
+
+
 func _on_NetworkButton_pressed() -> void:
 	var tutorial_active = GameProgress.level == GameProgress.Level.TUTORIAL or GameProgress.level == GameProgress.Level.RANSOMWARE_TRIGGER
 	if GameProgress.level == GameProgress.Level.TUTORIAL:
 		GameProgress.get_current_tasks()[1][1] = "1"
-	var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and GameProgress.get_current_tasks()[3][1] == "0" and GameProgress.get_current_tasks()[3][1] == "0"
+	var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and GameProgress.get_current_tasks()[3][1] == "0" and GameProgress.get_current_tasks()[4][1] == "0"
 	var buttons_disabled = tutorial_active or first_stage_ransomware
 	$Network/ButtonContainer/RequestOverviewButton.disabled = buttons_disabled
 	$Network/ButtonContainer/FirewallOverviewButton.disabled = buttons_disabled
@@ -100,6 +102,7 @@ func _on_NetworkButton_pressed() -> void:
 		$Network/InfoText.bbcode_text = "[center]Please create a Firewall and enable Network listening in the Terminal first.[/center]"
 	else:
 		_toggle_node($Network/InfoText, tutorial_active)
+	network_window.set_position(Vector2(650, 400))
 	network_window.show()
 
 func _toggle_node(node: Node, show: bool) -> void:
@@ -108,53 +111,34 @@ func _toggle_node(node: Node, show: bool) -> void:
 	else:
 		node.hide()
 
+
 func _on_Network_hide() -> void:
 	pass
+
 
 func _on_TerminalButton_pressed() -> void:
 	_terminalToggle()
 
-func _on_CoffeeOverlayDisplay_coffee_finished() -> void:
-	if GameProgress.level == GameProgress.Level.RANSOMWARE_TRIGGER:
-		terminal_display.add_text("...\n")
-		$Coffee.show()
-		$Coffee/AnimationPlayer.play_backwards("Fade")
-		$Coffee.playing = true
-		yield(get_node("Coffee"), "animation_finished")
-		terminal_display.add_text("...\n")
-		yield(get_tree().create_timer(1.0), "timeout")
-		terminal_display.add_text("...\n")
-		yield(get_tree().create_timer(1.0), "timeout")
-		GameProgress.terminal_text += ConsoleDialogue.CONSOLE_DIALOGUE["levels"][2]["GRAB COFFEE"]
-		terminal_display.bbcode_text = GameProgress.terminal_text
-		yield(get_tree().create_timer(1.0), "timeout")
-		$Coffee.playing = false
-		$Coffee/AnimationPlayer.play("Fade")
-		self.emit_signal("coffee_completed")
-		_handle_level_switch()
-		$Coffee.hide()
-	else:
-		terminal_display.add_text("...")
-		GameProgress.terminal_text += "..."
-		yield(get_tree().create_timer(1.0), "timeout")
-	_toggle_overlay_displayed(false)
-	#GameProgress.terminal_text += NEW_LINE
-	terminal_display.bbcode_text = GameProgress.terminal_text
 
 func _terminalToggle() -> void:
 	terminal_animation_player.play("MinimiseTerminal" if GameProgress.terminal_shown else "ShowTerminal")
 	GameProgress.terminal_shown = !GameProgress.terminal_shown
 
+
 func _on_TaskContainer_level_completed():
 	_handle_level_switch()
+
 
 func _on_TaskContainer_task_completed():
 	if !$AudioPlayer.is_playing():
 		$AudioPlayer.stream = task_completion_sound
 		$AudioPlayer.play()
 
+
 func _handle_level_switch() -> void:
 	_toggle_overlay_displayed(true)
+	if GameProgress.level == GameProgress.Level.RANSOMWARE:
+		pass
 	GameProgress.set_next_level()
 	Requests.reset_blocked_requests()
 	if GameProgress.get_level_name() == "":
@@ -179,7 +163,8 @@ func _handle_level_switch() -> void:
 		_toggle_overlay_displayed(false)
 	yield(get_tree().create_timer(0.4), "timeout")
 	_add_text_to_terminal(str("\n...\n[b]", TerminalData.BACKSTORY_VALUES[GameProgress.level], "[/b]", NEW_LINE))
-	
+
+
 func _trigger_DDoS_start() -> void:
 	_add_text_to_terminal(str("\n...\n[b]", TerminalData.BACKSTORY_VALUES[GameProgress.level], "[/b]"))
 	_toggle_overlay_displayed(true)
@@ -194,14 +179,62 @@ func _trigger_DDoS_start() -> void:
 	_toggle_overlay_displayed(false)
 	_add_text_to_terminal(NEW_LINE)
 
+
+func _trigger_Ransomware_end() -> void:
+	self.emit_signal("overlay_triggered", 1)
+
+
 func _add_text_to_terminal(text: String) -> void:
 	GameProgress.terminal_text += text
 	terminal_display.bbcode_text = GameProgress.terminal_text
+
 
 func _toggle_overlay_displayed(enable: bool) -> void:
 	overlay_displayed = enable
 	_toggle_menu_buttons(enable)
 
+
 func _toggle_menu_buttons(disable: bool) -> void:
 	$ButtonContainer/NetworkButton.disabled = disable
 	$ButtonContainer/TerminalButton.disabled = disable
+
+
+func _on_CoffeeOverlayDisplay_overlay_finished(id) -> void:
+	if id == 0:
+		_handle_coffee_overlay_finished()
+
+func _handle_coffee_overlay_finished() -> void:
+	if GameProgress.level == GameProgress.Level.RANSOMWARE_TRIGGER:
+		terminal_display.add_text("...\n")
+		$Coffee.show()
+		$Coffee/AnimationPlayer.play_backwards("Fade")
+		$Coffee.playing = true
+		yield(get_node("Coffee"), "animation_finished")
+		terminal_display.add_text("...\n")
+		yield(get_tree().create_timer(1.0), "timeout")
+		terminal_display.add_text("...\n")
+		yield(get_tree().create_timer(1.0), "timeout")
+		GameProgress.terminal_text += ConsoleDialogue.CONSOLE_DIALOGUE["levels"][2]["GRAB COFFEE"]
+		terminal_display.bbcode_text = GameProgress.terminal_text
+		yield(get_tree().create_timer(1.0), "timeout")
+		$Coffee.playing = false
+		$Coffee/AnimationPlayer.play("Fade")
+		self.emit_signal("coffee_completed")
+		_handle_level_switch()
+		$Coffee.hide()
+	else:
+		_add_text_to_terminal(str("...", NEW_LINE))
+		yield(get_tree().create_timer(1.0), "timeout")
+	_toggle_overlay_displayed(false)
+		#GameProgress.terminal_text += NEW_LINE
+	terminal_display.bbcode_text = GameProgress.terminal_text
+
+
+func _on_RansomwareRequestMiniGame_game_lost():
+	self.emit_signal("level_finished_triggered", true)
+	overlay_displayed = true
+
+
+func _on_RansomwareRequestMiniGame_game_won():
+	self.emit_signal("level_finished_triggered", false)
+	overlay_displayed = true

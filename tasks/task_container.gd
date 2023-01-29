@@ -28,9 +28,11 @@ func _process(_delta):
 			GameProgress.get_current_tasks()[5][2] = "1"
 			GameProgress.get_current_tasks()[6][2] = "1"
 			$AnimationPlayer.play("scale")
-		if GameProgress.level == GameProgress.Level.RANSOMWARE and current_tasks[5][1] == "1" and current_tasks[6][1] == "1":
+		elif GameProgress.level == GameProgress.Level.RANSOMWARE and current_tasks[5][1] == "1" and current_tasks[6][1] == "1":
 			GameProgress.get_current_tasks()[7][2] = "1"
 			$AnimationPlayer.play("scale")
+		elif GameProgress.level == GameProgress.Level.DDoS and current_tasks[8][1] == "1" and current_tasks[9][1] == "1":
+			GameProgress.get_current_tasks()[10][2] = "1"
 		if GameProgress.is_level_completed():
 			level_transition_active = true
 			if GameProgress.level != GameProgress.Level.RANSOMWARE_TRIGGER:

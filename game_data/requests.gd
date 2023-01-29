@@ -1,53 +1,28 @@
 extends Node
 
-enum Type {
-	ALL,
-	INTERNAL,
-	EXTERNAL,
-	HONEYPOT
+var rng = RandomNumberGenerator.new()
+
+var requests := {
+		0: ["10.2.3.4", "Fetch Updates", "user:Anna", "INTERNAL", "1"],
+		1: ["10.2.3.5", "Access User Data", "user:Malvin", "INTERNAL", "1"],
+		2: ["10.2.3.4", "Fetch Account Data", "external:Jacob", "EXTERNAL", "1"],
+		3: ["10.2.3.5", "Download Samples", "external:Dennis", "EXTERNAL", "5"],
+		4: ["10.2.3.5", "Test Honeypot Permissions", "user:Testuser", "HONEYPOT", "30"],
+		5: ["10.2.3.6", "Access Honeypot File", "user:asdf", "HONEYPOT", "20"]
 }
 
-const ALL_REQUESTS := {
-	GameProgress.Level.RANSOMWARE: {
-		0: ["10.2.3.4", "Fetch Updates", "user:Anna", "1"],
-		1: ["10.2.3.5", "Access User Data", "user:Malvin", "1"],
-		2: ["10.2.3.4", "Fetch Account Data", "external:Jacob", "1"],
-		3: ["10.2.3.5", "Download Samples", "external:Dennis", "5"],
-		4: ["10.2.3.5", "Test Honeypot Permissions", "user:Testuser", "30"],
-		5: ["10.2.3.6", "Access Honeypot File", "user:asdf", "20"]
-	}
-}
+const malicious_requests = ["5"]
 
-const INTERNAL_REQUESTS := {
-	GameProgress.Level.RANSOMWARE: {
-		0: ["10.2.3.4", "Fetch Updates", "user:Anna", "1"],
-		1: ["10.2.3.5", "Access User Data", "user:Malvin", "1"]
-	}
-}
-
-const EXTERNAL_REQUESTS := {
-	GameProgress.Level.RANSOMWARE: {
-		2: ["10.2.3.4", "Fetch Account Data", "external:Jacob", "1"],
-		3: ["10.2.3.5", "Download Samples", "external:Dennis", "5"]
-	},
-	GameProgress.Level.DDoS: {
-		2: ["10.2.3.10", "Fetch Account Data", "external:asdfg", "100"],
-		3: ["10.2.4.9", "Download Huge Database", "external:gjhls", "10"],
-		4: ["10.2.4.10", "Request Update", "external:qwer", "200"],
-		5: ["10.2.4.11", "Upload Update", "external:qertp", "200"]
-	}
-}
-
-const HONEYPOT_REQUESTS := {
-	GameProgress.Level.RANSOMWARE: {
-		4: ["10.2.3.5", "Test Honeypot Permissions", "user:Testuser", "30"],
-		5: ["10.2.3.6", "Access Honeypot File", "user:asdf", "20"]
-	}
-}
-
-const REQUESTS := [ALL_REQUESTS, INTERNAL_REQUESTS, EXTERNAL_REQUESTS, HONEYPOT_REQUESTS]
-
-var blocked_requests = {0: [], 1: [], 2: [], 3: []}
+var blocked_requests = []
 
 func reset_blocked_requests() -> void:
-	blocked_requests = {0: [], 1: [], 2: [], 3: []}
+	blocked_requests = []
+
+
+#TODO: generate random set of names, etc
+func generate_requests() -> void:
+	var request_types = ["INTERNAL", "EXTERNAL", "HONEYPOT"]
+	# if at a specific index -> insert request manually since they'll be the score ones
+	for i in range(100):
+		rng.randomize()
+		requests[i] = [str("10.0.0.", rng.randi_range(0, 100)), "RANDOM", "more random", request_types[rng.randi_range(0, 2)], rng.randi_range(1, 100)]

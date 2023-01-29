@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://network/request_container.gd" type="Script" id=1]
 [ext_resource path="res://helpers/terminal_text.gd" type="Script" id=2]
+[ext_resource path="res://font/bold_font_default.tres" type="DynamicFont" id=3]
 
 [node name="RequestContainer" type="HBoxContainer"]
 margin_right = 868.0
@@ -32,7 +33,7 @@ rect_min_size = Vector2( 200, 0 )
 margin_right = 200.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
+custom_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center][b]Blocked Requests[/b][/center]"
 text = "Blocked Requests"
-script = ExtResource( 2 )

@@ -38,5 +38,5 @@ func _introScreenAnimation() -> void:
 		self.queue_free()
 
 func _append_to_intro_text() -> void:
-	self.append_bbcode(ConsoleDialogue.INTRO_DIALOGUE[_game_step_progress])
+	self.bbcode_text += ConsoleDialogue.INTRO_DIALOGUE[_game_step_progress]
 	_game_step_progress += 1

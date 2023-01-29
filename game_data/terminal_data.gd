@@ -63,6 +63,7 @@ func generate_help_text(level: int) -> String:
 		help_text += "\n[b]CAPACITY[/b]: Displays the currenty request capacity of ours servers. The closer it is to 100%, the closer our system is to failure. If it's over 9000, all is lost."
 	return help_text
 
+
 func generate_list_terms(level: int) -> String:
 	var term_list = "I can give you more information on the following terms:"
 	for term in EXPLAIN_VALUES[level].keys():

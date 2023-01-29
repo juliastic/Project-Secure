@@ -19,16 +19,6 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
-"base": "DefaultButton",
-"class": "NetworkNode",
-"language": "GDScript",
-"path": "res://network/network_node.gd"
-}, {
-"base": "TerminalText",
-"class": "SmallTerminalText",
-"language": "GDScript",
-"path": "res://helpers/small_terminal_text.gd"
-}, {
 "base": "RichTextLabel",
 "class": "TerminalText",
 "language": "GDScript",
@@ -37,8 +27,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "DefaultButton": "",
 "GitAPI": "",
-"NetworkNode": "",
-"SmallTerminalText": "",
 "TerminalText": ""
 }
 
