@@ -6,14 +6,11 @@ signal game_won()
 
 var _pressed_request_id = "-1"
 
+
 func _ready() -> void:
 	$GameStartNode.set_modulate(lerp(get_modulate(), Color(1, 1, 1, 1), 1))
 	$GameStartNode.show()
 	$MainRequestContainer.hide()
-
-
-func _process(_delta) -> void:
-	pass
 
 
 func _on_Request_pressed(id: String) -> void:
@@ -31,6 +28,7 @@ func _on_LineButton_button_down(block: bool) -> void:
 			self.emit_signal("game_won")
 			$Timer.stop()
 			self.hide()
+			self.queue_free()
 	else:
 		for index in Requests.blocked_requests.size():
 			if Requests.blocked_requests[index] == _pressed_request_id:
@@ -50,6 +48,7 @@ func _toggle_info_text() -> void:
 		$InfoText.bbcode_text = "[center]No entries found for this request type. Happy days.[/center]"
 		$InfoText.show()
 		$MainRequestContainer/RequestContainer.hide()
+
 
 func _update_progress_label() -> void:
 	var correct_requests = 0

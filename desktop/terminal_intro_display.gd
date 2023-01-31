@@ -19,23 +19,9 @@ func _input(event) -> void:
 		else:
 			$AnimationPlayer.play("Fade")
 			yield(get_node("AnimationPlayer"), "animation_finished")
+			self.set_modulate(lerp(get_modulate(), Color(1, 1, 1, 0), 1))
 			GameProgress.intro_completed = true
-			#_intro_start = OS.get_ticks_msec()
-			#intro_animation_started = true
-
-func _process(_delta) -> void:
-	if intro_animation_started:
-		_introScreenAnimation()
-
-func _introScreenAnimation() -> void:
-	var time_elapsed = OS.get_ticks_msec() - _intro_start
-	if time_elapsed % 30 < 9:
-		self.set_modulate(lerp(get_modulate(), Color(1, 1, 1, _current_step), 1))
-		_current_step -= 0.05
-	if time_elapsed > 1000:
-		self.set_modulate(lerp(get_modulate(), Color(1, 1, 1, 0), 1))
-		GameProgress.intro_completed = true
-		self.queue_free()
+			self.queue_free()
 
 func _append_to_intro_text() -> void:
 	self.bbcode_text += ConsoleDialogue.INTRO_DIALOGUE[_game_step_progress]

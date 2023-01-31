@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://desktop/desktop.gd" type="Script" id=1]
 [ext_resource path="res://desktop/terminal_intro_display.gd" type="Script" id=2]
@@ -88,6 +88,9 @@
 [ext_resource path="res://assets/gun-fire-animation/Gun_fire1.png" type="Texture" id=86]
 [ext_resource path="res://assets/gun-fire-animation/Gun_fire2.png" type="Texture" id=87]
 [ext_resource path="res://assets/gun-fire-animation/Gun_fire3.png" type="Texture" id=88]
+[ext_resource path="res://ddos/player.gd" type="Script" id=89]
+[ext_resource path="res://ddos/bullet_position.gd" type="Script" id=90]
+[ext_resource path="res://ddos/viewport.gd" type="Script" id=91]
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 1 )
@@ -279,16 +282,16 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 80, 120 )
-
 [sub_resource type="SpriteFrames" id=30]
 animations = [ {
 "frames": [ ExtResource( 86 ), ExtResource( 87 ), ExtResource( 88 ) ],
 "loop": true,
 "name": "default",
-"speed": 11.0
+"speed": 5.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 80, 120 )
 
 [sub_resource type="Animation" id=22]
 resource_name = "scale"
@@ -1141,20 +1144,41 @@ rect_min_size = Vector2( 200, 70 )
 custom_fonts/font = ExtResource( 10 )
 text = "START"
 
-[node name="Timer" type="Timer" parent="Network/DDoSInvaderMiniGame"]
+[node name="ViewportLevel" type="ViewportContainer" parent="Network/DDoSInvaderMiniGame"]
+margin_right = 1500.0
+margin_bottom = 995.0
+rect_min_size = Vector2( 1500, 995 )
 
-[node name="InvaderNode" type="Node2D" parent="Network/DDoSInvaderMiniGame"]
+[node name="Viewport" type="Viewport" parent="Network/DDoSInvaderMiniGame/ViewportLevel"]
+size = Vector2( 1500, 995 )
+transparent_bg = true
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 3
+script = ExtResource( 91 )
 
-[node name="Player" type="KinematicBody2D" parent="Network/DDoSInvaderMiniGame/InvaderNode"]
+[node name="Timer" type="Timer" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport"]
+wait_time = 3.0
+autostart = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Network/DDoSInvaderMiniGame/InvaderNode/Player"]
-position = Vector2( 772, 870 )
-shape = SubResource( 31 )
+[node name="Player" type="KinematicBody2D" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport"]
+script = ExtResource( 89 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Network/DDoSInvaderMiniGame/InvaderNode/Player"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/Player"]
 position = Vector2( 772, 875 )
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 30 )
+
+[node name="BulletPosition" type="Position2D" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/Player/AnimatedSprite"]
+script = ExtResource( 90 )
+
+[node name="Cooldown" type="Timer" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/Player/AnimatedSprite/BulletPosition"]
+wait_time = 0.5
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/Player"]
+position = Vector2( 772, 870 )
+shape = SubResource( 31 )
 
 [node name="TaskContainer" type="VBoxContainer" parent="."]
 margin_left = 1500.0
@@ -1270,6 +1294,7 @@ anims/RESET = SubResource( 16 )
 [connection signal="hide" from="Network/RansomwareRequestMiniGame" to="Network/RansomwareRequestMiniGame" method="_on_RansomwareRequestMiniGame_hide"]
 [connection signal="hide" from="Network/RansomwareRequestMiniGame" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_RansomwareRequestMiniGame_hide"]
 [connection signal="request_toggled" from="Network/RansomwareRequestMiniGame" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_Request_toggled"]
+[connection signal="visibility_changed" from="Network/RansomwareRequestMiniGame" to="." method="_on_Minigame_visibility_changed" binds= [ 2 ]]
 [connection signal="pressed" from="Network/RansomwareRequestMiniGame/GameStartNode/Button" to="Network/RansomwareRequestMiniGame" method="_on_GameStart_pressed"]
 [connection signal="pressed" from="Network/RansomwareRequestMiniGame/GameStartNode/Button" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_GameStart_pressed"]
 [connection signal="toggled" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer/Origin" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "Origin" ]]
@@ -1291,7 +1316,9 @@ anims/RESET = SubResource( 16 )
 [connection signal="toggled" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn/CheckBox" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "accessed_data" ]]
 [connection signal="text_changed" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/Filename" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_Filename_text_changed"]
 [connection signal="pressed" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/HoneypotSaveButton" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_HoneypotSaveButton_pressed"]
+[connection signal="visibility_changed" from="Network/DDoSInvaderMiniGame" to="." method="_on_Minigame_visibility_changed" binds= [ 3 ]]
 [connection signal="pressed" from="Network/DDoSInvaderMiniGame/GameStartNode/Button" to="Network/DDoSInvaderMiniGame" method="_on_GameStart_pressed"]
+[connection signal="timeout" from="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/Timer" to="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" method="_on_Timer_timeout"]
 [connection signal="level_completed" from="TaskContainer" to="." method="_on_TaskContainer_level_completed"]
 [connection signal="task_completed" from="TaskContainer" to="." method="_on_TaskContainer_task_completed"]
 [connection signal="level_reset_triggered" from="LevelFinishedNode" to="Network/RansomwareRequestMiniGame" method="_on_LevelFinishedNode_level_reset_triggered"]
