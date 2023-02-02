@@ -9,56 +9,49 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "RigidBody2D",
+"base": "Reference",
 "class": "Attacker",
 "language": "GDScript",
-"path": "res://ddos/attacker.gd"
+"path": "res://src/ddos/attacker.gd"
 }, {
 "base": "Button",
 "class": "DefaultButton",
 "language": "GDScript",
-"path": "res://helpers/default_button.gd"
+"path": "res://src/helpers/default_button.gd"
 }, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
-}, {
-"base": "RichTextLabel",
-"class": "TerminalText",
-"language": "GDScript",
-"path": "res://helpers/terminal_text.gd"
 } ]
 _global_script_class_icons={
 "Attacker": "",
 "DefaultButton": "",
-"GitAPI": "",
-"TerminalText": ""
+"GitAPI": ""
 }
 
 [application]
 
 config/name="Project Secure"
-run/main_scene="res://main/Main.tscn"
+run/main_scene="res://src/main/Main.tscn"
 config/icon="res://assets/icon.png"
 
 [autoload]
 
-KeyConstants="*res://helpers/key_constants.gd"
-GameProgress="*res://game_data/game_progress.gd"
-TerminalCommands="*res://helpers/terminal_commands.gd"
-ConsoleScripts="*res://dialgoue/console_scripts.gd"
-ConsoleDialogue="*res://dialgoue/console_dialogue.gd"
-Requests="*res://game_data/requests.gd"
-TerminalData="*res://game_data/terminal_data.gd"
+KeyConstants="*res://src/helpers/key_constants.gd"
+GameProgress="*res://src/game_data/game_progress.gd"
+TerminalCommands="*res://src/helpers/terminal_commands.gd"
+ConsoleDialogue="*res://src/desktop/console_dialogue.gd"
+Requests="*res://src/game_data/requests.gd"
+TerminalData="*res://src/game_data/terminal_data.gd"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
-mouse_cursor/custom_image="res://imgs/cursor-sample.png"
+mouse_cursor/custom_image="res://assets/imgs/cursor-sample.png"
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 
 [editor]
 

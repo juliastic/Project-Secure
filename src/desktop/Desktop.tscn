@@ -1,0 +1,1562 @@
+[gd_scene load_steps=149 format=2]
+
+[ext_resource path="res://src/network/firewall.gd" type="Script" id=1]
+[ext_resource path="res://src/level_finished/level_finished.gd" type="Script" id=2]
+[ext_resource path="res://src/ddos/player.gd" type="Script" id=3]
+[ext_resource path="res://src/ransomware/ransomware.gd" type="Script" id=4]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_3.png" type="Texture" id=5]
+[ext_resource path="res://src/ddos/ddos.gd" type="Script" id=6]
+[ext_resource path="res://src/desktop/desktop.gd" type="Script" id=7]
+[ext_resource path="res://src/network/honeypot.gd" type="Script" id=8]
+[ext_resource path="res://src/tasks/task_container.gd" type="Script" id=9]
+[ext_resource path="res://src/desktop/terminal_intro_display.gd" type="Script" id=10]
+[ext_resource path="res://font/bold_font_big_overlay.tres" type="DynamicFont" id=11]
+[ext_resource path="res://font/bold_font_medium_overlay.tres" type="DynamicFont" id=12]
+[ext_resource path="res://src/network/network.gd" type="Script" id=13]
+[ext_resource path="res://src/ransomware/request_container.gd" type="Script" id=14]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_4.png" type="Texture" id=15]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_5.png" type="Texture" id=16]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_6.png" type="Texture" id=17]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_7.png" type="Texture" id=18]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_8.png" type="Texture" id=19]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_9.png" type="Texture" id=20]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_10.png" type="Texture" id=21]
+[ext_resource path="res://src/ddos/viewport.gd" type="Script" id=22]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_17.png" type="Texture" id=23]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_2.png" type="Texture" id=24]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_43.png" type="Texture" id=25]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_48.png" type="Texture" id=26]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_46.png" type="Texture" id=27]
+[ext_resource path="res://assets/disguise-animation/social-engi21.png" type="Texture" id=28]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_49.png" type="Texture" id=29]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_47.png" type="Texture" id=30]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_0.png" type="Texture" id=31]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_1.png" type="Texture" id=32]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_44.png" type="Texture" id=33]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_45.png" type="Texture" id=34]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_51.png" type="Texture" id=35]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_12.png" type="Texture" id=36]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_14.png" type="Texture" id=37]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_9.png" type="Texture" id=38]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_13.png" type="Texture" id=39]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_11.png" type="Texture" id=40]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_7.png" type="Texture" id=41]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_10.png" type="Texture" id=42]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_8.png" type="Texture" id=43]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_13.png" type="Texture" id=44]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_12.png" type="Texture" id=45]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_0.png" type="Texture" id=46]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_1.png" type="Texture" id=47]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_2.png" type="Texture" id=48]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_3.png" type="Texture" id=49]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_11.png" type="Texture" id=50]
+[ext_resource path="res://assets/gun-fire-animation/Gun_fire1.png" type="Texture" id=51]
+[ext_resource path="res://assets/gun-fire-animation/Gun_fire2.png" type="Texture" id=52]
+[ext_resource path="res://assets/gun-fire-animation/Gun_fire3.png" type="Texture" id=53]
+[ext_resource path="res://src/ddos/bullet_position.gd" type="Script" id=54]
+[ext_resource path="res://font/bold_font_default.tres" type="DynamicFont" id=55]
+[ext_resource path="res://src/desktop/generic_overlay_display.gd" type="Script" id=56]
+[ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_14.png" type="Texture" id=57]
+[ext_resource path="res://font/bold_font_big.tres" type="DynamicFont" id=58]
+[ext_resource path="res://font/normal_font_default.tres" type="DynamicFont" id=59]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_4.png" type="Texture" id=60]
+[ext_resource path="res://font/italic_font_default.tres" type="DynamicFont" id=61]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_5.png" type="Texture" id=62]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_6.png" type="Texture" id=63]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_33.png" type="Texture" id=64]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_21.png" type="Texture" id=65]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_16.png" type="Texture" id=66]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_29.png" type="Texture" id=67]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_22.png" type="Texture" id=68]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_19.png" type="Texture" id=69]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_15.png" type="Texture" id=70]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_25.png" type="Texture" id=71]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_24.png" type="Texture" id=72]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_42.png" type="Texture" id=73]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_18.png" type="Texture" id=74]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_37.png" type="Texture" id=75]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_41.png" type="Texture" id=76]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_30.png" type="Texture" id=77]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_36.png" type="Texture" id=78]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_34.png" type="Texture" id=79]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_38.png" type="Texture" id=80]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_35.png" type="Texture" id=81]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_20.png" type="Texture" id=82]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_28.png" type="Texture" id=83]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_23.png" type="Texture" id=84]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_39.png" type="Texture" id=85]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_40.png" type="Texture" id=86]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_31.png" type="Texture" id=87]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_32.png" type="Texture" id=88]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_26.png" type="Texture" id=89]
+[ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_27.png" type="Texture" id=90]
+[ext_resource path="res://src/helpers/default_button.gd" type="Script" id=91]
+[ext_resource path="res://assets/disguise-animation/social-engi22.png" type="Texture" id=92]
+[ext_resource path="res://assets/disguise-animation/social-engi23.png" type="Texture" id=93]
+[ext_resource path="res://assets/disguise-animation/social-engi24.png" type="Texture" id=94]
+[ext_resource path="res://assets/disguise-animation/social-engi14.png" type="Texture" id=95]
+[ext_resource path="res://assets/disguise-animation/social-engi15.png" type="Texture" id=96]
+[ext_resource path="res://assets/disguise-animation/social-engi20.png" type="Texture" id=97]
+[ext_resource path="res://assets/disguise-animation/social-engi7.png" type="Texture" id=98]
+[ext_resource path="res://assets/disguise-animation/social-engi19.png" type="Texture" id=99]
+[ext_resource path="res://assets/disguise-animation/social-engi16.png" type="Texture" id=100]
+[ext_resource path="res://assets/disguise-animation/social-engi5.png" type="Texture" id=101]
+[ext_resource path="res://assets/disguise-animation/social-engi8.png" type="Texture" id=102]
+[ext_resource path="res://assets/disguise-animation/social-engi11.png" type="Texture" id=103]
+[ext_resource path="res://assets/disguise-animation/social-engi1.png" type="Texture" id=104]
+[ext_resource path="res://assets/disguise-animation/social-engi12.png" type="Texture" id=105]
+[ext_resource path="res://assets/disguise-animation/social-engi9.png" type="Texture" id=106]
+[ext_resource path="res://assets/disguise-animation/social-engi10.png" type="Texture" id=107]
+[ext_resource path="res://assets/disguise-animation/social-engi26.png" type="Texture" id=108]
+[ext_resource path="res://assets/disguise-animation/social-engi17.png" type="Texture" id=109]
+[ext_resource path="res://assets/disguise-animation/social-engi18.png" type="Texture" id=110]
+[ext_resource path="res://assets/disguise-animation/social-engi6.png" type="Texture" id=111]
+[ext_resource path="res://assets/disguise-animation/social-engi2.png" type="Texture" id=112]
+[ext_resource path="res://assets/disguise-animation/social-engi25.png" type="Texture" id=113]
+[ext_resource path="res://assets/disguise-animation/social-engi3.png" type="Texture" id=114]
+[ext_resource path="res://assets/disguise-animation/social-engi4.png" type="Texture" id=115]
+[ext_resource path="res://assets/disguise-animation/social-engi13.png" type="Texture" id=116]
+[ext_resource path="res://src/social_engineering/social_engineering.gd" type="Script" id=117]
+[ext_resource path="res://src/social_engineering/viewport.gd" type="Script" id=118]
+
+[sub_resource type="ImageTexture" id=37]
+storage = 1
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Theme" id=6]
+RichTextLabel/styles/normal = SubResource( 5 )
+
+[sub_resource type="Animation" id=17]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "MinimiseTerminal"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("TerminalDisplay:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ), Vector2( 0.01, 0.01 ), Vector2( 0.01, 0.01 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("TerminalDisplay")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "hide"
+} ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=28]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 80, 120 )
+
+[sub_resource type="Animation" id=35]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=36]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "scale"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [ ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 50 ), ExtResource( 45 ), ExtResource( 44 ), ExtResource( 57 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="Animation" id=20]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=32]
+animations = [ {
+"frames": [ ExtResource( 104 ), ExtResource( 112 ), ExtResource( 114 ), ExtResource( 115 ), ExtResource( 101 ), ExtResource( 111 ), ExtResource( 98 ), ExtResource( 102 ), ExtResource( 106 ), ExtResource( 107 ), ExtResource( 103 ), ExtResource( 105 ), ExtResource( 116 ), ExtResource( 95 ), ExtResource( 96 ), ExtResource( 100 ), ExtResource( 109 ), ExtResource( 110 ), ExtResource( 99 ), ExtResource( 97 ), ExtResource( 28 ), ExtResource( 92 ), ExtResource( 93 ), ExtResource( 94 ), ExtResource( 113 ), ExtResource( 108 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="Animation" id=33]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=34]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 31 ), ExtResource( 32 ), ExtResource( 24 ), ExtResource( 5 ), ExtResource( 60 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 38 ), ExtResource( 42 ), ExtResource( 40 ), ExtResource( 36 ), ExtResource( 39 ), ExtResource( 37 ), ExtResource( 70 ), ExtResource( 66 ), ExtResource( 23 ), ExtResource( 74 ), ExtResource( 69 ), ExtResource( 82 ), ExtResource( 65 ), ExtResource( 68 ), ExtResource( 84 ), ExtResource( 72 ), ExtResource( 71 ), ExtResource( 89 ), ExtResource( 90 ), ExtResource( 83 ), ExtResource( 67 ), ExtResource( 77 ), ExtResource( 87 ), ExtResource( 88 ), ExtResource( 64 ), ExtResource( 79 ), ExtResource( 81 ), ExtResource( 78 ), ExtResource( 75 ), ExtResource( 80 ), ExtResource( 85 ), ExtResource( 86 ), ExtResource( 76 ), ExtResource( 73 ), ExtResource( 25 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 27 ), ExtResource( 30 ), ExtResource( 26 ), ExtResource( 29 ), ExtResource( 35 ) ],
+"loop": false,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="Animation" id=13]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="Desktop" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.427451 )
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_right = 1918.0
+margin_bottom = 1086.0
+texture = SubResource( 37 )
+
+[node name="IntroNode" type="Node2D" parent="."]
+visible = false
+position = Vector2( -4, -1 )
+z_index = 1
+
+[node name="TerminalIntroDisplay" type="RichTextLabel" parent="IntroNode"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = 15.0
+margin_right = 1936.0
+margin_bottom = 1069.0
+rect_scale = Vector2( 0.997697, 1.0253 )
+rect_pivot_offset = Vector2( 879, 536 )
+theme = SubResource( 6 )
+custom_fonts/italics_font = ExtResource( 61 )
+custom_fonts/bold_font = ExtResource( 55 )
+custom_fonts/normal_font = ExtResource( 59 )
+bbcode_enabled = true
+fit_content_height = true
+scroll_following = true
+script = ExtResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IntroNode/TerminalIntroDisplay"]
+anims/Fade = SubResource( 17 )
+anims/RESET = SubResource( 18 )
+
+[node name="TerminalDisplay" type="RichTextLabel" parent="."]
+margin_left = 54.0
+margin_top = 125.0
+margin_right = 1220.0
+margin_bottom = 730.0
+rect_pivot_offset = Vector2( 1068, 826 )
+theme = SubResource( 6 )
+custom_fonts/italics_font = ExtResource( 61 )
+custom_fonts/bold_font = ExtResource( 55 )
+custom_fonts/normal_font = ExtResource( 59 )
+bbcode_enabled = true
+
+[node name="TerminalAnimationPlayer" type="AnimationPlayer" parent="TerminalDisplay"]
+root_node = NodePath("../..")
+reset_on_save = false
+anims/MinimiseTerminal = SubResource( 4 )
+
+[node name="ButtonContainer" type="HBoxContainer" parent="."]
+margin_top = 923.0
+margin_right = 1927.0
+margin_bottom = 1078.0
+alignment = 1
+
+[node name="NetworkButton" type="Button" parent="ButtonContainer"]
+margin_left = 711.0
+margin_right = 961.0
+margin_bottom = 155.0
+rect_min_size = Vector2( 250, 140 )
+focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 58 )
+enabled_focus_mode = 0
+text = "Network"
+
+[node name="TerminalButton" type="Button" parent="ButtonContainer"]
+margin_left = 965.0
+margin_right = 1215.0
+margin_bottom = 155.0
+rect_min_size = Vector2( 250, 140 )
+focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 58 )
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+text = "Terminal"
+
+[node name="OverlayNode" type="Node2D" parent="."]
+z_index = 11
+
+[node name="GenericOverlayDisplay" type="RichTextLabel" parent="OverlayNode"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 486.0
+margin_top = 276.513
+margin_right = 1536.0
+margin_bottom = 702.513
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "
+"
+text = "
+"
+script = ExtResource( 56 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OverlayNode/GenericOverlayDisplay"]
+anims/Fade = SubResource( 11 )
+anims/RESET = SubResource( 12 )
+
+[node name="Network" type="WindowDialog" parent="."]
+visible = true
+margin_left = 680.0
+margin_top = 398.0
+margin_right = 1270.0
+margin_bottom = 653.0
+window_title = "Network Settings"
+script = ExtResource( 13 )
+
+[node name="RansomwareRequestMiniGame" type="WindowDialog" parent="Network"]
+margin_left = -17.0
+margin_top = 116.0
+margin_right = 1483.0
+margin_bottom = 674.0
+window_title = "Defend form Cups"
+script = ExtResource( 4 )
+
+[node name="GameStartNode" type="Node2D" parent="Network/RansomwareRequestMiniGame"]
+modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Network/RansomwareRequestMiniGame/GameStartNode"]
+root_node = NodePath("../Display")
+anims/Fade = SubResource( 25 )
+anims/RESET = SubResource( 26 )
+
+[node name="Display" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/GameStartNode"]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 1500.0
+margin_bottom = 426.0
+rect_min_size = Vector2( 1500, 0 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "[center]Welcome! Get ready to sort. Press START to trigger the event.[/center]"
+text = "Welcome! Get ready to sort. Press START to trigger the event."
+
+[node name="Button" type="Button" parent="Network/RansomwareRequestMiniGame/GameStartNode"]
+margin_left = 700.0
+margin_top = 300.0
+margin_right = 900.0
+margin_bottom = 370.0
+rect_min_size = Vector2( 200, 70 )
+custom_fonts/font = ExtResource( 58 )
+text = "START"
+
+[node name="InfoText" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame"]
+visible = false
+margin_left = 2.0
+margin_top = 207.0
+margin_right = 1130.0
+margin_bottom = 251.0
+custom_fonts/normal_font = ExtResource( 58 )
+bbcode_enabled = true
+bbcode_text = "[center]Firewall is not yet enabled[/center]"
+text = "Firewall is not yet enabled"
+
+[node name="MainRequestContainer" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame"]
+margin_right = 1500.0
+margin_bottom = 584.0
+rect_min_size = Vector2( 1500, 0 )
+mouse_filter = 0
+
+[node name="HeaderContainer" type="HBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer"]
+margin_right = 1500.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 1070, 80 )
+
+[node name="IncomingHeaderText" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/HeaderContainer"]
+margin_right = 600.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 600, 40 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "REQUESTS"
+text = "REQUESTS"
+
+[node name="ProgressLabel" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/HeaderContainer"]
+margin_left = 604.0
+margin_right = 1104.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 500, 0 )
+custom_fonts/normal_font = ExtResource( 58 )
+bbcode_enabled = true
+bbcode_text = "[color=black]0/1 Found || 0 Request misidentified [/color]"
+text = "0/1 Found || 0 Request misidentified "
+
+[node name="ScoreLabel" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/HeaderContainer"]
+margin_left = 1108.0
+margin_right = 1408.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 300, 0 )
+custom_fonts/normal_font = ExtResource( 58 )
+bbcode_enabled = true
+bbcode_text = "[right]Points: 100[/right]"
+text = "Points: 100"
+
+[node name="RequestContainer" type="HBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer"]
+margin_top = 84.0
+margin_right = 1500.0
+margin_bottom = 534.0
+rect_min_size = Vector2( 1070, 0 )
+mouse_filter = 0
+alignment = 1
+script = ExtResource( 14 )
+
+[node name="FilterContainer" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer"]
+margin_left = 9.0
+margin_right = 128.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 119, 60 )
+
+[node name="FilterText" type="LineEdit" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer"]
+margin_right = 119.0
+margin_bottom = 24.0
+placeholder_text = "Filter Text"
+
+[node name="Origin" type="CheckButton" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer"]
+margin_top = 28.0
+margin_right = 119.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 0, 60 )
+pressed = true
+text = "Origin"
+
+[node name="URL" type="CheckButton" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer"]
+margin_top = 92.0
+margin_right = 119.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 0, 60 )
+pressed = true
+text = "URL"
+
+[node name="Role" type="CheckButton" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer"]
+margin_top = 156.0
+margin_right = 119.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 0, 60 )
+pressed = true
+text = "Role"
+
+[node name="Type" type="CheckButton" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer"]
+margin_top = 220.0
+margin_right = 119.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 0, 60 )
+pressed = true
+text = "Type"
+
+[node name="Count" type="CheckButton" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer"]
+margin_top = 284.0
+margin_right = 119.0
+margin_bottom = 344.0
+rect_min_size = Vector2( 0, 60 )
+pressed = true
+text = "Count"
+
+[node name="IncomingScrollContainer" type="ScrollContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer"]
+margin_left = 132.0
+margin_right = 782.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 650, 450 )
+
+[node name="IncomingRequests" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingScrollContainer"]
+margin_right = 650.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 650, 450 )
+
+[node name="IncomingHeaderText" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests"]
+margin_right = 650.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/normal_font = ExtResource( 58 )
+bbcode_enabled = true
+bbcode_text = "[center]Incoming Requests[/center]"
+text = "Incoming Requests"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests"]
+margin_top = 44.0
+margin_right = 650.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Origin" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 150, 55 )
+custom_fonts/normal_font = ExtResource( 55 )
+bbcode_text = "Origin
+"
+text = "Origin
+"
+
+[node name="URL" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests/HBoxContainer"]
+margin_left = 154.0
+margin_right = 314.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 160, 55 )
+custom_fonts/normal_font = ExtResource( 55 )
+bbcode_text = "Requested URL
+"
+text = "Requested URL
+"
+
+[node name="Role" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests/HBoxContainer"]
+margin_left = 318.0
+margin_right = 438.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 120, 55 )
+custom_fonts/normal_font = ExtResource( 55 )
+bbcode_text = "Role
+"
+text = "Role
+"
+
+[node name="Type" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests/HBoxContainer"]
+margin_left = 442.0
+margin_right = 562.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 120, 55 )
+custom_fonts/normal_font = ExtResource( 55 )
+bbcode_text = "Role
+"
+text = "Role
+"
+
+[node name="Count" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests/HBoxContainer"]
+margin_left = 566.0
+margin_right = 646.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 80, 55 )
+custom_fonts/normal_font = ExtResource( 55 )
+bbcode_enabled = true
+bbcode_text = "Count"
+text = "Count"
+
+[node name="ButtonContainer" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer"]
+margin_left = 786.0
+margin_right = 836.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 50, 200 )
+
+[node name="BlockButton" type="Button" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer"]
+margin_right = 50.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 50, 100 )
+disabled = true
+
+[node name="Line" type="Line2D" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer/BlockButton"]
+position = Vector2( 10, 30 )
+rotation = 0.959931
+points = PoolVector2Array( -5, -3, 29, -14, 32, 21 )
+default_color = Color( 0.898039, 0.12549, 0.12549, 1 )
+
+[node name="UnblockButton" type="Button" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer"]
+margin_top = 104.0
+margin_right = 50.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 50, 100 )
+disabled = true
+
+[node name="Line" type="Line2D" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer/UnblockButton"]
+position = Vector2( 39, 67 )
+rotation = 4.18879
+points = PoolVector2Array( -5, -3, 8.15674, -7.25653, 29, -14, 32, 21 )
+default_color = Color( 0.898039, 0.12549, 0.12549, 1 )
+
+[node name="Timer" type="Timer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer"]
+wait_time = 1.5
+
+[node name="BlockedScrollContainer" type="ScrollContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer"]
+margin_left = 840.0
+margin_right = 1490.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 650, 450 )
+
+[node name="BlockedRequests" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedScrollContainer"]
+margin_right = 650.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 650, 450 )
+
+[node name="BlockedHeaderText" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests"]
+margin_right = 650.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 100, 40 )
+custom_fonts/normal_font = ExtResource( 58 )
+bbcode_enabled = true
+bbcode_text = "[center]Blocked Requests[/center]"
+text = "Blocked Requests"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests"]
+margin_top = 44.0
+margin_right = 650.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Origin" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 150, 55 )
+custom_fonts/normal_font = ExtResource( 55 )
+bbcode_text = "Origin
+"
+text = "Origin
+"
+
+[node name="URL" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests/HBoxContainer"]
+margin_left = 154.0
+margin_right = 314.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 160, 55 )
+custom_fonts/normal_font = ExtResource( 55 )
+bbcode_text = "Requested URL
+"
+text = "Requested URL
+"
+
+[node name="Role" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests/HBoxContainer"]
+margin_left = 318.0
+margin_right = 438.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 120, 55 )
+custom_fonts/normal_font = ExtResource( 55 )
+bbcode_text = "Role
+"
+text = "Role
+"
+
+[node name="Type" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests/HBoxContainer"]
+margin_left = 442.0
+margin_right = 562.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 120, 55 )
+custom_fonts/normal_font = ExtResource( 55 )
+bbcode_text = "Role
+"
+text = "Role
+"
+
+[node name="Count" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests/HBoxContainer"]
+margin_left = 566.0
+margin_right = 646.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 80, 55 )
+custom_fonts/normal_font = ExtResource( 55 )
+bbcode_text = "Count
+"
+text = "Count
+"
+
+[node name="ScoreTimer" type="Timer" parent="Network/RansomwareRequestMiniGame"]
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Network"]
+margin_left = 1.0
+margin_top = 81.0
+margin_right = 588.0
+margin_bottom = 171.0
+alignment = 1
+
+[node name="RequestOverviewButton" type="Button" parent="Network/ButtonContainer"]
+margin_left = 141.0
+margin_right = 291.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 58 )
+text = "Requests"
+
+[node name="FirewallOverviewButton" type="Button" parent="Network/ButtonContainer"]
+margin_left = 295.0
+margin_right = 445.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
+custom_fonts/font = ExtResource( 58 )
+text = "Firewall"
+
+[node name="InfoText" type="RichTextLabel" parent="Network"]
+visible = false
+margin_right = 591.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 591, 97 )
+custom_fonts/normal_font = ExtResource( 58 )
+bbcode_enabled = true
+bbcode_text = "[center]Network information will be displayed here.[/center]"
+text = "Network information will be displayed here."
+
+[node name="FirewallOverlay" type="WindowDialog" parent="Network"]
+margin_left = 342.0
+margin_top = 108.0
+margin_right = 813.0
+margin_bottom = 375.0
+window_title = "Firewall Setup"
+script = ExtResource( 1 )
+
+[node name="FirewallText" type="RichTextLabel" parent="Network/FirewallOverlay"]
+margin_left = 4.0
+margin_top = 19.0
+margin_right = 468.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/bold_font = ExtResource( 58 )
+bbcode_enabled = true
+bbcode_text = "[center][b]FIREWALL SETUP[/b][/center]"
+text = "FIREWALL SETUP"
+
+[node name="CheckboxContainer" type="VBoxContainer" parent="Network/FirewallOverlay"]
+margin_top = 82.0
+margin_right = 467.0
+margin_bottom = 176.0
+
+[node name="AuthenticatedUserColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
+margin_right = 467.0
+margin_bottom = 30.0
+mouse_filter = 0
+
+[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn"]
+margin_right = 24.0
+margin_bottom = 30.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn"]
+margin_left = 28.0
+margin_right = 378.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 350, 30 )
+custom_fonts/normal_font = ExtResource( 59 )
+bbcode_enabled = true
+bbcode_text = "Only allow authenticated users"
+text = "Only allow authenticated users"
+
+[node name="RequestLimitColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
+margin_top = 34.0
+margin_right = 467.0
+margin_bottom = 64.0
+mouse_filter = 0
+
+[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn"]
+margin_right = 24.0
+margin_bottom = 30.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn"]
+margin_left = 28.0
+margin_right = 408.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 380, 30 )
+custom_fonts/normal_font = ExtResource( 59 )
+bbcode_enabled = true
+bbcode_text = "Enable Reasonable Request Limit"
+text = "Enable Reasonable Request Limit"
+
+[node name="NetworkLoggingColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
+margin_top = 68.0
+margin_right = 467.0
+margin_bottom = 98.0
+mouse_filter = 0
+
+[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn"]
+margin_right = 24.0
+margin_bottom = 30.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn"]
+margin_left = 28.0
+margin_right = 408.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 380, 30 )
+custom_fonts/normal_font = ExtResource( 59 )
+bbcode_enabled = true
+bbcode_text = "Enable Network Logging"
+text = "Enable Network Logging"
+
+[node name="HoneypotButton" type="Button" parent="Network/FirewallOverlay"]
+margin_left = 350.0
+margin_top = 215.0
+margin_right = 464.0
+margin_bottom = 251.0
+text = "Honeypot Setup"
+script = ExtResource( 91 )
+
+[node name="HoneypotOverlay" type="WindowDialog" parent="Network/FirewallOverlay"]
+visible = true
+margin_left = 128.0
+margin_top = 69.0
+margin_right = 549.0
+margin_bottom = 349.0
+script = ExtResource( 8 )
+
+[node name="HoneypotText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay"]
+margin_left = 4.0
+margin_top = 19.0
+margin_right = 421.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/bold_font = ExtResource( 58 )
+bbcode_enabled = true
+bbcode_text = "[center][b]HONEYPOT SETUP[/b][/center]"
+text = "HONEYPOT SETUP"
+
+[node name="CheckboxContainer" type="VBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay"]
+margin_top = 50.0
+margin_right = 417.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 0, 200 )
+mouse_filter = 0
+
+[node name="HoneypotText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_right = 417.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/bold_font = ExtResource( 55 )
+bbcode_enabled = true
+bbcode_text = "[b]LOGGING"
+text = "LOGGING"
+
+[node name="AttackInformatinColumn" type="HBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_top = 34.0
+margin_right = 417.0
+margin_bottom = 64.0
+mouse_filter = 0
+
+[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
+margin_right = 24.0
+margin_bottom = 30.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
+margin_left = 28.0
+margin_right = 368.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 340, 30 )
+custom_fonts/normal_font = ExtResource( 59 )
+bbcode_enabled = true
+bbcode_text = "Attack Information"
+text = "Attack Information"
+
+[node name="AccessedDataColumn" type="HBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_top = 68.0
+margin_right = 417.0
+margin_bottom = 98.0
+mouse_filter = 0
+
+[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
+margin_right = 24.0
+margin_bottom = 30.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
+margin_left = 28.0
+margin_right = 368.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 340, 30 )
+custom_fonts/normal_font = ExtResource( 59 )
+bbcode_enabled = true
+bbcode_text = "Accessed Data"
+text = "Accessed Data"
+
+[node name="FileLureText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_top = 102.0
+margin_right = 417.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 350, 30 )
+custom_fonts/bold_font = ExtResource( 55 )
+bbcode_enabled = true
+bbcode_text = "[b]Which file to lure attackers with?"
+text = "Which file to lure attackers with?"
+
+[node name="Filename" type="LineEdit" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_top = 136.0
+margin_right = 417.0
+margin_bottom = 160.0
+
+[node name="HoneypotSaveButton" type="Button" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
+margin_top = 164.0
+margin_right = 417.0
+margin_bottom = 200.0
+custom_fonts/font = ExtResource( 58 )
+disabled = true
+text = "Save Honeypot"
+
+[node name="DDoSInvaderMiniGame" type="WindowDialog" parent="Network"]
+margin_right = 1500.0
+margin_bottom = 1000.0
+window_title = "Cup Invasion"
+script = ExtResource( 6 )
+
+[node name="GameStartNode" type="Node2D" parent="Network/DDoSInvaderMiniGame"]
+modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
+position = Vector2( -17, 116 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Network/DDoSInvaderMiniGame/GameStartNode"]
+root_node = NodePath("../Display")
+anims/Fade = SubResource( 27 )
+anims/RESET = SubResource( 28 )
+
+[node name="Display" type="RichTextLabel" parent="Network/DDoSInvaderMiniGame/GameStartNode"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 17.0
+margin_top = -97.0
+margin_right = 1517.0
+margin_bottom = 329.0
+rect_min_size = Vector2( 1500, 0 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "[center]Get ready to defend our system from the invaders. Think Space Invaders but much more tense.
+Try to eleiminate as many invaders as possible whilst surviving the attack.
+Press START to trigger the event.[/center]"
+text = "Get ready to defend our system from the invaders. Think Space Invaders but much more tense.
+Try to eleiminate as many invaders as possible whilst surviving the attack.
+Press START to trigger the event."
+
+[node name="Button" type="Button" parent="Network/DDoSInvaderMiniGame/GameStartNode"]
+margin_left = 700.0
+margin_top = 300.0
+margin_right = 900.0
+margin_bottom = 370.0
+rect_min_size = Vector2( 200, 70 )
+custom_fonts/font = ExtResource( 58 )
+text = "START"
+
+[node name="ViewportLevel" type="ViewportContainer" parent="Network/DDoSInvaderMiniGame"]
+visible = false
+margin_right = 1500.0
+margin_bottom = 995.0
+rect_min_size = Vector2( 1500, 995 )
+
+[node name="Viewport" type="Viewport" parent="Network/DDoSInvaderMiniGame/ViewportLevel"]
+size = Vector2( 1500, 995 )
+transparent_bg = true
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 0
+script = ExtResource( 22 )
+
+[node name="GameInformationContainer" type="HBoxContainer" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport"]
+margin_right = 1500.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 1500, 130 )
+alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 21.0
+margin_right = 421.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 400, 130 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "Points: 0
+"
+text = "Points: 0
+"
+
+[node name="Time" type="RichTextLabel" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 425.0
+margin_right = 775.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 350, 130 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "Time: 20"
+text = "Time: 20"
+
+[node name="SystemHealth" type="RichTextLabel" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 779.0
+margin_right = 1479.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 700, 130 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "[right]System Health: 100[/right]"
+text = "System Health: 100"
+
+[node name="CupSpawnTimer" type="Timer" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport"]
+wait_time = 1.2
+
+[node name="LevelTimer" type="Timer" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport"]
+
+[node name="Player" type="KinematicBody2D" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/Player"]
+position = Vector2( 772, 875 )
+scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 30 )
+
+[node name="BulletPosition" type="Position2D" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/Player/AnimatedSprite"]
+script = ExtResource( 54 )
+
+[node name="Cooldown" type="Timer" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/Player/AnimatedSprite/BulletPosition"]
+wait_time = 0.5
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/Player"]
+position = Vector2( 772, 870 )
+shape = SubResource( 31 )
+
+[node name="SocialEngineeringMiniGame" type="WindowDialog" parent="Network"]
+margin_right = 1500.0
+margin_bottom = 1000.0
+rect_min_size = Vector2( 1500, 1000 )
+window_title = "Find Cups"
+script = ExtResource( 117 )
+
+[node name="GameStartNode" type="Node2D" parent="Network/SocialEngineeringMiniGame"]
+visible = false
+modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
+position = Vector2( -17, 116 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Network/SocialEngineeringMiniGame/GameStartNode"]
+root_node = NodePath("../Display")
+anims/Fade = SubResource( 35 )
+anims/RESET = SubResource( 36 )
+
+[node name="Display" type="RichTextLabel" parent="Network/SocialEngineeringMiniGame/GameStartNode"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 17.0
+margin_top = -97.0
+margin_right = 1517.0
+margin_bottom = 329.0
+rect_min_size = Vector2( 1500, 0 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "[center]Find the person whose account has been breached. Match the users to their activity. Press START to trigger the event.[/center]"
+text = "Find the person whose account has been breached. Match the users to their activity. Press START to trigger the event."
+
+[node name="Button" type="Button" parent="Network/SocialEngineeringMiniGame/GameStartNode"]
+margin_left = 700.0
+margin_top = 300.0
+margin_right = 900.0
+margin_bottom = 370.0
+rect_min_size = Vector2( 200, 70 )
+custom_fonts/font = ExtResource( 58 )
+text = "START"
+
+[node name="ViewportLevel" type="ViewportContainer" parent="Network/SocialEngineeringMiniGame"]
+margin_right = 1500.0
+margin_bottom = 995.0
+rect_min_size = Vector2( 1500, 995 )
+
+[node name="Viewport" type="Viewport" parent="Network/SocialEngineeringMiniGame/ViewportLevel"]
+size = Vector2( 1500, 995 )
+transparent_bg = true
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 0
+script = ExtResource( 118 )
+
+[node name="GameInformationContainer" type="HBoxContainer" parent="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport"]
+margin_right = 1500.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 1500, 130 )
+alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 373.0
+margin_right = 773.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 400, 130 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "Points: 0
+"
+text = "Points: 0
+"
+
+[node name="Time" type="RichTextLabel" parent="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 777.0
+margin_right = 1127.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 350, 130 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "Time: 20"
+text = "Time: 20"
+
+[node name="LevelTimer" type="Timer" parent="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport"]
+
+[node name="TaskContainer" type="VBoxContainer" parent="."]
+margin_left = 1500.0
+margin_top = 560.0
+margin_right = 1900.0
+margin_bottom = 1060.0
+rect_min_size = Vector2( 350, 500 )
+rect_pivot_offset = Vector2( 403, 500 )
+alignment = 2
+script = ExtResource( 9 )
+
+[node name="Title" type="RichTextLabel" parent="TaskContainer"]
+margin_top = 460.0
+margin_right = 400.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 400, 40 )
+custom_fonts/normal_font = ExtResource( 58 )
+bbcode_enabled = true
+bbcode_text = "[right][color=black]YOUR TASKS[/color][/right]"
+text = "YOUR TASKS"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TaskContainer"]
+anims/scale = SubResource( 22 )
+
+[node name="LevelFinishedNode" type="Node2D" parent="."]
+pause_mode = 2
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+z_index = 10
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelFinishedNode"]
+anims/Fade = SubResource( 23 )
+anims/RESET = SubResource( 24 )
+
+[node name="LevelColorRect" type="ColorRect" parent="LevelFinishedNode"]
+margin_left = -14.0
+margin_top = -11.0
+margin_right = 1937.0
+margin_bottom = 1083.0
+color = Color( 0, 0, 0, 0.705882 )
+
+[node name="Display" type="RichTextLabel" parent="LevelFinishedNode"]
+margin_left = -3.0
+margin_top = 41.0
+margin_right = 1922.0
+margin_bottom = 680.0
+rect_min_size = Vector2( 300, 0 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+
+[node name="MachineGun" type="AnimatedSprite" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1572, 452 )
+scale = Vector2( 1.0625, 1.01562 )
+frames = SubResource( 19 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MachineGun"]
+anims/Fade = SubResource( 20 )
+anims/RESET = SubResource( 21 )
+
+[node name="Disguise" type="AnimatedSprite" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1572, 452 )
+scale = Vector2( 1.063, 1.013 )
+z_index = 10
+frames = SubResource( 32 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Disguise"]
+anims/Fade = SubResource( 33 )
+anims/RESET = SubResource( 34 )
+
+[node name="Coffee" type="AnimatedSprite" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1572, 452 )
+scale = Vector2( 1.0625, 1.01562 )
+z_index = 10
+frames = SubResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Coffee"]
+anims/Fade = SubResource( 13 )
+anims/RESET = SubResource( 14 )
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="LevelNode" type="Node2D" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 2, 431 )
+
+[node name="LevelColorRect" type="ColorRect" parent="LevelNode"]
+margin_left = -5.0
+margin_top = -432.0
+margin_right = 1924.0
+margin_bottom = 649.0
+color = Color( 0.0117647, 0, 0, 1 )
+
+[node name="LevelTextOverlay" type="RichTextLabel" parent="LevelNode"]
+margin_right = 1913.0
+margin_bottom = 93.0
+custom_fonts/normal_font = ExtResource( 11 )
+bbcode_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelNode"]
+anims/Fade = SubResource( 15 )
+anims/RESET = SubResource( 16 )
+
+[connection signal="level_finished_triggered" from="." to="LevelFinishedNode" method="_on_Desktop_level_finished_triggered"]
+[connection signal="level_started" from="." to="Network" method="_on_Desktop_level_started"]
+[connection signal="level_started" from="." to="Network/RansomwareRequestMiniGame" method="_on_Desktop_level_started"]
+[connection signal="level_started" from="." to="TaskContainer" method="_on_Desktop_level_started"]
+[connection signal="overlay_triggered" from="." to="OverlayNode/GenericOverlayDisplay" method="_on_Desktop_overlay_triggered"]
+[connection signal="pressed" from="ButtonContainer/NetworkButton" to="." method="_on_NetworkButton_pressed"]
+[connection signal="pressed" from="ButtonContainer/TerminalButton" to="." method="_on_TerminalButton_pressed"]
+[connection signal="overlay_finished" from="OverlayNode/GenericOverlayDisplay" to="." method="_on_GenericOverlayDisplay_overlay_finished"]
+[connection signal="hide" from="Network" to="." method="_on_Network_hide"]
+[connection signal="game_lost" from="Network/RansomwareRequestMiniGame" to="." method="_on_MiniGame_game_lost"]
+[connection signal="game_lost" from="Network/RansomwareRequestMiniGame" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_RansomwareRequestMiniGame_game_finished"]
+[connection signal="game_won" from="Network/RansomwareRequestMiniGame" to="." method="_on_MiniGame_game_won"]
+[connection signal="game_won" from="Network/RansomwareRequestMiniGame" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_RansomwareRequestMiniGame_game_finished"]
+[connection signal="hide" from="Network/RansomwareRequestMiniGame" to="Network/RansomwareRequestMiniGame" method="_on_RansomwareRequestMiniGame_hide"]
+[connection signal="hide" from="Network/RansomwareRequestMiniGame" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_RansomwareRequestMiniGame_hide"]
+[connection signal="request_toggled" from="Network/RansomwareRequestMiniGame" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_Request_toggled"]
+[connection signal="visibility_changed" from="Network/RansomwareRequestMiniGame" to="." method="_on_Minigame_visibility_changed" binds= [ 2 ]]
+[connection signal="pressed" from="Network/RansomwareRequestMiniGame/GameStartNode/Button" to="Network/RansomwareRequestMiniGame" method="_on_GameStart_pressed"]
+[connection signal="pressed" from="Network/RansomwareRequestMiniGame/GameStartNode/Button" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_GameStart_pressed"]
+[connection signal="text_changed" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer/FilterText" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_FilterText_text_changed"]
+[connection signal="toggled" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer/Origin" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "Origin" ]]
+[connection signal="toggled" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer/URL" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "URL" ]]
+[connection signal="toggled" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer/Role" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "Role" ]]
+[connection signal="toggled" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer/Type" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "Type" ]]
+[connection signal="toggled" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/FilterContainer/Count" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "Count" ]]
+[connection signal="button_down" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer/BlockButton" to="Network/RansomwareRequestMiniGame" method="_on_LineButton_button_down" binds= [ true ]]
+[connection signal="button_down" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/ButtonContainer/UnblockButton" to="Network/RansomwareRequestMiniGame" method="_on_LineButton_button_down" binds= [ false ]]
+[connection signal="timeout" from="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer/Timer" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_Incoming_Request"]
+[connection signal="timeout" from="Network/RansomwareRequestMiniGame/ScoreTimer" to="Network/RansomwareRequestMiniGame" method="_on_Score_update"]
+[connection signal="pressed" from="Network/ButtonContainer/RequestOverviewButton" to="Network" method="_on_Requests_pressed"]
+[connection signal="pressed" from="Network/ButtonContainer/FirewallOverviewButton" to="Network" method="_on_Firewall_pressed"]
+[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "authenticated_users" ]]
+[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "request_limit" ]]
+[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "network_logging" ]]
+[connection signal="pressed" from="Network/FirewallOverlay/HoneypotButton" to="Network" method="_on_HoneypotButton_pressed"]
+[connection signal="toggled" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn/CheckBox" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "attack_information" ]]
+[connection signal="toggled" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn/CheckBox" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "accessed_data" ]]
+[connection signal="text_changed" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/Filename" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_Filename_text_changed"]
+[connection signal="pressed" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/HoneypotSaveButton" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_HoneypotSaveButton_pressed"]
+[connection signal="hide" from="Network/DDoSInvaderMiniGame" to="Network/DDoSInvaderMiniGame" method="_on_DDoSInvaderMiniGame_hide"]
+[connection signal="visibility_changed" from="Network/DDoSInvaderMiniGame" to="." method="_on_Minigame_visibility_changed" binds= [ 3 ]]
+[connection signal="pressed" from="Network/DDoSInvaderMiniGame/GameStartNode/Button" to="Network/DDoSInvaderMiniGame" method="_on_GameStart_pressed"]
+[connection signal="game_lost" from="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" to="." method="_on_MiniGame_game_lost"]
+[connection signal="game_won" from="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" to="." method="_on_MiniGame_game_won"]
+[connection signal="timeout" from="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/CupSpawnTimer" to="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" method="_on_CupSpawnTimer_timeout"]
+[connection signal="timeout" from="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/LevelTimer" to="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" method="_on_LevelTimer_timeout"]
+[connection signal="pressed" from="Network/SocialEngineeringMiniGame/GameStartNode/Button" to="Network/SocialEngineeringMiniGame" method="_on_GameStart_pressed"]
+[connection signal="game_lost" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" to="." method="_on_MiniGame_game_lost"]
+[connection signal="game_won" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" to="." method="_on_MiniGame_game_won"]
+[connection signal="game_won" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" to="Network/DDoSInvaderMiniGame" method="_on_MiniGame_game_won"]
+[connection signal="timeout" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport/LevelTimer" to="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" method="_on_LevelTimer_timeout"]
+[connection signal="level_completed" from="TaskContainer" to="." method="_on_TaskContainer_level_completed"]
+[connection signal="task_completed" from="TaskContainer" to="." method="_on_TaskContainer_task_completed"]
+[connection signal="level_reset_triggered" from="LevelFinishedNode" to="Network/RansomwareRequestMiniGame" method="_on_LevelFinishedNode_level_reset_triggered"]
+[connection signal="level_reset_triggered" from="LevelFinishedNode" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_LevelFinishedNode_level_reset_triggered"]
+[connection signal="level_reset_triggered" from="LevelFinishedNode" to="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" method="_on_LevelFinishedNode_level_reset_triggered"]
