@@ -1,13 +1,25 @@
 extends Node
 
+
+enum Level {
+	TUTORIAL,
+	RANSOMWARE_TRIGGER,
+	RANSOMWARE,
+	DDoS,
+	SOCIAL_ENGINEERING,
+	EoP
+}
+
 var terminal_text = str(
 	"Welcome, as you know: I'm Bob. I know that this Terminal Thing might be a bit confusing to you. ",
 	"As a little heads up: Type HELP and press ENTER to understand how to use my features or if you are lost. I should be able to help you.\n>> ")
 
+# core game variables
+
 var terminal_shown = true
 var intro_completed = true
 
-var level = Level.RANSOMWARE
+var level = Level.SOCIAL_ENGINEERING
 
 var hardmode_enabled = false
 
@@ -16,6 +28,8 @@ var level_score := {
 	Level.DDoS: 0,
 	Level.SOCIAL_ENGINEERING: 0
 }
+
+#
 
 var firewall_settings := {
 	"authenticated_users": false,
@@ -53,24 +67,22 @@ const _tasks_ddos := {
 }
 
 const _tasks_social_engineering := {
-	11: ["Safe us!", "0", "1"]
+	11: ["Check if an intruder has breached the system", "0", "1"],
+	12: ["Safe the system!", "0", "0"]
+}
+
+const _tasks_eop := {
+	13: ["Check if an intruder has breached the system", "0", "1"],
+	14: ["Safe the system!", "0", "0"]
 }
 
 var tasks := {
 	Level.TUTORIAL: _tasks_tutorial, 
 	Level.RANSOMWARE_TRIGGER: _tasks_ransomware_trigger, 
 	Level.RANSOMWARE: _tasks_ransomware,
-	Level.DDoS: _tasks_ddos, 
-	Level.SOCIAL_ENGINEERING: _tasks_social_engineering
-}
-
-enum Level {
-	TUTORIAL,
-	RANSOMWARE_TRIGGER,
-	RANSOMWARE,
-	DDoS,
-	SOCIAL_ENGINEERING,
-	EoP
+	Level.DDoS: _tasks_ddos,
+	Level.SOCIAL_ENGINEERING: _tasks_social_engineering,
+	Level.EoP: _tasks_eop
 }
 
 
@@ -109,5 +121,5 @@ func reset_level() -> void:
 	if level == Level.RANSOMWARE:
 		level_score[level] = 100
 		Requests.blocked_requests = []
-	elif level == Level.DDoS:
+	elif level == Level.DDoS or level == Level.EoP:
 		level_score[level] = 0

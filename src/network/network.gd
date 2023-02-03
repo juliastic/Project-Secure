@@ -4,7 +4,7 @@ func _ready() -> void:
 	pass
 
 func _on_Requests_pressed() -> void:
-	if GameProgress.level == GameProgress.Level.RANSOMWARE:
+	if GameProgress.level == GameProgress.Level.RANSOMWARE and $RansomwareRequestMiniGame.is_inside_tree():
 		$RansomwareRequestMiniGame.set_position(Vector2(190, 300))
 		$RansomwareRequestMiniGame.show()
 	elif GameProgress.level == GameProgress.Level.DDoS and $DDoSInvaderMiniGame.is_inside_tree():
@@ -20,7 +20,7 @@ func _on_Firewall_pressed() -> void:
 	$FirewallOverlay.popup_centered()
 
 
-func _on_HoneypotButton_pressed():
+func _on_HoneypotButton_pressed() -> void:
 	$FirewallOverlay/HoneypotOverlay.popup_centered()
 
 

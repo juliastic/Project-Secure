@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and !(GameProgress.intro_completed or intro_animation_started) and (event.scancode == KEY_SPACE or event.scancode == KEY_ENTER):
-		if _game_step_progress < len(ConsoleDialogue.INTRO_DIALOGUE):
+		if _game_step_progress < len(TerminalData.INTRO_DIALOGUE):
 			_append_to_intro_text()
 		else:
 			$AnimationPlayer.play("Fade")
@@ -26,5 +26,5 @@ func _input(event) -> void:
 
 
 func _append_to_intro_text() -> void:
-	self.bbcode_text += ConsoleDialogue.INTRO_DIALOGUE[_game_step_progress]
+	self.bbcode_text += TerminalData.INTRO_DIALOGUE[_game_step_progress]
 	_game_step_progress += 1

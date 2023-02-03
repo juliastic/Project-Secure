@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=2]
+[gd_scene load_steps=154 format=2]
 
 [ext_resource path="res://src/network/firewall.gd" type="Script" id=1]
 [ext_resource path="res://src/level_finished/level_finished.gd" type="Script" id=2]
@@ -21,7 +21,7 @@
 [ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_8.png" type="Texture" id=19]
 [ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_9.png" type="Texture" id=20]
 [ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_10.png" type="Texture" id=21]
-[ext_resource path="res://src/ddos/viewport.gd" type="Script" id=22]
+[ext_resource path="res://src/ddos/ddos_viewport.gd" type="Script" id=22]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_17.png" type="Texture" id=23]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_2.png" type="Texture" id=24]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_43.png" type="Texture" id=25]
@@ -117,7 +117,8 @@
 [ext_resource path="res://assets/disguise-animation/social-engi4.png" type="Texture" id=115]
 [ext_resource path="res://assets/disguise-animation/social-engi13.png" type="Texture" id=116]
 [ext_resource path="res://src/social_engineering/social_engineering.gd" type="Script" id=117]
-[ext_resource path="res://src/social_engineering/viewport.gd" type="Script" id=118]
+[ext_resource path="res://src/social_engineering/social_engineering_viewport.gd" type="Script" id=118]
+[ext_resource path="res://src/eop/eop.gd" type="Script" id=119]
 
 [sub_resource type="ImageTexture" id=37]
 storage = 1
@@ -324,6 +325,37 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 
+[sub_resource type="Animation" id=40]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=41]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
 [sub_resource type="Animation" id=22]
 resource_name = "scale"
 tracks/0/type = "value"
@@ -501,6 +533,37 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=38]
+resource_name = "Fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=39]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -1313,6 +1376,7 @@ position = Vector2( 772, 870 )
 shape = SubResource( 31 )
 
 [node name="SocialEngineeringMiniGame" type="WindowDialog" parent="Network"]
+visible = true
 margin_right = 1500.0
 margin_bottom = 1000.0
 rect_min_size = Vector2( 1500, 1000 )
@@ -1320,7 +1384,6 @@ window_title = "Find Cups"
 script = ExtResource( 117 )
 
 [node name="GameStartNode" type="Node2D" parent="Network/SocialEngineeringMiniGame"]
-visible = false
 modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
 position = Vector2( -17, 116 )
 
@@ -1338,8 +1401,10 @@ margin_bottom = 329.0
 rect_min_size = Vector2( 1500, 0 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_enabled = true
-bbcode_text = "[center]Find the person whose account has been breached. Match the users to their activity. Press START to trigger the event.[/center]"
-text = "Find the person whose account has been breached. Match the users to their activity. Press START to trigger the event."
+bbcode_text = "[center]Find the person whose account has been breached.
+Match the users to their activity. Press START to trigger the event.[/center]"
+text = "Find the person whose account has been breached.
+Match the users to their activity. Press START to trigger the event."
 
 [node name="Button" type="Button" parent="Network/SocialEngineeringMiniGame/GameStartNode"]
 margin_left = 700.0
@@ -1351,6 +1416,7 @@ custom_fonts/font = ExtResource( 58 )
 text = "START"
 
 [node name="ViewportLevel" type="ViewportContainer" parent="Network/SocialEngineeringMiniGame"]
+visible = false
 margin_right = 1500.0
 margin_bottom = 995.0
 rect_min_size = Vector2( 1500, 995 )
@@ -1395,11 +1461,93 @@ text = "Time: 20"
 
 [node name="LevelTimer" type="Timer" parent="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport"]
 
+[node name="EoPMiniGame" type="WindowDialog" parent="Network"]
+margin_right = 1500.0
+margin_bottom = 1000.0
+rect_min_size = Vector2( 1500, 1000 )
+window_title = "Find Cups"
+script = ExtResource( 119 )
+
+[node name="GameStartNode" type="Node2D" parent="Network/EoPMiniGame"]
+modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
+position = Vector2( -17, 116 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Network/EoPMiniGame/GameStartNode"]
+root_node = NodePath("../Display")
+anims/Fade = SubResource( 40 )
+anims/RESET = SubResource( 41 )
+
+[node name="Display" type="RichTextLabel" parent="Network/EoPMiniGame/GameStartNode"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 17.0
+margin_top = -97.0
+margin_right = 1517.0
+margin_bottom = 329.0
+rect_min_size = Vector2( 1500, 0 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "[center]Find the person whose account has been breached. Match the users to their activity. Press START to trigger the event.[/center]"
+text = "Find the person whose account has been breached. Match the users to their activity. Press START to trigger the event."
+
+[node name="Button" type="Button" parent="Network/EoPMiniGame/GameStartNode"]
+margin_left = 700.0
+margin_top = 300.0
+margin_right = 900.0
+margin_bottom = 370.0
+rect_min_size = Vector2( 200, 70 )
+custom_fonts/font = ExtResource( 58 )
+text = "START"
+
+[node name="ViewportLevel" type="ViewportContainer" parent="Network/EoPMiniGame"]
+visible = false
+margin_right = 1500.0
+margin_bottom = 995.0
+rect_min_size = Vector2( 1500, 995 )
+
+[node name="Viewport" type="Viewport" parent="Network/EoPMiniGame/ViewportLevel"]
+size = Vector2( 1500, 995 )
+transparent_bg = true
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 0
+
+[node name="GameInformationContainer" type="HBoxContainer" parent="Network/EoPMiniGame/ViewportLevel/Viewport"]
+margin_right = 1500.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 1500, 130 )
+alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="Network/EoPMiniGame/ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 373.0
+margin_right = 773.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 400, 130 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "Points: 0
+"
+text = "Points: 0
+"
+
+[node name="Time" type="RichTextLabel" parent="Network/EoPMiniGame/ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 777.0
+margin_right = 1127.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 350, 130 )
+custom_fonts/normal_font = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "Time: 20"
+text = "Time: 20"
+
+[node name="LevelTimer" type="Timer" parent="Network/EoPMiniGame/ViewportLevel/Viewport"]
+
 [node name="TaskContainer" type="VBoxContainer" parent="."]
-margin_left = 1500.0
-margin_top = 560.0
-margin_right = 1900.0
-margin_bottom = 1060.0
+margin_left = 1309.0
+margin_top = 567.0
+margin_right = 1909.0
+margin_bottom = 1067.0
 rect_min_size = Vector2( 350, 500 )
 rect_pivot_offset = Vector2( 403, 500 )
 alignment = 2
@@ -1407,7 +1555,7 @@ script = ExtResource( 9 )
 
 [node name="Title" type="RichTextLabel" parent="TaskContainer"]
 margin_top = 460.0
-margin_right = 400.0
+margin_right = 600.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 400, 40 )
 custom_fonts/normal_font = ExtResource( 58 )
@@ -1504,11 +1652,24 @@ bbcode_enabled = true
 anims/Fade = SubResource( 15 )
 anims/RESET = SubResource( 16 )
 
+[node name="TransitionRect" type="ColorRect" parent="."]
+visible = false
+modulate = Color( 0.0114332, 0.0114332, 0.0114332, 0.988567 )
+margin_right = 1920.0
+margin_bottom = 1100.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionRect"]
+reset_on_save = false
+anims/Fade = SubResource( 38 )
+anims/RESET = SubResource( 39 )
+
 [connection signal="level_finished_triggered" from="." to="LevelFinishedNode" method="_on_Desktop_level_finished_triggered"]
 [connection signal="level_started" from="." to="Network" method="_on_Desktop_level_started"]
 [connection signal="level_started" from="." to="Network/RansomwareRequestMiniGame" method="_on_Desktop_level_started"]
 [connection signal="level_started" from="." to="TaskContainer" method="_on_Desktop_level_started"]
 [connection signal="overlay_triggered" from="." to="OverlayNode/GenericOverlayDisplay" method="_on_Desktop_overlay_triggered"]
+[connection signal="tree_entered" from="." to="." method="_on_Desktop_tree_entered"]
 [connection signal="pressed" from="ButtonContainer/NetworkButton" to="." method="_on_NetworkButton_pressed"]
 [connection signal="pressed" from="ButtonContainer/TerminalButton" to="." method="_on_TerminalButton_pressed"]
 [connection signal="overlay_finished" from="OverlayNode/GenericOverlayDisplay" to="." method="_on_GenericOverlayDisplay_overlay_finished"]
@@ -1550,13 +1711,16 @@ anims/RESET = SubResource( 16 )
 [connection signal="game_won" from="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" to="." method="_on_MiniGame_game_won"]
 [connection signal="timeout" from="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/CupSpawnTimer" to="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" method="_on_CupSpawnTimer_timeout"]
 [connection signal="timeout" from="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/LevelTimer" to="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" method="_on_LevelTimer_timeout"]
+[connection signal="hide" from="Network/SocialEngineeringMiniGame" to="Network/SocialEngineeringMiniGame" method="_on_SocialEngineeringMiniGame_hide"]
 [connection signal="pressed" from="Network/SocialEngineeringMiniGame/GameStartNode/Button" to="Network/SocialEngineeringMiniGame" method="_on_GameStart_pressed"]
 [connection signal="game_lost" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" to="." method="_on_MiniGame_game_lost"]
 [connection signal="game_won" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" to="." method="_on_MiniGame_game_won"]
-[connection signal="game_won" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" to="Network/DDoSInvaderMiniGame" method="_on_MiniGame_game_won"]
 [connection signal="timeout" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport/LevelTimer" to="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" method="_on_LevelTimer_timeout"]
+[connection signal="hide" from="Network/EoPMiniGame" to="Network/EoPMiniGame" method="_on_EoPMiniGame_hide"]
+[connection signal="pressed" from="Network/EoPMiniGame/GameStartNode/Button" to="Network/EoPMiniGame" method="_on_GameStart_pressed"]
 [connection signal="level_completed" from="TaskContainer" to="." method="_on_TaskContainer_level_completed"]
 [connection signal="task_completed" from="TaskContainer" to="." method="_on_TaskContainer_task_completed"]
 [connection signal="level_reset_triggered" from="LevelFinishedNode" to="Network/RansomwareRequestMiniGame" method="_on_LevelFinishedNode_level_reset_triggered"]
 [connection signal="level_reset_triggered" from="LevelFinishedNode" to="Network/RansomwareRequestMiniGame/MainRequestContainer/RequestContainer" method="_on_LevelFinishedNode_level_reset_triggered"]
 [connection signal="level_reset_triggered" from="LevelFinishedNode" to="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" method="_on_LevelFinishedNode_level_reset_triggered"]
+[connection signal="level_reset_triggered" from="LevelFinishedNode" to="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" method="_on_LevelFinishedNode_level_reset_triggered"]

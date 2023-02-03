@@ -4,17 +4,17 @@
 [ext_resource path="res://src/tasks/task_container.gd" type="Script" id=2]
 
 [node name="TaskContainer" type="VBoxContainer"]
-margin_left = 1500.0
-margin_top = 559.0
-margin_right = 1900.0
-margin_bottom = 1059.0
-rect_min_size = Vector2( 350, 500 )
+margin_left = 1306.0
+margin_top = 564.0
+margin_right = 1906.0
+margin_bottom = 1064.0
+rect_min_size = Vector2( 600, 500 )
 alignment = 2
 script = ExtResource( 2 )
 
 [node name="Title" type="RichTextLabel" parent="."]
 margin_top = 460.0
-margin_right = 400.0
+margin_right = 600.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 400, 40 )
 custom_fonts/normal_font = ExtResource( 1 )

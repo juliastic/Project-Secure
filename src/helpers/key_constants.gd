@@ -1,4 +1,3 @@
-## This class aims to be a helper class.
 extends Node
 
 const KEY_MAP := {KEY_A: "A", KEY_B: "B", KEY_C: "C", KEY_D: "D", KEY_E: "E", KEY_F: "F", KEY_G: "G",

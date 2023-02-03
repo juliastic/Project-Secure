@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/card-turning-animation/card-turning3.png" type="Texture" id=1]
 [ext_resource path="res://assets/card-turning-animation/card-turning4.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/card-turning-animation/card-turning1.png" type="Texture" id=4]
 [ext_resource path="res://font/normal_font_default.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/social_engineering/memory_card.gd" type="Script" id=6]
+[ext_resource path="res://font/bold_font_default.tres" type="DynamicFont" id=7]
 
 [sub_resource type="SpriteFrames" id=32]
 animations = [ {
@@ -26,14 +27,28 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 1.9 ),
-"transitions": PoolRealArray( 6.72717, 1 ),
+"transitions": PoolRealArray( 1.93187, 4.2871 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1.93187, 4.2871 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="MemoryCard" type="AnimatedSprite"]
 frames = SubResource( 32 )
-frame = 3
 script = ExtResource( 6 )
 
 [node name="Description" type="RichTextLabel" parent="."]
@@ -42,8 +57,21 @@ margin_left = -70.0
 margin_top = -67.0
 margin_right = 71.0
 margin_bottom = 68.0
+custom_fonts/bold_font = ExtResource( 7 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Description"]
 anims/Fade = SubResource( 33 )
+
+[node name="Button" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -110.0
+margin_top = -149.0
+margin_right = 110.0
+margin_bottom = 150.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Fade = SubResource( 34 )
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/ddos/attacker.gd"
 }, {
+"base": "Resource",
+"class": "CardData",
+"language": "GDScript",
+"path": "res://src/social_engineering/card_data.gd"
+}, {
 "base": "Button",
 "class": "DefaultButton",
 "language": "GDScript",
@@ -26,6 +31,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Attacker": "",
+"CardData": "",
 "DefaultButton": "",
 "GitAPI": ""
 }
@@ -41,9 +47,9 @@ config/icon="res://assets/icon.png"
 KeyConstants="*res://src/helpers/key_constants.gd"
 GameProgress="*res://src/game_data/game_progress.gd"
 TerminalCommands="*res://src/helpers/terminal_commands.gd"
-ConsoleDialogue="*res://src/desktop/console_dialogue.gd"
 Requests="*res://src/game_data/requests.gd"
 TerminalData="*res://src/game_data/terminal_data.gd"
+MemoryData="*res://src/social_engineering/memory_data.gd"
 
 [display]
 

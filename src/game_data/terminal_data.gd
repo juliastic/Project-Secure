@@ -1,16 +1,39 @@
 extends Node
 
+const INTRO_DIALOGUE := [
+	">> Hello ... nice to see meet you. I'm guessing this is your first day? [i]Press ENTER or RETURN to continue[/i]",
+	"\n>> Either way: I'm Bob, your new partner.",
+	"\n>> Your job is to support the company with defending against attacks on our system. You'll be using this computer as your working device.",
+	str("\n> We've been regularly receiving threats ever since our CEO tweeted about a random celebrity. Don't ask me, I can't understand human emotions.",
+		"Such a waste of time when you could be working. Anyway, I'll be here to support you and lend you my expertise and knowledge.",
+		"You'll be focusing on different types of threats on different days. Unfortunately I don't have a body yet so I'll be stuck in this terminal for the time being."),
+	"\n> Customers can store their data on our servers for free. Funnily enough, People think they're not the product. Funny, I know.",
+	str("\n>> The terminal acts as the main interaction point between you and me.",
+		"Interacting with the terminal is straight forward. Enter any of the available commands to trigger certain actions.",
+		"The commands might seem a bit meta sometimes, but trust me - it's good that they are.",
+		"This way I always know what you are doing. If you need any guidance, enter [i]HELP[/i]."),
+	str("\n>>You must complete challenges to defend our systems. These challenges share similarities with traditional minigames but don't be fooled: The system relies on your good performance."),
+	str("\n>> Your current tasks are displayed on the bottom right corner of the screen.",
+	"Entering [i]BACKSTORY[/i] should give you an idea of the state of our current system.",
+	"Today will start relatively slow. Your goal is to get acquainted with the system and play around.")
+]
+
 const SUPPORTED_COMMANDS := {
 	GameProgress.Level.TUTORIAL: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN], 
 	GameProgress.Level.RANSOMWARE: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.LISTEN_REQUESTS, TerminalCommands.CREATE_FIREWALL, TerminalCommands.TOGGLE_HARDMODE],
-	GameProgress.Level.DDoS: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CAPACITY, TerminalCommands.ENABLE_IDS, TerminalCommands.TOGGLE_HARDMODE]
+	GameProgress.Level.DDoS: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CAPACITY, TerminalCommands.ENABLE_IDS, TerminalCommands.TOGGLE_HARDMODE],
+	GameProgress.Level.SOCIAL_ENGINEERING: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_IDS, TerminalCommands.TOGGLE_HARDMODE]
 }
 
 const BACKSTORY_VALUES = {
 	GameProgress.Level.TUTORIAL: "You're getting to know the system. Don't worry so much about what you're doing.",
 	GameProgress.Level.RANSOMWARE: "This would be another day in the office if it wasn't for your coworker. Act swiftly. The cups are in our system. They don't know that we know. Take advantage of that.",
 	GameProgress.Level.DDoS: "We're under fire. Block the attackers as soon as possible. They've disguised themselves as cups. The sooner you block them, the faster our systems can act normally again. Usually this would be the job of an Intrusion Prevention System but you are all we got.",
-	GameProgress.Level.SOCIAL_ENGINEERING: "We're under fire. Block the attackers as soon as possible. They've disguised themselves as cups. The sooner you block them, the faster our systems can act normally again. Usually this would be the job of an Intrusion Prevention System but you are all we got."
+	GameProgress.Level.SOCIAL_ENGINEERING: "I think our [i]IDS[/i] has detected an intruder. Guess we have to get out the big guns and erase them from our system! Damn cups."
+}
+
+const GRAB_COFFEE_VALUES = {
+	GameProgress.Level.RANSOMWARE_TRIGGER: "...\n...\n...\n[i]You've found a USB stick. A colleague joins you and asks you about this USB-stick. Before you can say anything, they plug it into their computer ... oh no ...[/i]"
 }
 
 const EXPLAIN_VALUES = {
@@ -24,15 +47,27 @@ const EXPLAIN_VALUES = {
 		"INTRUSION DETECTION SYSTEM": "IDS can be used to detect and alert on suspicious or malicious traffic on the network.", 
 		"INTRUSION PREVENTION SYSTEM": "IPS can automatically block malicious traffic in real-time.",
 		"FIREWALL": "A type of network protection to filter incoming network traffic."
+	},
+	GameProgress.Level.SOCIAL_ENGINEERING: {
+		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.", 
+		"INTRUSION DETECTION SYSTEM": "IDS can be used to detect and alert on suspicious or malicious traffic on the network.", 
+		"INTRUSION PREVENTION SYSTEM": "IPS can automatically block malicious traffic in real-time.",
+		"FIREWALL": "A type of network protection to filter incoming network traffic."
 	}
 }
 
 const CREATE_FIREWALL_VALUES = {
-	GameProgress.Level.RANSOMWARE: "Firewall created. You can go ahead and play around in the Network settings. However, please ensure that everything is enabled for it to function properly."
+	GameProgress.Level.RANSOMWARE: {
+		0: "Firewall created. You can go ahead and play around in the Network settings. However, please ensure that everything is enabled for it to function properly.",
+		1: "Firewall already exists. Cannot create what's already there."
+	}
 }
 
 const LISTEN_REQUESTS_VALUES = {
-	GameProgress.Level.RANSOMWARE: "Fetching of requests active. Please note that I only display requests if the firewall is properly enabled."
+	GameProgress.Level.RANSOMWARE: {
+		0: "Fetching of requests active. Please note that I only display requests if the firewall is properly enabled.",
+		1: "Already listening to requests."
+	}
 }
 
 const CAPACITY_VALUES = {
@@ -40,7 +75,17 @@ const CAPACITY_VALUES = {
 }
 
 const ENABLE_IDS_VALUES = {
-	GameProgress.Level.DDoS: "IDS enables. You're safe to proceed."
+	GameProgress.Level.DDoS: {
+		0: "IDS enables. You're safe to proceed.",
+		1: "IDS is already enabled ..."
+	}
+}
+
+const CHECK_IDS_VALUES = {
+	GameProgress.Level.SOCIAL_ENGINEERING: {
+		0: "We have ONE Intruder in our system. Act swiftly!",
+		1: "IDS has already been checked ... Please [color=red]DO SOMETHING[/color]."
+	}
 }
 
 
@@ -62,6 +107,8 @@ func generate_help_text(level: int) -> String:
 		help_text += "\n[b]LISTEN REQUESTS[/b]: Tells me that you want me to fetch the most recent requests. Necessary to execute once so I know you [i]really[/i] want it enabled."
 	if TerminalCommands.ENABLE_IDS in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]ENABLE IDS[/b]: Enables the Intrusion Detection System. Highlights suspcious requests in form of a [i]counter[/i]. I'm colour blind so I couldn't rely on colours."
+	if TerminalCommands.CHECK_IDS in SUPPORTED_COMMANDS[level]:
+		help_text += "\n[b]CHECK IDS[/b]: Checks whether the [i]IDS[/i] has found an intruder."
 	if TerminalCommands.CAPACITY in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]CAPACITY[/b]: Displays the currenty request capacity of ours servers. The closer it is to 100%, the closer our system is to failure. If it's over 9000, all is lost."
 	if TerminalCommands.TOGGLE_HARDMODE in SUPPORTED_COMMANDS[level]:

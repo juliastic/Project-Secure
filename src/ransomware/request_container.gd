@@ -71,10 +71,7 @@ func _on_Column_toggled(button_pressed: bool, key: String) -> void:
 
 
 func _toggle_node(toggle: bool, node: Node) -> void:
-		if toggle:
-			node.show()
-		else:
-			node.hide()
+	node.call("show" if toggle else "hide")
 
 
 func _on_Incoming_Request() -> void:
@@ -99,6 +96,8 @@ func _on_GameStart_pressed() -> void:
 
 
 func _on_LevelFinishedNode_level_reset_triggered() -> void:
+	if GameProgress.level != GameProgress.Level.RANSOMWARE:
+		return
 	reset_level()
 
 
@@ -111,6 +110,7 @@ func _on_RansomwareRequestMiniGame_hide() -> void:
 
 
 func reset_level() -> void:
+	current_key = 0
 	$FilterContainer/FilterText.text = ""
 	$Timer.wait_time = 1.3 if GameProgress.hardmode_enabled else 1.5
 	$Timer.start()

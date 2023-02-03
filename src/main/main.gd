@@ -1,6 +1,6 @@
 extends Panel
 
-onready var animationPlayer := $TransitionRect/AnimationPlayer
+onready var animation_player := $TransitionRect/AnimationPlayer
 
 func _init() -> void:
 	OS.min_window_size = OS.window_size
@@ -11,8 +11,7 @@ func _ready() -> void:
 
 func _on_GameButton_pressed() -> void:
 	$TransitionRect.show()
-	animationPlayer.play_backwards("Fade")
-	yield(animationPlayer, "animation_finished")
-	animationPlayer.play_backwards("Fade")
+	animation_player.play_backwards("Fade")
+	yield(animation_player, "animation_finished")
 	if get_tree().change_scene("res://src/desktop/Desktop.tscn") != OK:
 		print("Couldn't switch to scene Desktop Scene")

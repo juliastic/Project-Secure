@@ -67,12 +67,13 @@ text = "Start Game"
 
 [node name="TransitionRect" type="ColorRect" parent="."]
 visible = false
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color( 1, 1, 1, 0 )
 margin_right = 1920.0
 margin_bottom = 1100.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionRect"]
+reset_on_save = false
 anims/Fade = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
