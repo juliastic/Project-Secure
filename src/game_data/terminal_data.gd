@@ -40,18 +40,21 @@ const EXPLAIN_VALUES = {
 	GameProgress.Level.TUTORIAL: {},
 	GameProgress.Level.RANSOMWARE: {
 		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.",
-		"FIREWALL": "A type of network protection to filter incoming network traffic."
+		"FIREWALL": "A type of network protection to filter incoming network traffic.",
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns."
 	},
 	GameProgress.Level.DDoS: {
 		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.", 
 		"INTRUSION DETECTION SYSTEM": "IDS can be used to detect and alert on suspicious or malicious traffic on the network.", 
 		"INTRUSION PREVENTION SYSTEM": "IPS can automatically block malicious traffic in real-time.",
-		"FIREWALL": "A type of network protection to filter incoming network traffic."
+		"FIREWALL": "A type of network protection to filter incoming network traffic.",
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns."
 	},
 	GameProgress.Level.SOCIAL_ENGINEERING: {
 		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.", 
 		"INTRUSION DETECTION SYSTEM": "IDS can be used to detect and alert on suspicious or malicious traffic on the network.", 
 		"INTRUSION PREVENTION SYSTEM": "IPS can automatically block malicious traffic in real-time.",
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns.",
 		"FIREWALL": "A type of network protection to filter incoming network traffic."
 	}
 }

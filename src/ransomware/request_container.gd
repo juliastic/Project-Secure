@@ -128,7 +128,7 @@ func _on_FilterText_text_changed(new_text: String) -> void:
 
 func _trigger_node_filter_update(text: String) -> void:
 	var request_nodes = get_tree().get_nodes_in_group("requests")
-	if len(text.replace(" ", "")) == 0:
+	if len(text.strip_edges()) == 0:
 		for node in request_nodes:
 			node.show()
 		return

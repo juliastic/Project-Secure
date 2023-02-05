@@ -1,8 +1,8 @@
-[gd_scene load_steps=154 format=2]
+[gd_scene load_steps=155 format=2]
 
 [ext_resource path="res://src/network/firewall.gd" type="Script" id=1]
 [ext_resource path="res://src/level_finished/level_finished.gd" type="Script" id=2]
-[ext_resource path="res://src/ddos/player.gd" type="Script" id=3]
+[ext_resource path="res://src/ddos/ddos_player.gd" type="Script" id=3]
 [ext_resource path="res://src/ransomware/ransomware.gd" type="Script" id=4]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_3.png" type="Texture" id=5]
 [ext_resource path="res://src/ddos/ddos.gd" type="Script" id=6]
@@ -119,6 +119,7 @@
 [ext_resource path="res://src/social_engineering/social_engineering.gd" type="Script" id=117]
 [ext_resource path="res://src/social_engineering/social_engineering_viewport.gd" type="Script" id=118]
 [ext_resource path="res://src/eop/eop.gd" type="Script" id=119]
+[ext_resource path="res://src/eop/EoPMiniGame.tscn" type="PackedScene" id=123]
 
 [sub_resource type="ImageTexture" id=37]
 storage = 1
@@ -714,8 +715,10 @@ margin_bottom = 426.0
 rect_min_size = Vector2( 1500, 0 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_enabled = true
-bbcode_text = "[center]Welcome! Get ready to sort. Press START to trigger the event.[/center]"
-text = "Welcome! Get ready to sort. Press START to trigger the event."
+bbcode_text = "[center]Welcome! Get ready to sort to find out more about the invaders.
+Press START to trigger the event.[/center]"
+text = "Welcome! Get ready to sort to find out more about the invaders.
+Press START to trigger the event."
 
 [node name="Button" type="Button" parent="Network/RansomwareRequestMiniGame/GameStartNode"]
 margin_left = 700.0
@@ -1376,7 +1379,6 @@ position = Vector2( 772, 870 )
 shape = SubResource( 31 )
 
 [node name="SocialEngineeringMiniGame" type="WindowDialog" parent="Network"]
-visible = true
 margin_right = 1500.0
 margin_bottom = 1000.0
 rect_min_size = Vector2( 1500, 1000 )
@@ -1462,6 +1464,7 @@ text = "Time: 20"
 [node name="LevelTimer" type="Timer" parent="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport"]
 
 [node name="EoPMiniGame" type="WindowDialog" parent="Network"]
+visible = true
 margin_right = 1500.0
 margin_bottom = 1000.0
 rect_min_size = Vector2( 1500, 1000 )
@@ -1486,8 +1489,10 @@ margin_bottom = 329.0
 rect_min_size = Vector2( 1500, 0 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_enabled = true
-bbcode_text = "[center]Find the person whose account has been breached. Match the users to their activity. Press START to trigger the event.[/center]"
-text = "Find the person whose account has been breached. Match the users to their activity. Press START to trigger the event."
+bbcode_text = "[center]We're almost there. Catch the cup!
+Press START to start the chase![/center]"
+text = "We're almost there. Catch the cup!
+Press START to start the chase!"
 
 [node name="Button" type="Button" parent="Network/EoPMiniGame/GameStartNode"]
 margin_left = 700.0
@@ -1505,43 +1510,13 @@ margin_bottom = 995.0
 rect_min_size = Vector2( 1500, 995 )
 
 [node name="Viewport" type="Viewport" parent="Network/EoPMiniGame/ViewportLevel"]
-size = Vector2( 1500, 995 )
+size = Vector2( 1500, 1000 )
 transparent_bg = true
 handle_input_locally = false
 usage = 0
 render_target_update_mode = 0
 
-[node name="GameInformationContainer" type="HBoxContainer" parent="Network/EoPMiniGame/ViewportLevel/Viewport"]
-margin_right = 1500.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 1500, 130 )
-alignment = 1
-
-[node name="Score" type="RichTextLabel" parent="Network/EoPMiniGame/ViewportLevel/Viewport/GameInformationContainer"]
-modulate = Color( 0, 0, 0, 1 )
-margin_left = 373.0
-margin_right = 773.0
-margin_bottom = 130.0
-rect_min_size = Vector2( 400, 130 )
-custom_fonts/normal_font = ExtResource( 12 )
-bbcode_enabled = true
-bbcode_text = "Points: 0
-"
-text = "Points: 0
-"
-
-[node name="Time" type="RichTextLabel" parent="Network/EoPMiniGame/ViewportLevel/Viewport/GameInformationContainer"]
-modulate = Color( 0, 0, 0, 1 )
-margin_left = 777.0
-margin_right = 1127.0
-margin_bottom = 130.0
-rect_min_size = Vector2( 350, 130 )
-custom_fonts/normal_font = ExtResource( 12 )
-bbcode_enabled = true
-bbcode_text = "Time: 20"
-text = "Time: 20"
-
-[node name="LevelTimer" type="Timer" parent="Network/EoPMiniGame/ViewportLevel/Viewport"]
+[node name="Level" parent="Network/EoPMiniGame/ViewportLevel/Viewport" instance=ExtResource( 123 )]
 
 [node name="TaskContainer" type="VBoxContainer" parent="."]
 margin_left = 1309.0
@@ -1712,11 +1687,13 @@ anims/RESET = SubResource( 39 )
 [connection signal="timeout" from="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/CupSpawnTimer" to="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" method="_on_CupSpawnTimer_timeout"]
 [connection signal="timeout" from="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport/LevelTimer" to="Network/DDoSInvaderMiniGame/ViewportLevel/Viewport" method="_on_LevelTimer_timeout"]
 [connection signal="hide" from="Network/SocialEngineeringMiniGame" to="Network/SocialEngineeringMiniGame" method="_on_SocialEngineeringMiniGame_hide"]
+[connection signal="visibility_changed" from="Network/SocialEngineeringMiniGame" to="." method="_on_Minigame_visibility_changed" binds= [ 4 ]]
 [connection signal="pressed" from="Network/SocialEngineeringMiniGame/GameStartNode/Button" to="Network/SocialEngineeringMiniGame" method="_on_GameStart_pressed"]
 [connection signal="game_lost" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" to="." method="_on_MiniGame_game_lost"]
 [connection signal="game_won" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" to="." method="_on_MiniGame_game_won"]
 [connection signal="timeout" from="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport/LevelTimer" to="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport" method="_on_LevelTimer_timeout"]
 [connection signal="hide" from="Network/EoPMiniGame" to="Network/EoPMiniGame" method="_on_EoPMiniGame_hide"]
+[connection signal="visibility_changed" from="Network/EoPMiniGame" to="." method="_on_Minigame_visibility_changed" binds= [ 5 ]]
 [connection signal="pressed" from="Network/EoPMiniGame/GameStartNode/Button" to="Network/EoPMiniGame" method="_on_GameStart_pressed"]
 [connection signal="level_completed" from="TaskContainer" to="." method="_on_TaskContainer_level_completed"]
 [connection signal="task_completed" from="TaskContainer" to="." method="_on_TaskContainer_task_completed"]

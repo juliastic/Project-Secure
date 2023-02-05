@@ -13,6 +13,9 @@ func _on_Requests_pressed() -> void:
 	elif GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING and $SocialEngineeringMiniGame.is_inside_tree():
 		$SocialEngineeringMiniGame.set_position(Vector2(190, 50))
 		$SocialEngineeringMiniGame.show()
+	elif GameProgress.level == GameProgress.Level.EoP and $EoPMiniGame.is_inside_tree():
+		$EoPMiniGame.set_position(Vector2(190, 50))
+		$EoPMiniGame.show()
 	self.hide()
 
 

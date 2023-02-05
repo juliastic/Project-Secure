@@ -1,15 +1,11 @@
 extends KinematicBody2D
 
-var _velocity = Vector2.ZERO
-
 const SPEED = 400
 
-
-func _ready():
-	pass
+var _velocity = Vector2.ZERO
 
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	var viewport_game := get_viewport().get_visible_rect()
 	var sprite_width = $AnimatedSprite.get_sprite_frames().get_frame("default", 2).get_width()
 	if Input.is_action_pressed("move_left") and position.x > -viewport_game.end.x / 2 + sprite_width / 6:

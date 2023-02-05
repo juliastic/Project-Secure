@@ -11,14 +11,15 @@ const X_STEP = 250
 const Y_STEP = 320
 
 var open_cards = []
-
-var level_time = 90
-
+var level_time = 60
 var id = 0
 
 func prepare_level() -> void:
 	$GameInformationContainer/Time.bbcode_text = str("Time: ", level_time)
 	$GameInformationContainer/Score.bbcode_text = str("Points: ", GameProgress.level_score[GameProgress.level])
+	if not GameProgress.hardmode_enabled:
+		for _i in range(0, 4):
+			MemoryData.cards.remove(0)
 	randomize()
 	MemoryData.cards.shuffle()
 	var current_card_position = Vector2(125, 200)
@@ -43,7 +44,7 @@ func prepare_level() -> void:
 func reset_level() -> void:
 	open_cards = []
 	$LevelTimer.start()
-	level_time = 60 if GameProgress.hardmode_enabled else 90
+	level_time = 60
 	GameProgress.level_score[GameProgress.level] = 0
 	get_tree().call_group("cards", "queue_free")
 	self.prepare_level()
@@ -79,4 +80,6 @@ func _on_LevelTimer_timeout() -> void:
 
 
 func _on_LevelFinishedNode_level_reset_triggered():
+	if GameProgress.level != GameProgress.Level.SOCIAL_ENGINEERING:
+		return
 	reset_level()

@@ -10,8 +10,9 @@ onready var terminal_display = $TerminalDisplay
 onready var network_window = $Network
 onready var network_info_text = $Network/InfoText
 
-var task_completion_sound := preload("res://sounds/task_completed.mp3")
-var background_computer_img := preload("res://assets/background_computer.png")
+const TASK_COMPLETION_SOUND := preload("res://sounds/task_completed.mp3")
+const BACKGROUND_IMG := preload("res://assets/background_computer.png")
+const BACKGROUND := preload("res://assets/bg_clouds.png")
 
 const START_LINE = ">> "
 const NEW_LINE = str("\n", START_LINE)
@@ -25,7 +26,7 @@ var _trigger_level_overlay = true
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
-	$BackgroundTexture.texture = background_computer_img
+	$BackgroundTexture.texture = BACKGROUND_IMG
 	$BackgroundTexture.expand = true
 	$ButtonContainer.add_constant_override("separation", 50)
 	var animations = [$Coffee, $MachineGun, $LevelNode]
@@ -42,7 +43,11 @@ func _input(event) -> void:
 		return
 	var level = GameProgress.level
 	if event.scancode == KEY_ENTER:
-		if terminal_input == TerminalCommands.MIN:
+		if len(terminal_input.strip_edges()) == 0:
+			GameProgress.terminal_text += "Please enter something first."
+		elif not terminal_input.strip_edges() in TerminalCommands.COMMANDS:
+			GameProgress.terminal_text += str("\nHm I somehow have yet to learn what [i]", terminal_input, "[/i] means. Sorry about that ...\nEnter HELP to see an overview of my supported commands.")
+		elif terminal_input == TerminalCommands.MIN:
 			_terminal_toggle()
 		elif terminal_input == TerminalCommands.GRAB_COFFEE:
 			_toggle_overlay_displayed(true)
@@ -74,8 +79,6 @@ func _input(event) -> void:
 			_print_command(terminal_input, TerminalData.ENABLE_IDS_VALUES, 8)
 		elif terminal_input == TerminalCommands.CHECK_IDS:
 			_print_command(terminal_input, TerminalData.CHECK_IDS_VALUES, 11, [12])
-		else:
-			GameProgress.terminal_text += str("\nHm I somehow have yet to learn what [i]", terminal_input, "[/i] means. Sorry about that ...\nEnter HELP to see an overview of my supported commands.")
 		_add_text_to_terminal(str("\n", START_LINE if not overlay_displayed else ""))
 		if level == GameProgress.Level.TUTORIAL and GameProgress.get_current_tasks()[0][1] == "0" and terminal_input in TerminalCommands.COMMANDS:
 			GameProgress.get_current_tasks()[0][1] = "1"
@@ -119,9 +122,8 @@ func _on_NetworkButton_pressed() -> void:
 	elif first_stage_social_engineering:
 		network_info_text.bbcode_text = "[center]It's dangerous out there. Please check the IDS first.[/center]"
 	_toggle_node(network_info_text, first_stage_active)
-	#network_window.set_position(Vector2(650, 400))
-	#network_window.show()
-	network_window.popup_centered()
+	network_window.set_position(Vector2(650, 400))
+	network_window.show()
 
 func _toggle_node(node: Node, show: bool) -> void:
 	node.call("show" if show else "hide")
@@ -150,7 +152,7 @@ func _on_TaskContainer_level_completed():
 
 func _on_TaskContainer_task_completed():
 	if !$AudioPlayer.is_playing():
-		$AudioPlayer.stream = task_completion_sound
+		$AudioPlayer.stream = TASK_COMPLETION_SOUND
 		$AudioPlayer.play()
 
 
@@ -259,6 +261,10 @@ func _on_Minigame_visibility_changed(level):
 			node = $Network/RansomwareRequestMiniGame
 		GameProgress.Level.DDoS:
 			node = $Network/DDoSInvaderMiniGame
+		GameProgress.Level.SOCIAL_ENGINEERING:
+			node = $Network/SocialEngineeringMiniGame
+		GameProgress.Level.EoP:
+			node = $Network/EoPMiniGame
 	if node != null:
 		_toggle_overlay_displayed(node.is_visible_in_tree())
 

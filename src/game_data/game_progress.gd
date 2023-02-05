@@ -19,14 +19,15 @@ var terminal_text = str(
 var terminal_shown = true
 var intro_completed = true
 
-var level = Level.SOCIAL_ENGINEERING
+var level = Level.EoP
 
 var hardmode_enabled = false
 
 var level_score := {
 	Level.RANSOMWARE: 100,
 	Level.DDoS: 0,
-	Level.SOCIAL_ENGINEERING: 0
+	Level.SOCIAL_ENGINEERING: 0,
+	Level.EoP: 0 
 }
 
 #
