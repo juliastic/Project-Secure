@@ -25,6 +25,11 @@ func _input(event) -> void:
 				network.get_node("DDoSInvaderMiniGame").queue_free()
 			elif GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING:
 				network.get_node("SocialEngineeringMiniGame").queue_free()
+			elif GameProgress.level == GameProgress.Level.EoP:
+				GameProgress.reset_game()
+				if get_tree().change_scene("res://src/main/Main.tscn") != OK:
+					print("Couldn't switch to scene Main Scene")
+				return
 		$AnimationPlayer.play("Fade")
 		get_tree().paused = false
 		yield(get_node("AnimationPlayer"), "animation_finished")
@@ -35,8 +40,18 @@ func _input(event) -> void:
 func _on_Desktop_level_finished_triggered(game_over) -> void:
 	get_tree().paused = true
 	current_game_over = game_over
-	$Display.bbcode_text = "[center]Sorry - try a bit harder next time :)[/center]" if game_over else str("[center]You've scored ", GameProgress.level_score[GameProgress.level], " points! The next challenge awaits you![/center]")
+	if game_over:
+		$Display.bbcode_text = "[center]Sorry - try a bit harder next time :)[/center]"
+	else:
+		if GameProgress.level == GameProgress.Level.EoP:
+			$Display.bbcode_text = "[center]THANK YOU SO MUCH!\nYou've saved our system![/center]"
+			$BrokenCup.show()
+		else:
+			$Display.bbcode_text = str("[center]You've scored ", GameProgress.level_score[GameProgress.level], " points! The next challenge awaits you![/center]")
 	self.show()
 	$AnimationPlayer.play_backwards("Fade")
 	yield(get_node("AnimationPlayer"), "animation_finished")
+	if GameProgress.level == GameProgress.Level.EoP:
+		$BrokenCup.play()
+		yield(get_node("BrokenCup"), "animation_finished")
 	animation_complete = true

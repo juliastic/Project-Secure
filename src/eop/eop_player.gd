@@ -1,29 +1,35 @@
+class_name EoPPlayer
 extends KinematicBody2D
 
 var _velocity = Vector2.ZERO
 
-const PLAYER_SPEED = Vector2(150.0, 350.0)
+const PLAYER_SPEED = Vector2(250.0, 200.0)
 
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
 onready var platform_detector = $PlatformDetector
 onready var sprite = $AnimatedSprite
 
+var player_triggered_end = false
 
 func _physics_process(delta) -> void:
 	if not get_parent().is_visible_in_tree():
 		return
-
-	var viewport_game := get_viewport().get_visible_rect()
 	
 	var snap_vector = Vector2.ZERO
-	var direction = get_direction()
+	var direction = Vector2.ZERO
+	if not player_triggered_end:
+		direction = get_direction()
 
 	var is_jump_interrupted = Input.is_action_just_released("ui_accept") and _velocity.y < 0.0
-	print(_velocity)
 	_velocity = calculate_move_velocity(_velocity, direction, PLAYER_SPEED, is_jump_interrupted)
 
 	if direction.y == 0.0:
 		snap_vector = Vector2.DOWN * 20.0
+	
+	if direction.x != 0 and not $AnimatedSprite.playing:
+		$AnimatedSprite.play()
+	elif direction.x == 0:
+		$AnimatedSprite.stop()
 
 	_velocity.x = PLAYER_SPEED.x * direction.x
 
@@ -37,7 +43,7 @@ func _physics_process(delta) -> void:
 	
 	_velocity.y += gravity * delta
 	if _velocity.y > 0:
-		_velocity += Vector2.DOWN * gravity * 5 * delta
+		_velocity += Vector2.DOWN * gravity * 10 * delta
 	elif _velocity.y < 0 and is_jump_interrupted:
 		_velocity += Vector2.DOWN * gravity * 0.8 * delta
 
@@ -56,7 +62,7 @@ func calculate_move_velocity(linear_velocity: Vector2, direction: Vector2, speed
 	if is_jump_interrupted:
 		# Decrease the Y velocity by multiplying it, but don't set it to 0
 		# as to not be too abrupt.
-		velocity.y *= 0.6
+		velocity.y *= 0.7
 	return velocity
 
 func get_new_animation(is_shooting = false) -> String:
@@ -74,3 +80,8 @@ func get_new_animation(is_shooting = false) -> String:
 	if is_shooting:
 		animation_new += "_weapon"
 	return animation_new
+
+
+func _on_Enemy_player_triggered_end():
+	$AnimatedSprite.stop()
+	player_triggered_end = true

@@ -77,4 +77,5 @@ reset_on_save = false
 anims/Fade = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
+[connection signal="tree_entered" from="." to="." method="_on_Main_tree_entered"]
 [connection signal="pressed" from="GameButton" to="." method="_on_GameButton_pressed"]

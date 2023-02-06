@@ -19,7 +19,7 @@ var terminal_text = str(
 var terminal_shown = true
 var intro_completed = true
 
-var level = Level.EoP
+var level = Level.RANSOMWARE
 
 var hardmode_enabled = false
 
@@ -73,8 +73,7 @@ const _tasks_social_engineering := {
 }
 
 const _tasks_eop := {
-	13: ["Check if an intruder has breached the system", "0", "1"],
-	14: ["Safe the system!", "0", "0"]
+	13: ["CATCH THE INTRUDER", "0", "1"],
 }
 
 var tasks := {
@@ -86,6 +85,7 @@ var tasks := {
 	Level.EoP: _tasks_eop
 }
 
+var _initial_tasks = tasks.duplicate(true)
 
 func get_level_name() -> String:
 	match (level):
@@ -122,5 +122,15 @@ func reset_level() -> void:
 	if level == Level.RANSOMWARE:
 		level_score[level] = 100
 		Requests.blocked_requests = []
-	elif level == Level.DDoS or level == Level.EoP:
+	else:
 		level_score[level] = 0
+
+
+func reset_game() -> void:
+	terminal_text = str(
+		"Welcome, as you know: I'm Bob. I know that this Terminal Thing might be a bit confusing to you. ",
+		"As a little heads up: Type HELP and press ENTER to understand how to use my features or if you are lost. I should be able to help you.\n>> ")
+	terminal_shown = true
+	intro_completed = false
+	level = GameProgress.Level.TUTORIAL
+	tasks = _initial_tasks

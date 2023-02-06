@@ -1,5 +1,8 @@
 extends WindowDialog
 
+signal game_won()
+signal game_lost()
+
 func _on_GameStart_pressed() -> void:
 	$GameStartNode/AnimationPlayer.play("Fade")
 	yield($GameStartNode.get_node("AnimationPlayer"), "animation_finished")

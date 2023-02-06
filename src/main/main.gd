@@ -15,3 +15,9 @@ func _on_GameButton_pressed() -> void:
 	yield(animation_player, "animation_finished")
 	if get_tree().change_scene("res://src/desktop/Desktop.tscn") != OK:
 		print("Couldn't switch to scene Desktop Scene")
+
+
+func _on_Main_tree_entered():
+	$TransitionRect/AnimationPlayer.play("Fade")
+	yield($TransitionRect/AnimationPlayer, "animation_finished")
+	$TransitionRect.hide()

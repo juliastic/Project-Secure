@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/helpers/default_button.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "EoPPlayer",
+"language": "GDScript",
+"path": "res://src/eop/eop_player.gd"
+}, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "Attacker": "",
 "CardData": "",
 "DefaultButton": "",
+"EoPPlayer": "",
 "GitAPI": ""
 }
 

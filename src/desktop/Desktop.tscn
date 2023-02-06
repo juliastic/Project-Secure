@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=2]
+[gd_scene load_steps=173 format=2]
 
 [ext_resource path="res://src/network/firewall.gd" type="Script" id=1]
 [ext_resource path="res://src/level_finished/level_finished.gd" type="Script" id=2]
@@ -119,7 +119,24 @@
 [ext_resource path="res://src/social_engineering/social_engineering.gd" type="Script" id=117]
 [ext_resource path="res://src/social_engineering/social_engineering_viewport.gd" type="Script" id=118]
 [ext_resource path="res://src/eop/eop.gd" type="Script" id=119]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_1.png" type="Texture" id=120]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_2.png" type="Texture" id=121]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_0.png" type="Texture" id=122]
 [ext_resource path="res://src/eop/EoPMiniGame.tscn" type="PackedScene" id=123]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_6.png" type="Texture" id=124]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_8.png" type="Texture" id=125]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_3.png" type="Texture" id=126]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_9.png" type="Texture" id=127]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_10.png" type="Texture" id=128]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_7.png" type="Texture" id=129]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_14.png" type="Texture" id=130]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_15.png" type="Texture" id=131]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_16.png" type="Texture" id=132]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_4.png" type="Texture" id=133]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_13.png" type="Texture" id=134]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_5.png" type="Texture" id=135]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_11.png" type="Texture" id=136]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_12.png" type="Texture" id=137]
 
 [sub_resource type="ImageTexture" id=37]
 storage = 1
@@ -402,6 +419,14 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
+
+[sub_resource type="SpriteFrames" id=42]
+animations = [ {
+"frames": [ ExtResource( 122 ), ExtResource( 120 ), ExtResource( 121 ), ExtResource( 126 ), ExtResource( 133 ), ExtResource( 135 ), ExtResource( 124 ), ExtResource( 129 ), ExtResource( 125 ), ExtResource( 127 ), ExtResource( 128 ), ExtResource( 136 ), ExtResource( 137 ), ExtResource( 134 ), ExtResource( 130 ), ExtResource( 131 ), ExtResource( 132 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
 
 [sub_resource type="SpriteFrames" id=19]
 animations = [ {
@@ -693,14 +718,16 @@ window_title = "Network Settings"
 script = ExtResource( 13 )
 
 [node name="RansomwareRequestMiniGame" type="WindowDialog" parent="Network"]
+visible = true
 margin_left = -17.0
 margin_top = 116.0
 margin_right = 1483.0
 margin_bottom = 674.0
-window_title = "Defend form Cups"
+window_title = "Defend from Cups"
 script = ExtResource( 4 )
 
 [node name="GameStartNode" type="Node2D" parent="Network/RansomwareRequestMiniGame"]
+visible = false
 modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Network/RansomwareRequestMiniGame/GameStartNode"]
@@ -730,17 +757,17 @@ custom_fonts/font = ExtResource( 58 )
 text = "START"
 
 [node name="InfoText" type="RichTextLabel" parent="Network/RansomwareRequestMiniGame"]
-visible = false
 margin_left = 2.0
 margin_top = 207.0
-margin_right = 1130.0
-margin_bottom = 251.0
-custom_fonts/normal_font = ExtResource( 58 )
+margin_right = 1503.0
+margin_bottom = 293.0
+custom_fonts/normal_font = ExtResource( 11 )
 bbcode_enabled = true
 bbcode_text = "[center]Firewall is not yet enabled[/center]"
 text = "Firewall is not yet enabled"
 
 [node name="MainRequestContainer" type="VBoxContainer" parent="Network/RansomwareRequestMiniGame"]
+visible = false
 margin_right = 1500.0
 margin_bottom = 584.0
 rect_min_size = Vector2( 1500, 0 )
@@ -1049,7 +1076,8 @@ margin_bottom = 90.0
 rect_min_size = Vector2( 150, 0 )
 mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 58 )
-text = "Requests"
+disabled = true
+text = "Activity"
 
 [node name="FirewallOverviewButton" type="Button" parent="Network/ButtonContainer"]
 margin_left = 295.0
@@ -1058,6 +1086,7 @@ margin_bottom = 90.0
 rect_min_size = Vector2( 150, 0 )
 mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 58 )
+disabled = true
 text = "Firewall"
 
 [node name="InfoText" type="RichTextLabel" parent="Network"]
@@ -1464,7 +1493,6 @@ text = "Time: 20"
 [node name="LevelTimer" type="Timer" parent="Network/SocialEngineeringMiniGame/ViewportLevel/Viewport"]
 
 [node name="EoPMiniGame" type="WindowDialog" parent="Network"]
-visible = true
 margin_right = 1500.0
 margin_bottom = 1000.0
 rect_min_size = Vector2( 1500, 1000 )
@@ -1517,6 +1545,7 @@ usage = 0
 render_target_update_mode = 0
 
 [node name="Level" parent="Network/EoPMiniGame/ViewportLevel/Viewport" instance=ExtResource( 123 )]
+visible = false
 
 [node name="TaskContainer" type="VBoxContainer" parent="."]
 margin_left = 1309.0
@@ -1560,13 +1589,19 @@ margin_bottom = 1083.0
 color = Color( 0, 0, 0, 0.705882 )
 
 [node name="Display" type="RichTextLabel" parent="LevelFinishedNode"]
-margin_left = -3.0
-margin_top = 41.0
-margin_right = 1922.0
-margin_bottom = 680.0
+margin_top = 100.0
+margin_right = 1925.0
+margin_bottom = 740.0
 rect_min_size = Vector2( 300, 0 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_enabled = true
+
+[node name="BrokenCup" type="AnimatedSprite" parent="LevelFinishedNode"]
+visible = false
+modulate = Color( 1, 1, 1, 0.875 )
+position = Vector2( 1600, 500 )
+scale = Vector2( 10, 10 )
+frames = SubResource( 42 )
 
 [node name="MachineGun" type="AnimatedSprite" parent="."]
 visible = false
@@ -1632,6 +1667,7 @@ visible = false
 modulate = Color( 0.0114332, 0.0114332, 0.0114332, 0.988567 )
 margin_right = 1920.0
 margin_bottom = 1100.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionRect"]
@@ -1695,6 +1731,7 @@ anims/RESET = SubResource( 39 )
 [connection signal="hide" from="Network/EoPMiniGame" to="Network/EoPMiniGame" method="_on_EoPMiniGame_hide"]
 [connection signal="visibility_changed" from="Network/EoPMiniGame" to="." method="_on_Minigame_visibility_changed" binds= [ 5 ]]
 [connection signal="pressed" from="Network/EoPMiniGame/GameStartNode/Button" to="Network/EoPMiniGame" method="_on_GameStart_pressed"]
+[connection signal="game_won" from="Network/EoPMiniGame/ViewportLevel/Viewport/Level" to="." method="_on_MiniGame_game_won"]
 [connection signal="level_completed" from="TaskContainer" to="." method="_on_TaskContainer_level_completed"]
 [connection signal="task_completed" from="TaskContainer" to="." method="_on_TaskContainer_task_completed"]
 [connection signal="level_reset_triggered" from="LevelFinishedNode" to="Network/RansomwareRequestMiniGame" method="_on_LevelFinishedNode_level_reset_triggered"]

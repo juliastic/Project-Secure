@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-const MAX_REQUESTS := 7
+const MAX_REQUESTS: int = 4
 
 var _toggle_state = {"Origin": true, "URL": true, "Role": true, "Type": true, "Count": true}
 var current_key = 0
@@ -16,8 +16,7 @@ func _preload_requests() -> void:
 		request_container.queue_free()
 
 	for key in Requests.requests:
-		if get_tree().get_nodes_in_group("incoming_requests").size() > MAX_REQUESTS - 2:
-			current_key = get_tree().get_nodes_in_group("incoming_requests").size()
+		if key > 3: # MAX at the beginning
 			return
 		_load_request(key)
 
@@ -26,7 +25,7 @@ func _load_request(key: int) -> void:
 	var request = Requests.requests[key]
 	var request_instance = COLUMN_CONTAINER.instance()
 	request_instance.add_constant_override("separation", 20)
-	request_instance.connect("button_down", get_parent().get_parent(), "_on_Request_pressed", [str(key)])
+	request_instance.connect("pressed", get_parent().get_parent(), "_on_Request_pressed", [str(key)])
 	var i = 0
 	for child in request_instance.get_node("RequestContainer").get_children():
 		if not child is RichTextLabel:
@@ -58,16 +57,12 @@ func _on_Request_toggled(id: String, block: bool) -> void:
 
 func _on_Column_toggled(button_pressed: bool, key: String) -> void:
 	_toggle_state[key] = button_pressed
-	if button_pressed:
-		incoming_requests.get_node("HBoxContainer").get_node(key).show()
-		blocked_requests.get_node("HBoxContainer").get_node(key).show()
-	else:
-		incoming_requests.get_node("HBoxContainer").get_node(key).hide()
-		blocked_requests.get_node("HBoxContainer").get_node(key).hide()
-		
+	incoming_requests.get_node("HBoxContainer").get_node(key).call("show" if button_pressed else "hide")
+	blocked_requests.get_node("HBoxContainer").get_node(key).call("show" if button_pressed else "hide")
+	
 	var all_containers = get_tree().get_nodes_in_group("incoming_requests") + get_tree().get_nodes_in_group("blocked_requests")
 	for request_container in all_containers:
-		_toggle_node(button_pressed, request_container.get_node("RequestContainer").get_node(key))
+		self._toggle_node(button_pressed, request_container.get_node("RequestContainer").get_node(key))
 
 
 func _toggle_node(toggle: bool, node: Node) -> void:
@@ -78,10 +73,12 @@ func _on_Incoming_Request() -> void:
 	if Requests.blocked_requests.size() == Requests.requests.size():
 		$Timer.stop()
 		return
+
 	var nodes_to_remove = get_tree().get_nodes_in_group("incoming_requests").size() - MAX_REQUESTS
 	for i in nodes_to_remove:
-		 get_tree().get_nodes_in_group("incoming_requests")[i].queue_free()
-	while current_key in Requests.blocked_requests:
+		get_tree().get_nodes_in_group("incoming_requests")[i].queue_free()
+
+	while str(current_key) in Requests.blocked_requests:
 		current_key += 1
 		if current_key >= Requests.requests.size():
 			current_key = 0
@@ -98,7 +95,7 @@ func _on_GameStart_pressed() -> void:
 func _on_LevelFinishedNode_level_reset_triggered() -> void:
 	if GameProgress.level != GameProgress.Level.RANSOMWARE:
 		return
-	reset_level()
+	self.reset_level()
 
 
 func _on_RansomwareRequestMiniGame_game_finished() -> void:
@@ -113,13 +110,13 @@ func reset_level() -> void:
 	current_key = 0
 	$FilterContainer/FilterText.text = ""
 	$Timer.wait_time = 1.3 if GameProgress.hardmode_enabled else 1.5
-	$Timer.start()
 	for value in _toggle_state.values():
 		value = true
 	for child in $FilterContainer.get_children():
 		if child is Button:
 			child.toggle_mode = true
-	_preload_requests()
+	self._preload_requests()
+	$Timer.start()
 
 
 func _on_FilterText_text_changed(new_text: String) -> void:

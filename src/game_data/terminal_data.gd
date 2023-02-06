@@ -22,14 +22,16 @@ const SUPPORTED_COMMANDS := {
 	GameProgress.Level.TUTORIAL: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN], 
 	GameProgress.Level.RANSOMWARE: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.LISTEN_REQUESTS, TerminalCommands.CREATE_FIREWALL, TerminalCommands.TOGGLE_HARDMODE],
 	GameProgress.Level.DDoS: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CAPACITY, TerminalCommands.ENABLE_IDS, TerminalCommands.TOGGLE_HARDMODE],
-	GameProgress.Level.SOCIAL_ENGINEERING: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_IDS, TerminalCommands.TOGGLE_HARDMODE]
+	GameProgress.Level.SOCIAL_ENGINEERING: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_IDS, TerminalCommands.TOGGLE_HARDMODE],
+	GameProgress.Level.EoP: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.TOGGLE_HARDMODE]
 }
 
 const BACKSTORY_VALUES = {
 	GameProgress.Level.TUTORIAL: "You're getting to know the system. Don't worry so much about what you're doing.",
 	GameProgress.Level.RANSOMWARE: "This would be another day in the office if it wasn't for your coworker. Act swiftly. The cups are in our system. They don't know that we know. Take advantage of that.",
 	GameProgress.Level.DDoS: "We're under fire. Block the attackers as soon as possible. They've disguised themselves as cups. The sooner you block them, the faster our systems can act normally again. Usually this would be the job of an Intrusion Prevention System but you are all we got.",
-	GameProgress.Level.SOCIAL_ENGINEERING: "I think our [i]IDS[/i] has detected an intruder. Guess we have to get out the big guns and erase them from our system! Damn cups."
+	GameProgress.Level.SOCIAL_ENGINEERING: "I think our [i]IDS[/i] has detected an intruder. Guess we have to get out the big guns and erase them from our system! Damn cups.",
+	GameProgress.Level.EoP: "We've finally gathered enough information about the attacker to pursue them. [b]FOR GNOMEREGAN![/b] Sorry about that ... I've been spending too much time playing a silly game. Now I understand why humans are so unproductive."
 }
 
 const GRAB_COFFEE_VALUES = {
@@ -51,6 +53,13 @@ const EXPLAIN_VALUES = {
 		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns."
 	},
 	GameProgress.Level.SOCIAL_ENGINEERING: {
+		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.", 
+		"INTRUSION DETECTION SYSTEM": "IDS can be used to detect and alert on suspicious or malicious traffic on the network.", 
+		"INTRUSION PREVENTION SYSTEM": "IPS can automatically block malicious traffic in real-time.",
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns.",
+		"FIREWALL": "A type of network protection to filter incoming network traffic."
+	},
+	GameProgress.Level.EoP: {
 		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.", 
 		"INTRUSION DETECTION SYSTEM": "IDS can be used to detect and alert on suspicious or malicious traffic on the network.", 
 		"INTRUSION PREVENTION SYSTEM": "IPS can automatically block malicious traffic in real-time.",

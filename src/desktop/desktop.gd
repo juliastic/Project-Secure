@@ -44,7 +44,7 @@ func _input(event) -> void:
 	var level = GameProgress.level
 	if event.scancode == KEY_ENTER:
 		if len(terminal_input.strip_edges()) == 0:
-			GameProgress.terminal_text += "Please enter something first."
+			GameProgress.terminal_text += "\nPlease enter something first."
 		elif not terminal_input.strip_edges() in TerminalCommands.COMMANDS:
 			GameProgress.terminal_text += str("\nHm I somehow have yet to learn what [i]", terminal_input, "[/i] means. Sorry about that ...\nEnter HELP to see an overview of my supported commands.")
 		elif terminal_input == TerminalCommands.MIN:
@@ -109,12 +109,11 @@ func _on_NetworkButton_pressed() -> void:
 	var tutorial_active = GameProgress.level == GameProgress.Level.TUTORIAL or GameProgress.level == GameProgress.Level.RANSOMWARE_TRIGGER
 	if GameProgress.level == GameProgress.Level.TUTORIAL:
 		GameProgress.get_current_tasks()[1][1] = "1"
-	var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and (GameProgress.get_current_tasks()[3][1] == "0" or GameProgress.get_current_tasks()[4][1] == "0")
-	var first_stage_ddos = GameProgress.level == GameProgress.Level.DDoS and (GameProgress.get_current_tasks()[8][1] == "0" or GameProgress.get_current_tasks()[9][1] == "0")
-	var first_stage_social_engineering = GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING and GameProgress.get_current_tasks()[11][1] == "0"
+	var current_tasks = GameProgress.get_current_tasks()
+	var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and (current_tasks[3][1] == "0" or current_tasks[4][1] == "0")
+	var first_stage_ddos = GameProgress.level == GameProgress.Level.DDoS and (GameProgress.get_current_tasks()[8][1] == "0" or current_tasks[9][1] == "0")
+	var first_stage_social_engineering = GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING and current_tasks[11][1] == "0"
 	var first_stage_active = tutorial_active or first_stage_ransomware or first_stage_social_engineering or first_stage_ddos
-	$Network/ButtonContainer/RequestOverviewButton.disabled = first_stage_active
-	$Network/ButtonContainer/FirewallOverviewButton.disabled = first_stage_active
 	if first_stage_ransomware:
 		network_info_text.bbcode_text = "[center]Please create a Firewall and enable Network listening in the Terminal first.[/center]"
 	elif first_stage_ddos:
@@ -125,8 +124,10 @@ func _on_NetworkButton_pressed() -> void:
 	network_window.set_position(Vector2(650, 400))
 	network_window.show()
 
+
 func _toggle_node(node: Node, show: bool) -> void:
 	node.call("show" if show else "hide")
+
 
 func _on_Network_hide() -> void:
 	pass
@@ -191,7 +192,7 @@ func _trigger_level_start() -> void:
 	if animated_sprite == null:
 		return
 		
-	_add_text_to_terminal(str("\n...\n[b]", TerminalData.BACKSTORY_VALUES[GameProgress.level], "[/b]"))
+	_add_text_to_terminal("\n...\n[b]")
 	_toggle_overlay_displayed(true)
 	animated_sprite.show()
 	animated_sprite.get_node("AnimationPlayer").play_backwards("Fade")
@@ -201,6 +202,7 @@ func _trigger_level_start() -> void:
 	animated_sprite.get_node("AnimationPlayer").play("Fade")
 	yield(animated_sprite, "animation_finished")
 	animated_sprite.queue_free()
+	_add_text_to_terminal(str("[b]", TerminalData.BACKSTORY_VALUES[GameProgress.level], "[/b]"))
 	_toggle_overlay_displayed(false)
 	_add_text_to_terminal(NEW_LINE)
 
@@ -234,7 +236,7 @@ func _handle_coffee_overlay_finished() -> void:
 		terminal_display.add_text("...\n")
 		$Coffee.show()
 		$Coffee/AnimationPlayer.play_backwards("Fade")
-		$Coffee.playing = true
+		$Coffee.play()
 		yield(get_node("Coffee"), "animation_finished")
 		terminal_display.add_text("...\n")
 		yield(get_tree().create_timer(1.0), "timeout")
@@ -242,7 +244,6 @@ func _handle_coffee_overlay_finished() -> void:
 		yield(get_tree().create_timer(1.0), "timeout")
 		_add_text_to_terminal(TerminalData.GRAB_COFFEE_VALUES[GameProgress.level])
 		yield(get_tree().create_timer(1.0), "timeout")
-		$Coffee.playing = false
 		$Coffee/AnimationPlayer.play("Fade")
 		self.emit_signal("coffee_completed")
 		_handle_level_switch()
@@ -285,4 +286,3 @@ func _on_Desktop_tree_entered():
 	$TransitionRect.show()
 	$TransitionRect/AnimationPlayer.play("Fade")
 	yield($TransitionRect/AnimationPlayer, "animation_finished")
-	$TransitionRect.queue_free()

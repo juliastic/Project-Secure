@@ -7,7 +7,7 @@ onready var animation_player := $Description/AnimationPlayer
 var ignore_input: bool = false
 var card_data: CardData
 
-func _input(event) -> void:
+func _input(_event) -> void:
 	if ignore_input and $Button.mouse_filter != Control.MOUSE_FILTER_IGNORE:
 		$Button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	elif not ignore_input and $Button.mouse_filter != Control.MOUSE_FILTER_STOP:

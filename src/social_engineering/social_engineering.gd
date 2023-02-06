@@ -1,5 +1,7 @@
 extends WindowDialog
 
+signal game_won()
+signal game_lost()
 
 func _on_GameStart_pressed():
 	$GameStartNode/AnimationPlayer.play("Fade")
