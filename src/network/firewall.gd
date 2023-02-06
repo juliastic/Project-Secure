@@ -10,3 +10,7 @@ func _on_CheckBox_toggled(button_pressed, key) -> void:
 			return
 	if GameProgress.level == GameProgress.Level.RANSOMWARE:
 		GameProgress.get_current_tasks()[5][1] = "1"
+
+
+func _on_HoneypotButton_pressed():
+	$HoneypotOverlay.popup_centered()

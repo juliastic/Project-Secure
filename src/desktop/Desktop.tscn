@@ -1,13 +1,12 @@
-[gd_scene load_steps=173 format=2]
+[gd_scene load_steps=171 format=2]
 
-[ext_resource path="res://src/network/firewall.gd" type="Script" id=1]
+[ext_resource path="res://src/network/FirewallOverlay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/level_finished/level_finished.gd" type="Script" id=2]
 [ext_resource path="res://src/ddos/ddos_player.gd" type="Script" id=3]
 [ext_resource path="res://src/ransomware/ransomware.gd" type="Script" id=4]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_3.png" type="Texture" id=5]
 [ext_resource path="res://src/ddos/ddos.gd" type="Script" id=6]
 [ext_resource path="res://src/desktop/desktop.gd" type="Script" id=7]
-[ext_resource path="res://src/network/honeypot.gd" type="Script" id=8]
 [ext_resource path="res://src/tasks/task_container.gd" type="Script" id=9]
 [ext_resource path="res://src/desktop/terminal_intro_display.gd" type="Script" id=10]
 [ext_resource path="res://font/bold_font_big_overlay.tres" type="DynamicFont" id=11]
@@ -90,7 +89,6 @@
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_32.png" type="Texture" id=88]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_26.png" type="Texture" id=89]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_27.png" type="Texture" id=90]
-[ext_resource path="res://src/helpers/default_button.gd" type="Script" id=91]
 [ext_resource path="res://assets/disguise-animation/social-engi22.png" type="Texture" id=92]
 [ext_resource path="res://assets/disguise-animation/social-engi23.png" type="Texture" id=93]
 [ext_resource path="res://assets/disguise-animation/social-engi24.png" type="Texture" id=94]
@@ -1099,194 +1097,7 @@ bbcode_enabled = true
 bbcode_text = "[center]Network information will be displayed here.[/center]"
 text = "Network information will be displayed here."
 
-[node name="FirewallOverlay" type="WindowDialog" parent="Network"]
-margin_left = 342.0
-margin_top = 108.0
-margin_right = 813.0
-margin_bottom = 375.0
-window_title = "Firewall Setup"
-script = ExtResource( 1 )
-
-[node name="FirewallText" type="RichTextLabel" parent="Network/FirewallOverlay"]
-margin_left = 4.0
-margin_top = 19.0
-margin_right = 468.0
-margin_bottom = 54.0
-rect_min_size = Vector2( 200, 30 )
-custom_fonts/bold_font = ExtResource( 58 )
-bbcode_enabled = true
-bbcode_text = "[center][b]FIREWALL SETUP[/b][/center]"
-text = "FIREWALL SETUP"
-
-[node name="CheckboxContainer" type="VBoxContainer" parent="Network/FirewallOverlay"]
-margin_top = 82.0
-margin_right = 467.0
-margin_bottom = 176.0
-
-[node name="AuthenticatedUserColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
-margin_right = 467.0
-margin_bottom = 30.0
-mouse_filter = 0
-
-[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn"]
-margin_right = 24.0
-margin_bottom = 30.0
-
-[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn"]
-margin_left = 28.0
-margin_right = 378.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 350, 30 )
-custom_fonts/normal_font = ExtResource( 59 )
-bbcode_enabled = true
-bbcode_text = "Only allow authenticated users"
-text = "Only allow authenticated users"
-
-[node name="RequestLimitColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
-margin_top = 34.0
-margin_right = 467.0
-margin_bottom = 64.0
-mouse_filter = 0
-
-[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn"]
-margin_right = 24.0
-margin_bottom = 30.0
-
-[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn"]
-margin_left = 28.0
-margin_right = 408.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 380, 30 )
-custom_fonts/normal_font = ExtResource( 59 )
-bbcode_enabled = true
-bbcode_text = "Enable Reasonable Request Limit"
-text = "Enable Reasonable Request Limit"
-
-[node name="NetworkLoggingColumn" type="HBoxContainer" parent="Network/FirewallOverlay/CheckboxContainer"]
-margin_top = 68.0
-margin_right = 467.0
-margin_bottom = 98.0
-mouse_filter = 0
-
-[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn"]
-margin_right = 24.0
-margin_bottom = 30.0
-
-[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn"]
-margin_left = 28.0
-margin_right = 408.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 380, 30 )
-custom_fonts/normal_font = ExtResource( 59 )
-bbcode_enabled = true
-bbcode_text = "Enable Network Logging"
-text = "Enable Network Logging"
-
-[node name="HoneypotButton" type="Button" parent="Network/FirewallOverlay"]
-margin_left = 350.0
-margin_top = 215.0
-margin_right = 464.0
-margin_bottom = 251.0
-text = "Honeypot Setup"
-script = ExtResource( 91 )
-
-[node name="HoneypotOverlay" type="WindowDialog" parent="Network/FirewallOverlay"]
-visible = true
-margin_left = 128.0
-margin_top = 69.0
-margin_right = 549.0
-margin_bottom = 349.0
-script = ExtResource( 8 )
-
-[node name="HoneypotText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay"]
-margin_left = 4.0
-margin_top = 19.0
-margin_right = 421.0
-margin_bottom = 54.0
-rect_min_size = Vector2( 200, 30 )
-custom_fonts/bold_font = ExtResource( 58 )
-bbcode_enabled = true
-bbcode_text = "[center][b]HONEYPOT SETUP[/b][/center]"
-text = "HONEYPOT SETUP"
-
-[node name="CheckboxContainer" type="VBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay"]
-margin_top = 50.0
-margin_right = 417.0
-margin_bottom = 250.0
-rect_min_size = Vector2( 0, 200 )
-mouse_filter = 0
-
-[node name="HoneypotText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
-margin_right = 417.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 200, 30 )
-custom_fonts/bold_font = ExtResource( 55 )
-bbcode_enabled = true
-bbcode_text = "[b]LOGGING"
-text = "LOGGING"
-
-[node name="AttackInformatinColumn" type="HBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
-margin_top = 34.0
-margin_right = 417.0
-margin_bottom = 64.0
-mouse_filter = 0
-
-[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
-margin_right = 24.0
-margin_bottom = 30.0
-
-[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
-margin_left = 28.0
-margin_right = 368.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 340, 30 )
-custom_fonts/normal_font = ExtResource( 59 )
-bbcode_enabled = true
-bbcode_text = "Attack Information"
-text = "Attack Information"
-
-[node name="AccessedDataColumn" type="HBoxContainer" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
-margin_top = 68.0
-margin_right = 417.0
-margin_bottom = 98.0
-mouse_filter = 0
-
-[node name="CheckBox" type="CheckBox" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
-margin_right = 24.0
-margin_bottom = 30.0
-
-[node name="CheckboxText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
-margin_left = 28.0
-margin_right = 368.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 340, 30 )
-custom_fonts/normal_font = ExtResource( 59 )
-bbcode_enabled = true
-bbcode_text = "Accessed Data"
-text = "Accessed Data"
-
-[node name="FileLureText" type="RichTextLabel" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
-margin_top = 102.0
-margin_right = 417.0
-margin_bottom = 132.0
-rect_min_size = Vector2( 350, 30 )
-custom_fonts/bold_font = ExtResource( 55 )
-bbcode_enabled = true
-bbcode_text = "[b]Which file to lure attackers with?"
-text = "Which file to lure attackers with?"
-
-[node name="Filename" type="LineEdit" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
-margin_top = 136.0
-margin_right = 417.0
-margin_bottom = 160.0
-
-[node name="HoneypotSaveButton" type="Button" parent="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer"]
-margin_top = 164.0
-margin_right = 417.0
-margin_bottom = 200.0
-custom_fonts/font = ExtResource( 58 )
-disabled = true
-text = "Save Honeypot"
+[node name="FirewallOverlay" parent="Network" instance=ExtResource( 1 )]
 
 [node name="DDoSInvaderMiniGame" type="WindowDialog" parent="Network"]
 margin_right = 1500.0
@@ -1707,14 +1518,6 @@ anims/RESET = SubResource( 39 )
 [connection signal="timeout" from="Network/RansomwareRequestMiniGame/ScoreTimer" to="Network/RansomwareRequestMiniGame" method="_on_Score_update"]
 [connection signal="pressed" from="Network/ButtonContainer/RequestOverviewButton" to="Network" method="_on_Requests_pressed"]
 [connection signal="pressed" from="Network/ButtonContainer/FirewallOverviewButton" to="Network" method="_on_Firewall_pressed"]
-[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/AuthenticatedUserColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "authenticated_users" ]]
-[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/RequestLimitColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "request_limit" ]]
-[connection signal="toggled" from="Network/FirewallOverlay/CheckboxContainer/NetworkLoggingColumn/CheckBox" to="Network/FirewallOverlay" method="_on_CheckBox_toggled" binds= [ "network_logging" ]]
-[connection signal="pressed" from="Network/FirewallOverlay/HoneypotButton" to="Network" method="_on_HoneypotButton_pressed"]
-[connection signal="toggled" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AttackInformatinColumn/CheckBox" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "attack_information" ]]
-[connection signal="toggled" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/AccessedDataColumn/CheckBox" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "accessed_data" ]]
-[connection signal="text_changed" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/Filename" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_Filename_text_changed"]
-[connection signal="pressed" from="Network/FirewallOverlay/HoneypotOverlay/CheckboxContainer/HoneypotSaveButton" to="Network/FirewallOverlay/HoneypotOverlay" method="_on_HoneypotSaveButton_pressed"]
 [connection signal="hide" from="Network/DDoSInvaderMiniGame" to="Network/DDoSInvaderMiniGame" method="_on_DDoSInvaderMiniGame_hide"]
 [connection signal="visibility_changed" from="Network/DDoSInvaderMiniGame" to="." method="_on_Minigame_visibility_changed" binds= [ 3 ]]
 [connection signal="pressed" from="Network/DDoSInvaderMiniGame/GameStartNode/Button" to="Network/DDoSInvaderMiniGame" method="_on_GameStart_pressed"]

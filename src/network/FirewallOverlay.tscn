@@ -1,0 +1,205 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://font/normal_font_default.tres" type="DynamicFont" id=1]
+[ext_resource path="res://font/bold_font_default.tres" type="DynamicFont" id=3]
+[ext_resource path="res://font/bold_font_big.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/network/firewall.gd" type="Script" id=5]
+[ext_resource path="res://src/network/honeypot.gd" type="Script" id=6]
+
+[node name="FirewallOverlay" type="WindowDialog"]
+margin_left = 342.0
+margin_top = 108.0
+margin_right = 813.0
+margin_bottom = 375.0
+window_title = "Firewall Setup"
+script = ExtResource( 5 )
+
+[node name="FirewallText" type="RichTextLabel" parent="."]
+margin_left = 4.0
+margin_top = 19.0
+margin_right = 468.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/bold_font = ExtResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center][b]FIREWALL SETUP[/b][/center]"
+text = "FIREWALL SETUP"
+
+[node name="CheckboxContainer" type="VBoxContainer" parent="."]
+margin_top = 82.0
+margin_right = 467.0
+margin_bottom = 176.0
+
+[node name="AuthenticatedUserColumn" type="HBoxContainer" parent="CheckboxContainer"]
+margin_right = 467.0
+margin_bottom = 30.0
+mouse_filter = 0
+
+[node name="CheckBox" type="CheckBox" parent="CheckboxContainer/AuthenticatedUserColumn"]
+margin_right = 24.0
+margin_bottom = 30.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="CheckboxContainer/AuthenticatedUserColumn"]
+margin_left = 28.0
+margin_right = 378.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 350, 30 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Only allow authenticated users"
+text = "Only allow authenticated users"
+
+[node name="RequestLimitColumn" type="HBoxContainer" parent="CheckboxContainer"]
+margin_top = 34.0
+margin_right = 467.0
+margin_bottom = 64.0
+mouse_filter = 0
+
+[node name="CheckBox" type="CheckBox" parent="CheckboxContainer/RequestLimitColumn"]
+margin_right = 24.0
+margin_bottom = 30.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="CheckboxContainer/RequestLimitColumn"]
+margin_left = 28.0
+margin_right = 408.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 380, 30 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Enable Reasonable Request Limit"
+text = "Enable Reasonable Request Limit"
+
+[node name="NetworkLoggingColumn" type="HBoxContainer" parent="CheckboxContainer"]
+margin_top = 68.0
+margin_right = 467.0
+margin_bottom = 98.0
+mouse_filter = 0
+
+[node name="CheckBox" type="CheckBox" parent="CheckboxContainer/NetworkLoggingColumn"]
+margin_right = 24.0
+margin_bottom = 30.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="CheckboxContainer/NetworkLoggingColumn"]
+margin_left = 28.0
+margin_right = 408.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 380, 30 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Enable Network Logging"
+text = "Enable Network Logging"
+
+[node name="HoneypotButton" type="Button" parent="."]
+margin_left = 350.0
+margin_top = 215.0
+margin_right = 464.0
+margin_bottom = 251.0
+mouse_default_cursor_shape = 2
+text = "Honeypot Setup"
+
+[node name="HoneypotOverlay" type="WindowDialog" parent="."]
+visible = true
+margin_left = 128.0
+margin_top = 69.0
+margin_right = 549.0
+margin_bottom = 349.0
+script = ExtResource( 6 )
+
+[node name="HoneypotText" type="RichTextLabel" parent="HoneypotOverlay"]
+margin_left = 4.0
+margin_top = 19.0
+margin_right = 421.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/bold_font = ExtResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center][b]HONEYPOT SETUP[/b][/center]"
+text = "HONEYPOT SETUP"
+
+[node name="CheckboxContainer" type="VBoxContainer" parent="HoneypotOverlay"]
+margin_top = 50.0
+margin_right = 417.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 0, 200 )
+mouse_filter = 0
+
+[node name="HoneypotText" type="RichTextLabel" parent="HoneypotOverlay/CheckboxContainer"]
+margin_right = 417.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/bold_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[b]LOGGING"
+text = "LOGGING"
+
+[node name="AttackInformatinColumn" type="HBoxContainer" parent="HoneypotOverlay/CheckboxContainer"]
+margin_top = 34.0
+margin_right = 417.0
+margin_bottom = 64.0
+mouse_filter = 0
+
+[node name="CheckBox" type="CheckBox" parent="HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
+margin_right = 24.0
+margin_bottom = 30.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="HoneypotOverlay/CheckboxContainer/AttackInformatinColumn"]
+margin_left = 28.0
+margin_right = 368.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 340, 30 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Attack Information"
+text = "Attack Information"
+
+[node name="AccessedDataColumn" type="HBoxContainer" parent="HoneypotOverlay/CheckboxContainer"]
+margin_top = 68.0
+margin_right = 417.0
+margin_bottom = 98.0
+mouse_filter = 0
+
+[node name="CheckBox" type="CheckBox" parent="HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
+margin_right = 24.0
+margin_bottom = 30.0
+
+[node name="CheckboxText" type="RichTextLabel" parent="HoneypotOverlay/CheckboxContainer/AccessedDataColumn"]
+margin_left = 28.0
+margin_right = 368.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 340, 30 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Accessed Data"
+text = "Accessed Data"
+
+[node name="FileLureText" type="RichTextLabel" parent="HoneypotOverlay/CheckboxContainer"]
+margin_top = 102.0
+margin_right = 417.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 350, 30 )
+custom_fonts/bold_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[b]Which file to lure attackers with?"
+text = "Which file to lure attackers with?"
+
+[node name="Filename" type="LineEdit" parent="HoneypotOverlay/CheckboxContainer"]
+margin_top = 136.0
+margin_right = 417.0
+margin_bottom = 160.0
+
+[node name="HoneypotSaveButton" type="Button" parent="HoneypotOverlay/CheckboxContainer"]
+margin_top = 164.0
+margin_right = 417.0
+margin_bottom = 200.0
+custom_fonts/font = ExtResource( 4 )
+disabled = true
+text = "Save Honeypot"
+
+[connection signal="toggled" from="CheckboxContainer/AuthenticatedUserColumn/CheckBox" to="." method="_on_CheckBox_toggled" binds= [ "authenticated_users" ]]
+[connection signal="toggled" from="CheckboxContainer/RequestLimitColumn/CheckBox" to="." method="_on_CheckBox_toggled" binds= [ "request_limit" ]]
+[connection signal="toggled" from="CheckboxContainer/NetworkLoggingColumn/CheckBox" to="." method="_on_CheckBox_toggled" binds= [ "network_logging" ]]
+[connection signal="pressed" from="HoneypotButton" to="." method="_on_HoneypotButton_pressed"]
+[connection signal="toggled" from="HoneypotOverlay/CheckboxContainer/AttackInformatinColumn/CheckBox" to="HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "attack_information" ]]
+[connection signal="toggled" from="HoneypotOverlay/CheckboxContainer/AccessedDataColumn/CheckBox" to="HoneypotOverlay" method="_on_CheckBox_toggled" binds= [ "accessed_data" ]]
+[connection signal="text_changed" from="HoneypotOverlay/CheckboxContainer/Filename" to="HoneypotOverlay" method="_on_Filename_text_changed"]
+[connection signal="pressed" from="HoneypotOverlay/CheckboxContainer/HoneypotSaveButton" to="HoneypotOverlay" method="_on_HoneypotSaveButton_pressed"]

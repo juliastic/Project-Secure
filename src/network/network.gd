@@ -41,9 +41,5 @@ func _on_Firewall_pressed() -> void:
 	$FirewallOverlay.popup_centered()
 
 
-func _on_HoneypotButton_pressed() -> void:
-	$FirewallOverlay/HoneypotOverlay.popup_centered()
-
-
 func _on_Desktop_level_started():
 	pass # shouldn't be necessary as this popup is always closed on level switch
