@@ -11,7 +11,8 @@ func _process(_delta) -> void:
 		var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and (current_tasks[3][1] == "0" or current_tasks[4][1] == "0")
 		var first_stage_ddos = GameProgress.level == GameProgress.Level.DDoS and (GameProgress.get_current_tasks()[8][1] == "0" or current_tasks[9][1] == "0")
 		var first_stage_social_engineering = GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING and current_tasks[11][1] == "0"
-		var first_stage_active = tutorial_active or first_stage_ransomware or first_stage_social_engineering or first_stage_ddos
+		var first_stage_eop = GameProgress.level == GameProgress.Level.EoP and current_tasks[13][1] == "0"
+		var first_stage_active = tutorial_active or first_stage_ransomware or first_stage_social_engineering or first_stage_ddos or first_stage_eop
 		activity_button.disabled = first_stage_active
 		firewall_button.disabled = GameProgress.level != GameProgress.Level.RANSOMWARE or first_stage_ransomware
 		if not activity_button.disabled:

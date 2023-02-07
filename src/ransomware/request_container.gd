@@ -1,11 +1,12 @@
 extends HBoxContainer
 
 const MAX_REQUESTS: int = 4
+const COLUMN_CONTAINER := preload("RequestColumnContainer.tscn")
 
 var _toggle_state = {"Origin": true, "URL": true, "Role": true, "Type": true, "Count": true}
-var current_key = 0
 
-const COLUMN_CONTAINER := preload("RequestColumnContainer.tscn")
+var current_key = 0
+var unique_id_key = 0
 
 onready var incoming_requests := $IncomingScrollContainer/IncomingRequests
 onready var blocked_requests := $BlockedScrollContainer/BlockedRequests
@@ -24,8 +25,10 @@ func _preload_requests() -> void:
 func _load_request(key: int) -> void:
 	var request = Requests.requests[key]
 	var request_instance = COLUMN_CONTAINER.instance()
-	request_instance.add_constant_override("separation", 20)
-	request_instance.connect("pressed", get_parent().get_parent(), "_on_Request_pressed", [str(key)])
+	request_instance.id = key
+	request_instance.unique_id = str(unique_id_key)
+	unique_id_key += 1
+	request_instance.connect("pressed", get_parent().get_parent(), "_on_Request_pressed", [str(unique_id_key)])
 	var i = 0
 	for child in request_instance.get_node("RequestContainer").get_children():
 		if not child is RichTextLabel:
@@ -35,19 +38,19 @@ func _load_request(key: int) -> void:
 		_toggle_node(_toggle_state[child.get_name()], child)
 	if not request_instance.get_node("RequestContainer").get_node("URL").text.begins_with($FilterContainer/FilterText.text):
 		request_instance.hide()
-	request_instance.set_name(str(key))
+	request_instance.set_name(str(unique_id_key))
 	request_instance.add_to_group("incoming_requests")
 	request_instance.add_to_group("requests")
 	incoming_requests.add_child(request_instance)
 
 
-func _on_Request_toggled(id: String, block: bool) -> void:
+func _on_Request_toggled(unique_id: String, block: bool) -> void:
 	$Timer.stop()
 	var from = incoming_requests if block else blocked_requests
 	var to = blocked_requests if block else incoming_requests
 	var from_group = "incoming_requests" if block else "blocked_requests"
 	var to_group = "blocked_requests" if block else "incoming_requests"
-	var request = from.get_node(id)
+	var request = from.get_node(unique_id)
 	request.remove_from_group(from_group)
 	from.remove_child(request)
 	request.add_to_group(to_group)

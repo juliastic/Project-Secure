@@ -15,9 +15,9 @@ func _ready() -> void:
 	$MainRequestContainer.hide()
 
 
-func _on_Request_pressed(id: String) -> void:
-	_pressed_request_id = id
-	var in_incoming_requests = _find_node_in_group(id, "incoming_requests")
+func _on_Request_pressed(unique_id: String) -> void:
+	_pressed_request_id = unique_id
+	var in_incoming_requests = _find_node_in_group(unique_id, "incoming_requests")
 	_toggle_line_buttons(not in_incoming_requests, in_incoming_requests)
 
 

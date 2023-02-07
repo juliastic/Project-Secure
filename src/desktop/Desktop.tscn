@@ -423,7 +423,7 @@ animations = [ {
 "frames": [ ExtResource( 122 ), ExtResource( 120 ), ExtResource( 121 ), ExtResource( 126 ), ExtResource( 133 ), ExtResource( 135 ), ExtResource( 124 ), ExtResource( 129 ), ExtResource( 125 ), ExtResource( 127 ), ExtResource( 128 ), ExtResource( 136 ), ExtResource( 137 ), ExtResource( 134 ), ExtResource( 130 ), ExtResource( 131 ), ExtResource( 132 ) ],
 "loop": true,
 "name": "default",
-"speed": 10.0
+"speed": 7.0
 } ]
 
 [sub_resource type="SpriteFrames" id=19]
@@ -1383,7 +1383,6 @@ anims/scale = SubResource( 22 )
 
 [node name="LevelFinishedNode" type="Node2D" parent="."]
 pause_mode = 2
-visible = false
 modulate = Color( 0, 0, 0, 1 )
 z_index = 10
 script = ExtResource( 2 )
@@ -1400,9 +1399,10 @@ margin_bottom = 1083.0
 color = Color( 0, 0, 0, 0.705882 )
 
 [node name="Display" type="RichTextLabel" parent="LevelFinishedNode"]
-margin_top = 100.0
-margin_right = 1925.0
-margin_bottom = 740.0
+margin_left = -5.0
+margin_top = 4.0
+margin_right = 1920.0
+margin_bottom = 1076.0
 rect_min_size = Vector2( 300, 0 )
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_enabled = true

@@ -64,9 +64,9 @@ func _input(event) -> void:
 			GameProgress.terminal_text += TerminalData.generate_list_terms(level)
 		elif terminal_input == TerminalCommands.BACKSTORY:
 			GameProgress.terminal_text += str("\n", TerminalData.BACKSTORY_VALUES[level])
-		elif terminal_input == TerminalCommands.CAPACITY and TerminalCommands.CAPACITY in TerminalData.SUPPORTED_COMMANDS[level]:
+		elif terminal_input == TerminalCommands.CHECK_CAPACITY and TerminalCommands.CHECK_CAPACITY in TerminalData.SUPPORTED_COMMANDS[level]:
 			rng.randomize()
-			GameProgress.terminal_text += str("\n", TerminalData.CAPACITY_VALUES[level][rng.randi_range(0, 2)])
+			GameProgress.terminal_text += str("\n", TerminalData.CHECK_CAPACITY_VALUES[level][rng.randi_range(0, 2)])
 			GameProgress.get_current_tasks()[9][1] = "1"
 		elif terminal_input == TerminalCommands.TOGGLE_HARDMODE and TerminalCommands.TOGGLE_HARDMODE in TerminalData.SUPPORTED_COMMANDS[level]:
 			GameProgress.hardmode_enabled = !GameProgress.hardmode_enabled
@@ -79,6 +79,8 @@ func _input(event) -> void:
 			_print_command(terminal_input, TerminalData.ENABLE_IDS_VALUES, 8)
 		elif terminal_input == TerminalCommands.CHECK_IDS:
 			_print_command(terminal_input, TerminalData.CHECK_IDS_VALUES, 11, [12])
+		elif terminal_input == TerminalCommands.CHECK_EXPLOITS:
+			_print_command(terminal_input, TerminalData.CHECK_EXPLOITS, 13, [14])
 		_add_text_to_terminal(str("\n", START_LINE if not overlay_displayed else ""))
 		if level == GameProgress.Level.TUTORIAL and GameProgress.get_current_tasks()[0][1] == "0" and terminal_input in TerminalCommands.COMMANDS:
 			GameProgress.get_current_tasks()[0][1] = "1"
@@ -205,10 +207,6 @@ func _trigger_level_start() -> void:
 	_add_text_to_terminal(str("[b]", TerminalData.BACKSTORY_VALUES[GameProgress.level], "[/b]"))
 	_toggle_overlay_displayed(false)
 	_add_text_to_terminal(NEW_LINE)
-
-
-func _trigger_Ransomware_end() -> void:
-	self.emit_signal("overlay_triggered", 1)
 
 
 func _add_text_to_terminal(text: String) -> void:

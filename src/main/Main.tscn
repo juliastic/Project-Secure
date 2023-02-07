@@ -1,8 +1,33 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/main/main.gd" type="Script" id=1]
 [ext_resource path="res://font/bold_font_big_overlay.tres" type="DynamicFont" id=2]
 [ext_resource path="res://font/bold_font_medium_overlay.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_2.png" type="Texture" id=5]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_0.png" type="Texture" id=6]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_6.png" type="Texture" id=7]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_8.png" type="Texture" id=8]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_3.png" type="Texture" id=9]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_9.png" type="Texture" id=10]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_10.png" type="Texture" id=11]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_7.png" type="Texture" id=12]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_14.png" type="Texture" id=13]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_15.png" type="Texture" id=14]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_16.png" type="Texture" id=15]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_4.png" type="Texture" id=16]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_13.png" type="Texture" id=17]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_5.png" type="Texture" id=18]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_11.png" type="Texture" id=19]
+[ext_resource path="res://assets/broken-cup-animation/broken-coffee_12.png" type="Texture" id=20]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 18 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fade"
@@ -39,31 +64,38 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="Title" type="RichTextLabel" parent="."]
-margin_top = 186.0
+margin_top = 202.0
 margin_right = 1920.0
-margin_bottom = 281.0
+margin_bottom = 297.0
 custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center][color=black]Project Secure[/color][/center]"
 text = "Project Secure"
 
 [node name="SubTitle" type="RichTextLabel" parent="."]
-margin_top = 291.0
+margin_top = 307.0
 margin_right = 1920.0
-margin_bottom = 417.0
+margin_bottom = 433.0
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center][color=black][shake rate=20 level=20]... one task at a time[/shake][/color][center]"
 text = "... one task at a time"
 
 [node name="GameButton" type="Button" parent="."]
-margin_left = 812.0
-margin_top = 500.0
-margin_right = 1108.0
-margin_bottom = 631.0
+margin_left = 808.0
+margin_top = 434.0
+margin_right = 1104.0
+margin_bottom = 565.0
 mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 3 )
 text = "Start Game"
+
+[node name="BrokenCup" type="AnimatedSprite" parent="."]
+position = Vector2( 1522, 739 )
+scale = Vector2( 10.375, 8.84375 )
+frames = SubResource( 3 )
+frame = 15
+playing = true
 
 [node name="TransitionRect" type="ColorRect" parent="."]
 visible = false

@@ -19,7 +19,7 @@ var terminal_text = str(
 var terminal_shown = true
 var intro_completed = true
 
-var level = Level.RANSOMWARE
+var level = Level.SOCIAL_ENGINEERING
 
 var hardmode_enabled = false
 
@@ -73,7 +73,8 @@ const _tasks_social_engineering := {
 }
 
 const _tasks_eop := {
-	13: ["CATCH THE INTRUDER", "0", "1"],
+	13: ["Check for exploits", "0", "1"],
+	14: ["CATCH THE INTRUDER", "0", "0"],
 }
 
 var tasks := {

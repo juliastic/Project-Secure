@@ -21,9 +21,9 @@ const INTRO_DIALOGUE := [
 const SUPPORTED_COMMANDS := {
 	GameProgress.Level.TUTORIAL: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN], 
 	GameProgress.Level.RANSOMWARE: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.LISTEN_REQUESTS, TerminalCommands.CREATE_FIREWALL, TerminalCommands.TOGGLE_HARDMODE],
-	GameProgress.Level.DDoS: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CAPACITY, TerminalCommands.ENABLE_IDS, TerminalCommands.TOGGLE_HARDMODE],
+	GameProgress.Level.DDoS: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_CAPACITY, TerminalCommands.ENABLE_IDS, TerminalCommands.TOGGLE_HARDMODE],
 	GameProgress.Level.SOCIAL_ENGINEERING: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_IDS, TerminalCommands.TOGGLE_HARDMODE],
-	GameProgress.Level.EoP: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.TOGGLE_HARDMODE]
+	GameProgress.Level.EoP: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_EXPLOITS, TerminalCommands.TOGGLE_HARDMODE]
 }
 
 const BACKSTORY_VALUES = {
@@ -82,7 +82,7 @@ const LISTEN_REQUESTS_VALUES = {
 	}
 }
 
-const CAPACITY_VALUES = {
+const CHECK_CAPACITY_VALUES = {
 	GameProgress.Level.DDoS: ["We're at 0%.", "We're at 10%.", "ITS OVER 9000%."]
 }
 
@@ -121,8 +121,8 @@ func generate_help_text(level: int) -> String:
 		help_text += "\n[b]ENABLE IDS[/b]: Enables the Intrusion Detection System. Highlights suspcious requests in form of a [i]counter[/i]. I'm colour blind so I couldn't rely on colours."
 	if TerminalCommands.CHECK_IDS in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]CHECK IDS[/b]: Checks whether the [i]IDS[/i] has found an intruder."
-	if TerminalCommands.CAPACITY in SUPPORTED_COMMANDS[level]:
-		help_text += "\n[b]CAPACITY[/b]: Displays the currenty request capacity of ours servers. The closer it is to 100%, the closer our system is to failure. If it's over 9000, all is lost."
+	if TerminalCommands.CHECK_CAPACITY in SUPPORTED_COMMANDS[level]:
+		help_text += "\n[b]CHECK CAPACITY[/b]: Displays the currenty request capacity of ours servers. The closer it is to 100%, the closer our system is to failure. If it's over 9000, all is lost."
 	if TerminalCommands.TOGGLE_HARDMODE in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]TOGGLE HARDMODE[/b]: For developers who want the extra challenge. If enabled, increases the difficulty of challenges thrown your way. Can be disabled any time by re-entering the command."
 	return help_text
