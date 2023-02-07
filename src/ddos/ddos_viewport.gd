@@ -39,7 +39,7 @@ func _on_CupSpawnTimer_timeout() -> void:
 
 
 func _on_LevelFinishedNode_level_reset_triggered() -> void:
-	reset_level()
+	self.reset_level()
 
 
 func _on_Cup_Timeout(_anim_name: String) -> void:

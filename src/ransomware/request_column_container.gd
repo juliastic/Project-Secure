@@ -1,7 +1,7 @@
+class_name RequestColumnContainer
 extends Button
 
-export(int) var id
-export(String) var unique_id
+var request_data: RequestData
 
 func _ready() -> void:
 	add_constant_override("separation", 20)

@@ -1,13 +1,14 @@
 extends WindowDialog
 
-signal request_toggled(id, block)
+signal request_toggled(request)
 signal game_lost()
 signal game_won()
 
-var _pressed_request_id = "-1"
+var _pressed_request = null
 
 onready var progress_label := $MainRequestContainer/HeaderContainer/ProgressLabel
 onready var score_label := $MainRequestContainer/HeaderContainer/ScoreLabel
+
 
 func _ready() -> void:
 	$GameStartNode.set_modulate(lerp(get_modulate(), Color(1, 1, 1, 1), 1))
@@ -15,46 +16,50 @@ func _ready() -> void:
 	$MainRequestContainer.hide()
 
 
-func _on_Request_pressed(unique_id: String) -> void:
-	_pressed_request_id = unique_id
-	var in_incoming_requests = _find_node_in_group(unique_id, "incoming_requests")
+func _on_Request_pressed(request: RequestColumnContainer) -> void:
+	_pressed_request = request
+	var in_incoming_requests = request.is_in_group("incoming_requests")
 	_toggle_line_buttons(not in_incoming_requests, in_incoming_requests)
 
 
 func _find_node_in_group(id: String, group_name: String) -> bool:
+	print(id)
 	var nodes = get_tree().get_nodes_in_group(group_name)
 	for node in nodes:
+		print(node.name)
 		if node.name == id:
 			return true
 	return false
 
 
 func _on_LineButton_button_down(block: bool) -> void:
-	if _pressed_request_id == "-1":
+	if _pressed_request == null:
 		return
 	$MainRequestContainer/RequestContainer/Timer.stop()
 	if block:
-		Requests.blocked_requests.append(_pressed_request_id)
-		if Requests.blocked_requests == Requests.MALICIOUS_REQUESTS:
-			self._check_game_won()
+		Requests.blocked_requests.append(_pressed_request)
+		self._check_game_won()
 	else:
 		for index in Requests.blocked_requests.size():
-			if Requests.blocked_requests[index] == _pressed_request_id:
+			if Requests.blocked_requests[index].request_data.unique_id == _pressed_request.request_data.unique_id:
 				Requests.blocked_requests.remove(index)
 				break
 		self._check_game_won()
 	self._update_progress_label()
 	self._toggle_line_buttons(false, false)
-	self.emit_signal("request_toggled", _pressed_request_id, block)
-	_pressed_request_id = "-1"
+	self.emit_signal("request_toggled", _pressed_request)
+	_pressed_request = null
 	$MainRequestContainer/RequestContainer/Timer.start()
 
 
 func _check_game_won() -> void:
-	if Requests.blocked_requests == Requests.MALICIOUS_REQUESTS:
-			GameProgress.get_current_tasks()[7][1] = "1"
-			self.emit_signal("game_won")
-			$ScoreTimer.stop()
+	if Requests.blocked_requests.size() == Requests.MALICIOUS_REQUESTS.size():
+		for request in Requests.blocked_requests:
+			if not request.request_data.id in Requests.MALICIOUS_REQUESTS:
+				return
+		GameProgress.get_current_tasks()[7][1] = "1"
+		self.emit_signal("game_won")
+		$ScoreTimer.stop()
 
 
 func _toggle_info_text() -> void:
@@ -66,8 +71,8 @@ func _toggle_info_text() -> void:
 
 func _update_progress_label() -> void:
 	var correct_requests = 0
-	for request_id in Requests.blocked_requests:
-		if request_id in Requests.MALICIOUS_REQUESTS:
+	for request in Requests.blocked_requests:
+		if request.request_data.id in Requests.MALICIOUS_REQUESTS:
 			correct_requests += 1
 	var incorrect_requests = Requests.blocked_requests.size() - correct_requests
 	progress_label.bbcode_text = str("[color=black]", correct_requests, "/", Requests.MALICIOUS_REQUESTS.size(), " Found || ", incorrect_requests, " Requests misidentified[/color]")
@@ -115,7 +120,7 @@ func reset_level() -> void:
 	score_label.bbcode_text = str("[right]Points: ", GameProgress.level_score[GameProgress.level], "[/right]")
 	$ScoreTimer.wait_time = 0.9 if GameProgress.hardmode_enabled else 1.0
 	$ScoreTimer.start()
-	_pressed_request_id = "-1"
+	_pressed_request = null
 
 
 func _toggle_line_buttons(enable_unblock: bool, enable_block: bool) -> void:

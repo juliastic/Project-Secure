@@ -2,6 +2,7 @@ extends HBoxContainer
 
 const MAX_REQUESTS: int = 4
 const COLUMN_CONTAINER := preload("RequestColumnContainer.tscn")
+const REQUEST_DATA := preload("request_data.gd")
 
 var _toggle_state = {"Origin": true, "URL": true, "Role": true, "Type": true, "Count": true}
 
@@ -25,10 +26,11 @@ func _preload_requests() -> void:
 func _load_request(key: int) -> void:
 	var request = Requests.requests[key]
 	var request_instance = COLUMN_CONTAINER.instance()
-	request_instance.id = key
-	request_instance.unique_id = str(unique_id_key)
+	var request_data = REQUEST_DATA.new(str(key), str(unique_id_key))
+	request_instance.request_data = request_data
+	
 	unique_id_key += 1
-	request_instance.connect("pressed", get_parent().get_parent(), "_on_Request_pressed", [str(unique_id_key)])
+	request_instance.connect("pressed", get_parent().get_parent(), "_on_Request_pressed", [request_instance])
 	var i = 0
 	for child in request_instance.get_node("RequestContainer").get_children():
 		if not child is RichTextLabel:
@@ -44,13 +46,14 @@ func _load_request(key: int) -> void:
 	incoming_requests.add_child(request_instance)
 
 
-func _on_Request_toggled(unique_id: String, block: bool) -> void:
+func _on_Request_toggled(request: RequestColumnContainer) -> void:
 	$Timer.stop()
-	var from = incoming_requests if block else blocked_requests
-	var to = blocked_requests if block else incoming_requests
-	var from_group = "incoming_requests" if block else "blocked_requests"
-	var to_group = "blocked_requests" if block else "incoming_requests"
-	var request = from.get_node(unique_id)
+	var is_incoming = request.is_in_group("incoming_requests")  
+	var from = incoming_requests if is_incoming else blocked_requests
+	var to = blocked_requests if is_incoming else incoming_requests
+	var from_group = "incoming_requests" if is_incoming else "blocked_requests"
+	var to_group = "blocked_requests" if is_incoming else "incoming_requests"
+	
 	request.remove_from_group(from_group)
 	from.remove_child(request)
 	request.add_to_group(to_group)
@@ -78,13 +81,10 @@ func _on_Incoming_Request() -> void:
 		return
 
 	var nodes_to_remove = get_tree().get_nodes_in_group("incoming_requests").size() - MAX_REQUESTS
+	print(str("Nodes to remove: ", nodes_to_remove))
 	for i in nodes_to_remove:
 		get_tree().get_nodes_in_group("incoming_requests")[i].queue_free()
 
-	while str(current_key) in Requests.blocked_requests:
-		current_key += 1
-		if current_key >= Requests.requests.size():
-			current_key = 0
 	_load_request(current_key)
 	current_key += 1
 	if current_key >= Requests.requests.size():

@@ -18,7 +18,7 @@ func prepare_level() -> void:
 	$GameInformationContainer/Time.bbcode_text = str("Time: ", level_time)
 	$GameInformationContainer/Score.bbcode_text = str("Points: ", GameProgress.level_score[GameProgress.level])
 	if not GameProgress.hardmode_enabled:
-		for _i in range(0, 4):
+		for _i in range(0, 6):
 			MemoryData.cards.remove(0)
 	randomize()
 	MemoryData.cards.shuffle()
@@ -82,4 +82,4 @@ func _on_LevelTimer_timeout() -> void:
 func _on_LevelFinishedNode_level_reset_triggered():
 	if GameProgress.level != GameProgress.Level.SOCIAL_ENGINEERING:
 		return
-	reset_level()
+	self.reset_level()
