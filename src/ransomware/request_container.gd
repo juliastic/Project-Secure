@@ -81,7 +81,6 @@ func _on_Incoming_Request() -> void:
 		return
 
 	var nodes_to_remove = get_tree().get_nodes_in_group("incoming_requests").size() - MAX_REQUESTS
-	print(str("Nodes to remove: ", nodes_to_remove))
 	for i in nodes_to_remove:
 		get_tree().get_nodes_in_group("incoming_requests")[i].queue_free()
 
@@ -93,12 +92,6 @@ func _on_Incoming_Request() -> void:
 
 func _on_GameStart_pressed() -> void:
 	$Timer.start()
-
-
-func _on_LevelFinishedNode_level_reset_triggered() -> void:
-	if GameProgress.level != GameProgress.Level.RANSOMWARE:
-		return
-	self.reset_level()
 
 
 func _on_RansomwareRequestMiniGame_game_finished() -> void:
@@ -133,7 +126,5 @@ func _trigger_node_filter_update(text: String) -> void:
 			node.show()
 		return
 	for node in request_nodes:
-		if node.get_node("RequestContainer").get_node("URL").text.begins_with(text):
-			node.show()
-		else:
-			node.hide()
+		var is_in_filter = node.get_node("RequestContainer").get_node("URL").text.begins_with(text)
+		node.call("show" if is_in_filter else "hide")

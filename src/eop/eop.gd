@@ -1,8 +1,7 @@
 extends WindowDialog
 
-
-func _ready():
-	pass
+signal game_won()
+signal game_lost()
 
 
 func _on_GameStart_pressed():
@@ -18,3 +17,11 @@ func _on_EoPMiniGame_hide():
 	$GameStartNode.show()
 	$ViewportLevel.hide()
 	$ViewportLevel/Viewport/Level.hide()
+
+
+func _on_Level_game_lost():
+	self.emit_signal("game_lost")
+
+
+func _on_Level_game_won():
+	self.emit_signal("game_won")

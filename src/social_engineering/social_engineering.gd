@@ -17,3 +17,16 @@ func _on_SocialEngineeringMiniGame_hide():
 	$GameStartNode.show()
 	$ViewportLevel.hide()
 
+
+func _on_LevelFinishedNode_level_reset_triggered() -> void:
+	if GameProgress.level != GameProgress.Level.SOCIAL_ENGINEERING:
+		return
+	$ViewportLevel/Viewport.reset_level()
+
+
+func _on_Viewport_game_lost():
+	self.emit_signal("game_lost")
+
+
+func _on_Viewport_game_won():
+	self.emit_signal("game_won")

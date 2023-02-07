@@ -38,10 +38,6 @@ func _on_CupSpawnTimer_timeout() -> void:
 	self.add_child(attacker)
 
 
-func _on_LevelFinishedNode_level_reset_triggered() -> void:
-	self.reset_level()
-
-
 func _on_Cup_Timeout(_anim_name: String) -> void:
 	system_health -= 10
 	$GameInformationContainer/SystemHealth.bbcode_text = str("[right]System Health: ", system_health, "[/right]")

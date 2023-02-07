@@ -1,0 +1,179 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://font/bold_font_medium_overlay.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/ddos/ddos.gd" type="Script" id=2]
+[ext_resource path="res://src/ddos/ddos_viewport.gd" type="Script" id=3]
+[ext_resource path="res://src/ddos/ddos_player.gd" type="Script" id=4]
+[ext_resource path="res://font/bold_font_big.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/gun-fire-animation/Gun_fire1.png" type="Texture" id=6]
+[ext_resource path="res://assets/gun-fire-animation/Gun_fire2.png" type="Texture" id=7]
+[ext_resource path="res://assets/gun-fire-animation/Gun_fire3.png" type="Texture" id=8]
+[ext_resource path="res://src/ddos/bullet_position.gd" type="Script" id=9]
+
+[sub_resource type="Animation" id=27]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=28]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 80, 120 )
+
+[node name="DDoSInvaderMiniGame" type="WindowDialog"]
+margin_right = 1500.0
+margin_bottom = 1000.0
+window_title = "Cup Invasion"
+script = ExtResource( 2 )
+
+[node name="GameStartNode" type="Node2D" parent="."]
+modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
+position = Vector2( -17, 116 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameStartNode"]
+root_node = NodePath("../Display")
+anims/Fade = SubResource( 27 )
+anims/RESET = SubResource( 28 )
+
+[node name="Display" type="RichTextLabel" parent="GameStartNode"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 17.0
+margin_top = -97.0
+margin_right = 1517.0
+margin_bottom = 329.0
+rect_min_size = Vector2( 1500, 0 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Get ready to defend our system from the invaders. Think Space Invaders but much more tense.
+Try to eleiminate as many invaders as possible whilst surviving the attack.
+Press START to trigger the event.[/center]"
+text = "Get ready to defend our system from the invaders. Think Space Invaders but much more tense.
+Try to eleiminate as many invaders as possible whilst surviving the attack.
+Press START to trigger the event."
+
+[node name="Button" type="Button" parent="GameStartNode"]
+margin_left = 700.0
+margin_top = 300.0
+margin_right = 900.0
+margin_bottom = 370.0
+rect_min_size = Vector2( 200, 70 )
+custom_fonts/font = ExtResource( 5 )
+text = "START"
+
+[node name="ViewportLevel" type="ViewportContainer" parent="."]
+visible = false
+margin_right = 1500.0
+margin_bottom = 995.0
+rect_min_size = Vector2( 1500, 995 )
+
+[node name="Viewport" type="Viewport" parent="ViewportLevel"]
+size = Vector2( 1500, 995 )
+transparent_bg = true
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 0
+script = ExtResource( 3 )
+
+[node name="GameInformationContainer" type="HBoxContainer" parent="ViewportLevel/Viewport"]
+margin_right = 1500.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 1500, 130 )
+alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 21.0
+margin_right = 421.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 400, 130 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Points: 0
+"
+text = "Points: 0
+"
+
+[node name="Time" type="RichTextLabel" parent="ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 425.0
+margin_right = 775.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 350, 130 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Time: 20"
+text = "Time: 20"
+
+[node name="SystemHealth" type="RichTextLabel" parent="ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 779.0
+margin_right = 1479.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 700, 130 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[right]System Health: 100[/right]"
+text = "System Health: 100"
+
+[node name="CupSpawnTimer" type="Timer" parent="ViewportLevel/Viewport"]
+wait_time = 1.2
+
+[node name="LevelTimer" type="Timer" parent="ViewportLevel/Viewport"]
+
+[node name="Player" type="KinematicBody2D" parent="ViewportLevel/Viewport"]
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ViewportLevel/Viewport/Player"]
+position = Vector2( 772, 875 )
+scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 30 )
+
+[node name="BulletPosition" type="Position2D" parent="ViewportLevel/Viewport/Player/AnimatedSprite"]
+script = ExtResource( 9 )
+
+[node name="Cooldown" type="Timer" parent="ViewportLevel/Viewport/Player/AnimatedSprite/BulletPosition"]
+wait_time = 0.5
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewportLevel/Viewport/Player"]
+position = Vector2( 772, 870 )
+shape = SubResource( 31 )
+
+[connection signal="hide" from="." to="." method="_on_DDoSInvaderMiniGame_hide"]
+[connection signal="pressed" from="GameStartNode/Button" to="." method="_on_GameStart_pressed"]
+[connection signal="game_lost" from="ViewportLevel/Viewport" to="." method="_on_Viewport_game_lost"]
+[connection signal="game_won" from="ViewportLevel/Viewport" to="." method="_on_Viewport_game_won"]
+[connection signal="timeout" from="ViewportLevel/Viewport/CupSpawnTimer" to="ViewportLevel/Viewport" method="_on_CupSpawnTimer_timeout"]
+[connection signal="timeout" from="ViewportLevel/Viewport/LevelTimer" to="ViewportLevel/Viewport" method="_on_LevelTimer_timeout"]

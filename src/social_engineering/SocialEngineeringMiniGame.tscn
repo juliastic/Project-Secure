@@ -1,0 +1,128 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://font/bold_font_medium_overlay.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/social_engineering/social_engineering.gd" type="Script" id=2]
+[ext_resource path="res://font/bold_font_big.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/social_engineering/social_engineering_viewport.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=35]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=36]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="SocialEngineeringMiniGame" type="WindowDialog"]
+margin_right = 1500.0
+margin_bottom = 1000.0
+rect_min_size = Vector2( 1500, 1000 )
+window_title = "Find Cups"
+script = ExtResource( 2 )
+
+[node name="GameStartNode" type="Node2D" parent="."]
+modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
+position = Vector2( -17, 116 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameStartNode"]
+root_node = NodePath("../Display")
+anims/Fade = SubResource( 35 )
+anims/RESET = SubResource( 36 )
+
+[node name="Display" type="RichTextLabel" parent="GameStartNode"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 17.0
+margin_top = -97.0
+margin_right = 1517.0
+margin_bottom = 329.0
+rect_min_size = Vector2( 1500, 0 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Find the person whose account has been breached.
+Match the users to their activity. Press START to trigger the event.[/center]"
+text = "Find the person whose account has been breached.
+Match the users to their activity. Press START to trigger the event."
+
+[node name="Button" type="Button" parent="GameStartNode"]
+margin_left = 700.0
+margin_top = 300.0
+margin_right = 900.0
+margin_bottom = 370.0
+rect_min_size = Vector2( 200, 70 )
+custom_fonts/font = ExtResource( 3 )
+text = "START"
+
+[node name="ViewportLevel" type="ViewportContainer" parent="."]
+visible = false
+margin_right = 1500.0
+margin_bottom = 995.0
+rect_min_size = Vector2( 1500, 995 )
+
+[node name="Viewport" type="Viewport" parent="ViewportLevel"]
+size = Vector2( 1500, 995 )
+transparent_bg = true
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 0
+script = ExtResource( 4 )
+
+[node name="GameInformationContainer" type="HBoxContainer" parent="ViewportLevel/Viewport"]
+margin_right = 1500.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 1500, 130 )
+alignment = 1
+
+[node name="Score" type="RichTextLabel" parent="ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 373.0
+margin_right = 773.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 400, 130 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Points: 0
+"
+text = "Points: 0
+"
+
+[node name="Time" type="RichTextLabel" parent="ViewportLevel/Viewport/GameInformationContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 777.0
+margin_right = 1127.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 350, 130 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Time: 20"
+text = "Time: 20"
+
+[node name="LevelTimer" type="Timer" parent="ViewportLevel/Viewport"]
+
+[connection signal="hide" from="." to="." method="_on_SocialEngineeringMiniGame_hide"]
+[connection signal="pressed" from="GameStartNode/Button" to="." method="_on_GameStart_pressed"]
+[connection signal="game_lost" from="ViewportLevel/Viewport" to="." method="_on_Viewport_game_lost"]
+[connection signal="game_won" from="ViewportLevel/Viewport" to="." method="_on_Viewport_game_won"]
+[connection signal="timeout" from="ViewportLevel/Viewport/LevelTimer" to="ViewportLevel/Viewport" method="_on_LevelTimer_timeout"]

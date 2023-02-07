@@ -96,7 +96,14 @@ const ENABLE_IDS_VALUES = {
 const CHECK_IDS_VALUES = {
 	GameProgress.Level.SOCIAL_ENGINEERING: {
 		0: "We have ONE Intruder in our system. Act swiftly!",
-		1: "IDS has already been checked ... Please [color=red]DO SOMETHING[/color]."
+		1: "IDS has already been checked ... Please [color=red]DO SOMETHING[/color]!"
+	}
+}
+
+const CHECK_EXPLOITS_VALUES = {
+	GameProgress.Level.EoP: {
+		0: "Hm ... seems like the attacker elevated their privileges by using a simple database exploit. I need to delegate this to Marvin. My fellow database colleague.",
+		1: "Exploits have already been checked! [color=red]CATCH THE CUP![/color]."
 	}
 }
 

@@ -22,16 +22,6 @@ func _on_Request_pressed(request: RequestColumnContainer) -> void:
 	_toggle_line_buttons(not in_incoming_requests, in_incoming_requests)
 
 
-func _find_node_in_group(id: String, group_name: String) -> bool:
-	print(id)
-	var nodes = get_tree().get_nodes_in_group(group_name)
-	for node in nodes:
-		print(node.name)
-		if node.name == id:
-			return true
-	return false
-
-
 func _on_LineButton_button_down(block: bool) -> void:
 	if _pressed_request == null:
 		return
@@ -62,13 +52,6 @@ func _check_game_won() -> void:
 		$ScoreTimer.stop()
 
 
-func _toggle_info_text() -> void:
-	var setup_complete = GameProgress.level != GameProgress.Level.RANSOMWARE or GameProgress.get_current_tasks()[5][1] == "1" and GameProgress.get_current_tasks()[6][1] == "1"
-	var hide_info_text = setup_complete
-	$InfoText.call("hide" if hide_info_text else "show")
-	$MainRequestContainer/RequestContainer.call("hide" if hide_info_text else "show")
-
-
 func _update_progress_label() -> void:
 	var correct_requests = 0
 	for request in Requests.blocked_requests:
@@ -76,12 +59,6 @@ func _update_progress_label() -> void:
 			correct_requests += 1
 	var incorrect_requests = Requests.blocked_requests.size() - correct_requests
 	progress_label.bbcode_text = str("[color=black]", correct_requests, "/", Requests.MALICIOUS_REQUESTS.size(), " Found || ", incorrect_requests, " Requests misidentified[/color]")
-
-
-func _on_Desktop_level_started():
-	if GameProgress.Level != GameProgress.Level.RANSOMWARE:
-		return
-	self._toggle_info_text()
 
 
 func _on_Score_update():
@@ -102,10 +79,11 @@ func _on_GameStart_pressed():
 	$MainRequestContainer/RequestContainer.reset_level()
 
 
-func _on_LevelFinishedNode_level_reset_triggered():
+func _on_LevelFinishedNode_level_reset_triggered() -> void:
 	if GameProgress.level != GameProgress.Level.RANSOMWARE:
 		return
 	self.reset_level()
+	$MainRequestContainer/RequestContainer.reset_level()
 
 
 func _on_RansomwareRequestMiniGame_hide():

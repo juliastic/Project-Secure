@@ -80,7 +80,7 @@ func _input(event) -> void:
 		elif terminal_input == TerminalCommands.CHECK_IDS:
 			_print_command(terminal_input, TerminalData.CHECK_IDS_VALUES, 11, [12])
 		elif terminal_input == TerminalCommands.CHECK_EXPLOITS:
-			_print_command(terminal_input, TerminalData.CHECK_EXPLOITS, 13, [14])
+			_print_command(terminal_input, TerminalData.CHECK_EXPLOITS_VALUES, 13, [14])
 		_add_text_to_terminal(str("\n", START_LINE if not overlay_displayed else ""))
 		if level == GameProgress.Level.TUTORIAL and GameProgress.get_current_tasks()[0][1] == "0" and terminal_input in TerminalCommands.COMMANDS:
 			GameProgress.get_current_tasks()[0][1] = "1"
@@ -115,13 +115,16 @@ func _on_NetworkButton_pressed() -> void:
 	var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and (current_tasks[3][1] == "0" or current_tasks[4][1] == "0")
 	var first_stage_ddos = GameProgress.level == GameProgress.Level.DDoS and (GameProgress.get_current_tasks()[8][1] == "0" or current_tasks[9][1] == "0")
 	var first_stage_social_engineering = GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING and current_tasks[11][1] == "0"
-	var first_stage_active = tutorial_active or first_stage_ransomware or first_stage_social_engineering or first_stage_ddos
+	var first_stage_eop = GameProgress.level == GameProgress.Level.EoP and current_tasks[13][1] == "0"
+	var first_stage_active = tutorial_active or first_stage_ransomware or first_stage_social_engineering or first_stage_ddos or first_stage_eop
 	if first_stage_ransomware:
 		network_info_text.bbcode_text = "[center]Please create a Firewall and enable Network listening in the Terminal first.[/center]"
 	elif first_stage_ddos:
 		network_info_text.bbcode_text = "[center]Please enable IDS and check our capacity first before you proceed.[/center]"
 	elif first_stage_social_engineering:
 		network_info_text.bbcode_text = "[center]It's dangerous out there. Please check the IDS first.[/center]"
+	elif first_stage_eop:
+		network_info_text.bbcode_text = "[center]We need to check the exploits first![/center]"
 	_toggle_node(network_info_text, first_stage_active)
 	network_window.set_position(Vector2(650, 400))
 	network_window.show()
@@ -284,3 +287,4 @@ func _on_Desktop_tree_entered():
 	$TransitionRect.show()
 	$TransitionRect/AnimationPlayer.play("Fade")
 	yield($TransitionRect/AnimationPlayer, "animation_finished")
+

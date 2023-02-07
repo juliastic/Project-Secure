@@ -1,0 +1,397 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://font/bold_font_medium_overlay.tres" type="DynamicFont" id=1]
+[ext_resource path="res://font/bold_font_big.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/ransomware/request_container.gd" type="Script" id=3]
+[ext_resource path="res://font/bold_font_big_overlay.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/ransomware/ransomware.gd" type="Script" id=5]
+[ext_resource path="res://font/bold_font_default.tres" type="DynamicFont" id=6]
+
+[sub_resource type="Animation" id=25]
+resource_name = "Fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="RansomwareRequestMiniGame" type="WindowDialog"]
+margin_left = -17.0
+margin_top = 116.0
+margin_right = 1483.0
+margin_bottom = 674.0
+window_title = "Defend from Cups"
+script = ExtResource( 5 )
+
+[node name="GameStartNode" type="Node2D" parent="."]
+visible = false
+modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameStartNode"]
+root_node = NodePath("../Display")
+anims/Fade = SubResource( 25 )
+anims/RESET = SubResource( 26 )
+
+[node name="Display" type="RichTextLabel" parent="GameStartNode"]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 1500.0
+margin_bottom = 426.0
+rect_min_size = Vector2( 1500, 0 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Welcome! Get ready to sort to find out more about the invaders.
+Press START to trigger the event.[/center]"
+text = "Welcome! Get ready to sort to find out more about the invaders.
+Press START to trigger the event."
+
+[node name="Button" type="Button" parent="GameStartNode"]
+margin_left = 700.0
+margin_top = 300.0
+margin_right = 900.0
+margin_bottom = 370.0
+rect_min_size = Vector2( 200, 70 )
+custom_fonts/font = ExtResource( 2 )
+text = "START"
+
+[node name="InfoText" type="RichTextLabel" parent="."]
+margin_left = 2.0
+margin_top = 207.0
+margin_right = 1503.0
+margin_bottom = 293.0
+custom_fonts/normal_font = ExtResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center]Firewall is not yet enabled[/center]"
+text = "Firewall is not yet enabled"
+
+[node name="MainRequestContainer" type="VBoxContainer" parent="."]
+visible = false
+margin_right = 1500.0
+margin_bottom = 584.0
+rect_min_size = Vector2( 1500, 0 )
+mouse_filter = 0
+
+[node name="HeaderContainer" type="HBoxContainer" parent="MainRequestContainer"]
+margin_right = 1500.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 1070, 80 )
+
+[node name="IncomingHeaderText" type="RichTextLabel" parent="MainRequestContainer/HeaderContainer"]
+margin_right = 600.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 600, 40 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "REQUESTS"
+text = "REQUESTS"
+
+[node name="ProgressLabel" type="RichTextLabel" parent="MainRequestContainer/HeaderContainer"]
+margin_left = 604.0
+margin_right = 1104.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 500, 0 )
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[color=black]0/1 Found || 0 Request misidentified [/color]"
+text = "0/1 Found || 0 Request misidentified "
+
+[node name="ScoreLabel" type="RichTextLabel" parent="MainRequestContainer/HeaderContainer"]
+margin_left = 1108.0
+margin_right = 1408.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 300, 0 )
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[right]Points: 100[/right]"
+text = "Points: 100"
+
+[node name="RequestContainer" type="HBoxContainer" parent="MainRequestContainer"]
+margin_top = 84.0
+margin_right = 1500.0
+margin_bottom = 534.0
+rect_min_size = Vector2( 1070, 0 )
+mouse_filter = 0
+alignment = 1
+script = ExtResource( 3 )
+
+[node name="FilterContainer" type="VBoxContainer" parent="MainRequestContainer/RequestContainer"]
+margin_left = 9.0
+margin_right = 128.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 119, 60 )
+
+[node name="FilterText" type="LineEdit" parent="MainRequestContainer/RequestContainer/FilterContainer"]
+margin_right = 119.0
+margin_bottom = 24.0
+placeholder_text = "Filter Text"
+
+[node name="Origin" type="CheckButton" parent="MainRequestContainer/RequestContainer/FilterContainer"]
+margin_top = 28.0
+margin_right = 119.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 0, 60 )
+pressed = true
+text = "Origin"
+
+[node name="URL" type="CheckButton" parent="MainRequestContainer/RequestContainer/FilterContainer"]
+margin_top = 92.0
+margin_right = 119.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 0, 60 )
+pressed = true
+text = "URL"
+
+[node name="Role" type="CheckButton" parent="MainRequestContainer/RequestContainer/FilterContainer"]
+margin_top = 156.0
+margin_right = 119.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 0, 60 )
+pressed = true
+text = "Role"
+
+[node name="Type" type="CheckButton" parent="MainRequestContainer/RequestContainer/FilterContainer"]
+margin_top = 220.0
+margin_right = 119.0
+margin_bottom = 280.0
+rect_min_size = Vector2( 0, 60 )
+pressed = true
+text = "Type"
+
+[node name="Count" type="CheckButton" parent="MainRequestContainer/RequestContainer/FilterContainer"]
+margin_top = 284.0
+margin_right = 119.0
+margin_bottom = 344.0
+rect_min_size = Vector2( 0, 60 )
+pressed = true
+text = "Count"
+
+[node name="IncomingScrollContainer" type="ScrollContainer" parent="MainRequestContainer/RequestContainer"]
+margin_left = 132.0
+margin_right = 782.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 650, 450 )
+
+[node name="IncomingRequests" type="VBoxContainer" parent="MainRequestContainer/RequestContainer/IncomingScrollContainer"]
+margin_right = 650.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 650, 450 )
+
+[node name="IncomingHeaderText" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests"]
+margin_right = 650.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]Incoming Requests[/center]"
+text = "Incoming Requests"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests"]
+margin_top = 44.0
+margin_right = 650.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Origin" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 150, 55 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_text = "Origin
+"
+text = "Origin
+"
+
+[node name="URL" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests/HBoxContainer"]
+margin_left = 154.0
+margin_right = 314.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 160, 55 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_text = "Requested URL
+"
+text = "Requested URL
+"
+
+[node name="Role" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests/HBoxContainer"]
+margin_left = 318.0
+margin_right = 438.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 120, 55 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_text = "Role
+"
+text = "Role
+"
+
+[node name="Type" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests/HBoxContainer"]
+margin_left = 442.0
+margin_right = 562.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 120, 55 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_text = "Type"
+text = "Type"
+
+[node name="Count" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/IncomingScrollContainer/IncomingRequests/HBoxContainer"]
+margin_left = 566.0
+margin_right = 646.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 80, 55 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "Count"
+text = "Count"
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MainRequestContainer/RequestContainer"]
+margin_left = 786.0
+margin_right = 836.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 50, 200 )
+
+[node name="BlockButton" type="Button" parent="MainRequestContainer/RequestContainer/ButtonContainer"]
+margin_right = 50.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 50, 100 )
+disabled = true
+
+[node name="Line" type="Line2D" parent="MainRequestContainer/RequestContainer/ButtonContainer/BlockButton"]
+position = Vector2( 10, 30 )
+rotation = 0.959931
+points = PoolVector2Array( -5, -3, 29, -14, 32, 21 )
+default_color = Color( 0.898039, 0.12549, 0.12549, 1 )
+
+[node name="UnblockButton" type="Button" parent="MainRequestContainer/RequestContainer/ButtonContainer"]
+margin_top = 104.0
+margin_right = 50.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 50, 100 )
+disabled = true
+
+[node name="Line" type="Line2D" parent="MainRequestContainer/RequestContainer/ButtonContainer/UnblockButton"]
+position = Vector2( 39, 67 )
+rotation = 4.18879
+points = PoolVector2Array( -5, -3, 8.15674, -7.25653, 29, -14, 32, 21 )
+default_color = Color( 0.898039, 0.12549, 0.12549, 1 )
+
+[node name="Timer" type="Timer" parent="MainRequestContainer/RequestContainer"]
+wait_time = 1.5
+
+[node name="BlockedScrollContainer" type="ScrollContainer" parent="MainRequestContainer/RequestContainer"]
+margin_left = 840.0
+margin_right = 1490.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 650, 450 )
+
+[node name="BlockedRequests" type="VBoxContainer" parent="MainRequestContainer/RequestContainer/BlockedScrollContainer"]
+margin_right = 650.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 650, 450 )
+
+[node name="BlockedHeaderText" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests"]
+margin_right = 650.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 100, 40 )
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]Blocked Requests[/center]"
+text = "Blocked Requests"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests"]
+margin_top = 44.0
+margin_right = 650.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Origin" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 150, 55 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_text = "Origin
+"
+text = "Origin
+"
+
+[node name="URL" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests/HBoxContainer"]
+margin_left = 154.0
+margin_right = 314.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 160, 55 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_text = "Requested URL
+"
+text = "Requested URL
+"
+
+[node name="Role" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests/HBoxContainer"]
+margin_left = 318.0
+margin_right = 438.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 120, 55 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_text = "Role
+"
+text = "Role
+"
+
+[node name="Type" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests/HBoxContainer"]
+margin_left = 442.0
+margin_right = 562.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 120, 55 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_text = "Type"
+text = "Type"
+
+[node name="Count" type="RichTextLabel" parent="MainRequestContainer/RequestContainer/BlockedScrollContainer/BlockedRequests/HBoxContainer"]
+margin_left = 566.0
+margin_right = 646.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 80, 55 )
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_text = "Count
+"
+text = "Count
+"
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[connection signal="game_lost" from="." to="MainRequestContainer/RequestContainer" method="_on_RansomwareRequestMiniGame_game_finished"]
+[connection signal="game_won" from="." to="MainRequestContainer/RequestContainer" method="_on_RansomwareRequestMiniGame_game_finished"]
+[connection signal="hide" from="." to="." method="_on_RansomwareRequestMiniGame_hide"]
+[connection signal="hide" from="." to="MainRequestContainer/RequestContainer" method="_on_RansomwareRequestMiniGame_hide"]
+[connection signal="request_toggled" from="." to="MainRequestContainer/RequestContainer" method="_on_Request_toggled"]
+[connection signal="pressed" from="GameStartNode/Button" to="." method="_on_GameStart_pressed"]
+[connection signal="pressed" from="GameStartNode/Button" to="MainRequestContainer/RequestContainer" method="_on_GameStart_pressed"]
+[connection signal="text_changed" from="MainRequestContainer/RequestContainer/FilterContainer/FilterText" to="MainRequestContainer/RequestContainer" method="_on_FilterText_text_changed"]
+[connection signal="toggled" from="MainRequestContainer/RequestContainer/FilterContainer/Origin" to="MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "Origin" ]]
+[connection signal="toggled" from="MainRequestContainer/RequestContainer/FilterContainer/URL" to="MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "URL" ]]
+[connection signal="toggled" from="MainRequestContainer/RequestContainer/FilterContainer/Role" to="MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "Role" ]]
+[connection signal="toggled" from="MainRequestContainer/RequestContainer/FilterContainer/Type" to="MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "Type" ]]
+[connection signal="toggled" from="MainRequestContainer/RequestContainer/FilterContainer/Count" to="MainRequestContainer/RequestContainer" method="_on_Column_toggled" binds= [ "Count" ]]
+[connection signal="button_down" from="MainRequestContainer/RequestContainer/ButtonContainer/BlockButton" to="." method="_on_LineButton_button_down" binds= [ true ]]
+[connection signal="button_down" from="MainRequestContainer/RequestContainer/ButtonContainer/UnblockButton" to="." method="_on_LineButton_button_down" binds= [ false ]]
+[connection signal="timeout" from="MainRequestContainer/RequestContainer/Timer" to="MainRequestContainer/RequestContainer" method="_on_Incoming_Request"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_Score_update"]

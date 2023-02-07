@@ -79,7 +79,7 @@ func _on_LevelTimer_timeout() -> void:
 		self.emit_signal("game_lost")
 
 
-func _on_LevelFinishedNode_level_reset_triggered():
+func _on_LevelFinishedNode_level_reset_triggered() -> void:
 	if GameProgress.level != GameProgress.Level.SOCIAL_ENGINEERING:
 		return
 	self.reset_level()
