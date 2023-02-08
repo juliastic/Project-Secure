@@ -19,7 +19,7 @@ var terminal_text = str(
 var terminal_shown = true
 var intro_completed = true
 
-var level = Level.EoP
+var level = Level.RANSOMWARE
 
 var hardmode_enabled = false
 
@@ -38,43 +38,47 @@ var firewall_settings := {
 	"network_logging": false
 }
 
+var _initial_firewall_settings = firewall_settings.duplicate(true)
+
 var honeypot_settings := {
 	"attack_information": false,
 	"accessed_data": false,
 	"file_name": ""
 }
 
+var _initial_honeypot_settings = honeypot_settings.duplicate(true)
+
 const _tasks_tutorial := {
-	0: ["Execute one command in the terminal", "0", "1"], 
-	1: ["Open the Network Tab", "0", "1"]
+	0: ["Execute one command in the terminal", false, true], 
+	1: ["Open the Network Tab", false, true]
 }
 
 const _tasks_ransomware_trigger := {
-	2: ["Grab some coffee", "0", "1"]
+	2: ["Grab some coffee", false, true]
 }
 
 const _tasks_ransomware := {
-	3: ["Create Firewall", "0", "1"],
-	4: ["Listen to Network Requests", "0", "1"],
-	5: ["Enable Firewall", "0", "0"],
-	6: ["Enable Honeypot", "0", "0"],
-	7: ["Mark Suspicious Internal Requests", "0", "0"]
+	3: ["Create Firewall",false, true],
+	4: ["Listen to Network Requests", false, true],
+	5: ["Enable Firewall", false, false],
+	6: ["Enable Honeypot", false, false],
+	7: ["Mark Suspicious Internal Requests", false, false]
 }
 
 const _tasks_ddos := {
-	8: ["Enable Intrusion Detection System", "0", "1"],
-	9: ["Check the server's capacity", "0", "1"],
-	10: ["Defend against the attackers", "0", "0"]
+	8: ["Enable Intrusion Detection System", false, true],
+	9: ["Check the server's capacity", false, true],
+	10: ["Defend against the attackers", false, false]
 }
 
 const _tasks_social_engineering := {
-	11: ["Check if an intruder has breached the system", "0", "1"],
+	11: ["Check if an intruder has breached the system", false, true],
 	12: ["Safe the system!", "0", "0"]
 }
 
 const _tasks_eop := {
-	13: ["Check for exploits", "0", "1"],
-	14: ["CATCH THE INTRUDER", "0", "0"],
+	13: ["Check for exploits", false, true],
+	14: ["CATCH THE INTRUDER", false, false],
 }
 
 var tasks := {
@@ -87,6 +91,7 @@ var tasks := {
 }
 
 var _initial_tasks = tasks.duplicate(true)
+
 
 func get_level_name() -> String:
 	match (level):
@@ -108,7 +113,7 @@ func get_current_tasks() -> Dictionary:
 func is_level_completed() -> bool:
 	var current_tasks := get_current_tasks()
 	for value in current_tasks.values():
-		if value[1] == "0":
+		if not value[1]:
 			return false
 	return true
 
@@ -116,7 +121,7 @@ func is_level_completed() -> bool:
 func complete_level() -> void:
 	var current_tasks := get_current_tasks()
 	for value in current_tasks.values():
-		value[1] = "1"
+		value[1] = true
 
 
 func reset_level() -> void:
@@ -133,5 +138,8 @@ func reset_game() -> void:
 		"As a little heads up: Type HELP and press ENTER to understand how to use my features or if you are lost. I should be able to help you.\n>> ")
 	terminal_shown = true
 	intro_completed = false
+	hardmode_enabled = false
 	level = GameProgress.Level.TUTORIAL
 	tasks = _initial_tasks
+	firewall_settings = _initial_firewall_settings
+	honeypot_settings = _initial_honeypot_settings

@@ -47,7 +47,6 @@ func _check_game_won() -> void:
 		for request in Requests.blocked_requests:
 			if not request.request_data.id in Requests.MALICIOUS_REQUESTS:
 				return
-		GameProgress.get_current_tasks()[7][1] = "1"
 		self.emit_signal("game_won")
 		$ScoreTimer.stop()
 

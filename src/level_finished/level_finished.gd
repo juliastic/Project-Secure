@@ -50,8 +50,8 @@ func _on_Desktop_level_finished_triggered(game_over) -> void:
 			$Display.bbcode_text = str("[center]You've scored ", GameProgress.level_score[GameProgress.level], " points!\nMore importantly: We finally know what the attacker is up to. FIND THEM[/center]")
 		elif GameProgress.level == GameProgress.Level.RANSOMWARE:
 			$Display.bbcode_text = str("[center]You've scored ", GameProgress.level_score[GameProgress.level], " points!\nInteresting things that are going on in the honeypot ...[/center]")
-		else:
-			$Display.bbcode_text = str("[center]You've scored ", GameProgress.level_score[GameProgress.level], " points! The next challenge awaits you![/center]")
+		elif GameProgress.level == GameProgress.Level.DDoS:
+			$Display.bbcode_text = str("[center]You've scored ", GameProgress.level_score[GameProgress.level], " points!\nYou showed these cups! But wait ...[/center]")
 	self.show()
 	$AnimationPlayer.play_backwards("Fade")
 	yield(get_node("AnimationPlayer"), "animation_finished")

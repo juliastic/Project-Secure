@@ -9,7 +9,7 @@ func _on_Desktop_overlay_triggered(id) -> void:
 	if id == 0:
 		if GameProgress.level == GameProgress.Level.RANSOMWARE_TRIGGER:
 			self.bbcode_text = "[center]YAY, coffee - finally[/center]"
-			GameProgress.get_current_tasks()[2][1] = "1"
+			GameProgress.get_current_tasks()[2][1] = true
 		else:
 			self.bbcode_text = "[center]Yeah that'd be good right now :)[/center]"
 	elif id == 1:

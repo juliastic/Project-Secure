@@ -67,7 +67,7 @@ func _input(event) -> void:
 		elif terminal_input == TerminalCommands.CHECK_CAPACITY and TerminalCommands.CHECK_CAPACITY in TerminalData.SUPPORTED_COMMANDS[level]:
 			rng.randomize()
 			GameProgress.terminal_text += str("\n", TerminalData.CHECK_CAPACITY_VALUES[level][rng.randi_range(0, 2)])
-			GameProgress.get_current_tasks()[9][1] = "1"
+			GameProgress.get_current_tasks()[9][1] = true
 		elif terminal_input == TerminalCommands.TOGGLE_HARDMODE and TerminalCommands.TOGGLE_HARDMODE in TerminalData.SUPPORTED_COMMANDS[level]:
 			GameProgress.hardmode_enabled = !GameProgress.hardmode_enabled
 			GameProgress.terminal_text += str("\nHardmode", " enabled" if GameProgress.hardmode_enabled else " disabled", ".")
@@ -78,12 +78,13 @@ func _input(event) -> void:
 		elif terminal_input == TerminalCommands.ENABLE_IDS:
 			_print_command(terminal_input, TerminalData.ENABLE_IDS_VALUES, 8)
 		elif terminal_input == TerminalCommands.CHECK_IDS:
-			_print_command(terminal_input, TerminalData.CHECK_IDS_VALUES, 11, [12])
+			_print_command(terminal_input, TerminalData.CHECK_IDS_VALUES, 11)
 		elif terminal_input == TerminalCommands.CHECK_EXPLOITS:
-			_print_command(terminal_input, TerminalData.CHECK_EXPLOITS_VALUES, 13, [14])
+			_print_command(terminal_input, TerminalData.CHECK_EXPLOITS_VALUES, 13)
 		_add_text_to_terminal(str("\n", START_LINE if not overlay_displayed else ""))
-		if level == GameProgress.Level.TUTORIAL and GameProgress.get_current_tasks()[0][1] == "0" and terminal_input in TerminalCommands.COMMANDS:
-			GameProgress.get_current_tasks()[0][1] = "1"
+		
+		if level == GameProgress.Level.TUTORIAL and not GameProgress.get_current_tasks()[0][1] and terminal_input in TerminalData.SUPPORTED_COMMANDS[level]:
+			GameProgress.get_current_tasks()[0][1] = true
 		terminal_input = ""
 	elif terminal_input.length() > 0 and event.scancode == KEY_BACKSPACE or event.scancode == KEY_DELETE:
 		GameProgress.terminal_text = GameProgress.terminal_text.left(GameProgress.terminal_text.length() - 1)
@@ -95,27 +96,26 @@ func _input(event) -> void:
 		terminal_display.bbcode_text = GameProgress.terminal_text
 		terminal_input += letter
 
-func _print_command(command: String, data_list, task_id: int, unlock_ids = []) -> void:
+
+func _print_command(command: String, data_list, task_id: int) -> void:
 	if not command in TerminalData.SUPPORTED_COMMANDS[GameProgress.level]:
 		_add_text_to_terminal(str(command, " is not relevant to achieve your current goal. Execute HELP to see all the currently supported commands."))
 		return
 	var command_value = int(GameProgress.get_current_tasks()[task_id][1])
 	GameProgress.terminal_text += str("\n", data_list[GameProgress.level][command_value])
 	if command_value == 0:
-		GameProgress.get_current_tasks()[task_id][1] = "1"
-		for id in unlock_ids:
-			GameProgress.get_current_tasks()[id][2] = "1"
+		GameProgress.get_current_tasks()[task_id][1] = true
 
 
 func _on_NetworkButton_pressed() -> void:
 	var tutorial_active = GameProgress.level == GameProgress.Level.TUTORIAL or GameProgress.level == GameProgress.Level.RANSOMWARE_TRIGGER
 	if GameProgress.level == GameProgress.Level.TUTORIAL:
-		GameProgress.get_current_tasks()[1][1] = "1"
+		GameProgress.get_current_tasks()[1][1] = true
 	var current_tasks = GameProgress.get_current_tasks()
-	var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and (current_tasks[3][1] == "0" or current_tasks[4][1] == "0")
-	var first_stage_ddos = GameProgress.level == GameProgress.Level.DDoS and (GameProgress.get_current_tasks()[8][1] == "0" or current_tasks[9][1] == "0")
-	var first_stage_social_engineering = GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING and current_tasks[11][1] == "0"
-	var first_stage_eop = GameProgress.level == GameProgress.Level.EoP and current_tasks[13][1] == "0"
+	var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and not(current_tasks[3][1] and current_tasks[4][1])
+	var first_stage_ddos = GameProgress.level == GameProgress.Level.DDoS and not(current_tasks[8][1] and current_tasks[9][1])
+	var first_stage_social_engineering = GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING and not current_tasks[11][1]
+	var first_stage_eop = GameProgress.level == GameProgress.Level.EoP and not current_tasks[13][1]
 	var first_stage_active = tutorial_active or first_stage_ransomware or first_stage_social_engineering or first_stage_ddos or first_stage_eop
 	if first_stage_ransomware:
 		network_info_text.bbcode_text = "[center]Please create a Firewall and enable Network listening in the Terminal first.[/center]"
@@ -256,7 +256,7 @@ func _handle_coffee_overlay_finished() -> void:
 	terminal_display.bbcode_text = GameProgress.terminal_text
 
 
-func _on_Minigame_visibility_changed(level):
+func _on_Minigame_visibility_changed(level) -> void:
 	var node = null
 	match(level):
 		GameProgress.Level.RANSOMWARE:
@@ -271,20 +271,23 @@ func _on_Minigame_visibility_changed(level):
 		_toggle_overlay_displayed(node.is_visible_in_tree())
 
 
-func _on_MiniGame_game_won():
+func _on_MiniGame_game_won() -> void:
 	self.emit_signal("level_finished_triggered", false)
 	overlay_displayed = true
 
 
-func _on_MiniGame_game_lost():
+func _on_MiniGame_game_lost() -> void:
 	self.emit_signal("level_finished_triggered", true)
 	overlay_displayed = true
 
 
-func _on_Desktop_tree_entered():
+func _on_Desktop_tree_entered() -> void:
 	if not GameProgress.intro_completed:
 		return
 	$TransitionRect.show()
 	$TransitionRect/AnimationPlayer.play("Fade")
 	yield($TransitionRect/AnimationPlayer, "animation_finished")
 
+
+func _on_TaskContainer_in_game_backstory_triggered(index: int) -> void:
+	_add_text_to_terminal(str("...\n", TerminalData.IN_LEVEL_BACKSTORY_VALUES[GameProgress.level][index], NEW_LINE))

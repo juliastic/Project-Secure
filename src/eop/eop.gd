@@ -3,6 +3,7 @@ extends WindowDialog
 signal game_won()
 signal game_lost()
 
+onready var level := $ViewportLevel/Viewport/Level
 
 func _on_GameStart_pressed():
 	$GameStartNode/AnimationPlayer.play("Fade")
@@ -10,13 +11,13 @@ func _on_GameStart_pressed():
 	$GameStartNode.set_modulate(lerp(get_modulate(), Color(1, 1, 1, 1), 1))
 	$GameStartNode.hide()
 	$ViewportLevel.show()
-	$ViewportLevel/Viewport/Level.show()
+	level.show()
 
 
 func _on_EoPMiniGame_hide():
 	$GameStartNode.show()
 	$ViewportLevel.hide()
-	$ViewportLevel/Viewport/Level.hide()
+	level.hide()
 
 
 func _on_Level_game_lost():
@@ -25,3 +26,8 @@ func _on_Level_game_lost():
 
 func _on_Level_game_won():
 	self.emit_signal("game_won")
+
+func _on_LevelFinishedNode_level_reset_triggered() -> void:
+	if GameProgress.level != GameProgress.Level.EoP:
+		return
+	level.reset_level()
