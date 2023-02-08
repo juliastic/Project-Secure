@@ -19,7 +19,7 @@ var terminal_text = str(
 var terminal_shown = true
 var intro_completed = true
 
-var level = Level.RANSOMWARE
+var level = Level.EoP
 
 var hardmode_enabled = false
 

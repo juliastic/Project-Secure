@@ -18,6 +18,7 @@ func _on_EoPMiniGame_hide():
 	$GameStartNode.show()
 	$ViewportLevel.hide()
 	level.hide()
+	level.reset_level()
 
 
 func _on_Level_game_lost():

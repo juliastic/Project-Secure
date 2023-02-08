@@ -101,9 +101,9 @@ func _print_command(command: String, data_list, task_id: int) -> void:
 	if not command in TerminalData.SUPPORTED_COMMANDS[GameProgress.level]:
 		_add_text_to_terminal(str(command, " is not relevant to achieve your current goal. Execute HELP to see all the currently supported commands."))
 		return
-	var command_value = int(GameProgress.get_current_tasks()[task_id][1])
-	GameProgress.terminal_text += str("\n", data_list[GameProgress.level][command_value])
-	if command_value == 0:
+	var command_invoked_index = 1 if GameProgress.get_current_tasks()[task_id][1] else 0
+	GameProgress.terminal_text += str("\n", data_list[GameProgress.level][command_invoked_index])
+	if command_invoked_index == 0:
 		GameProgress.get_current_tasks()[task_id][1] = true
 
 

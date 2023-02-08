@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/main/main.gd" type="Script" id=1]
 [ext_resource path="res://font/bold_font_big_overlay.tres" type="DynamicFont" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/broken-cup-animation/broken-coffee_5.png" type="Texture" id=18]
 [ext_resource path="res://assets/broken-cup-animation/broken-coffee_11.png" type="Texture" id=19]
 [ext_resource path="res://assets/broken-cup-animation/broken-coffee_12.png" type="Texture" id=20]
+[ext_resource path="res://font/bold_font_medium.tres" type="DynamicFont" id=21]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -91,10 +92,10 @@ custom_fonts/font = ExtResource( 3 )
 text = "Start Game"
 
 [node name="BrokenCup" type="AnimatedSprite" parent="."]
-position = Vector2( 1522, 739 )
-scale = Vector2( 10.375, 8.84375 )
+position = Vector2( 1660, 204 )
+scale = Vector2( 5.60938, 4.4375 )
 frames = SubResource( 3 )
-frame = 3
+frame = 15
 playing = true
 
 [node name="TransitionRect" type="ColorRect" parent="."]
@@ -108,6 +109,16 @@ color = Color( 0, 0, 0, 1 )
 reset_on_save = false
 anims/Fade = SubResource( 1 )
 anims/RESET = SubResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 1673.0
+margin_top = 1023.0
+margin_right = 1900.0
+margin_bottom = 1063.0
+custom_fonts/normal_font = ExtResource( 21 )
+bbcode_enabled = true
+bbcode_text = "[right]Version: 0.0.1[/right]"
+text = "Version: 0.0.1"
 
 [connection signal="tree_entered" from="." to="." method="_on_Main_tree_entered"]
 [connection signal="pressed" from="GameButton" to="." method="_on_GameButton_pressed"]
