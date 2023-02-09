@@ -17,7 +17,7 @@ var terminal_text = str(
 # core game variables
 
 var terminal_shown = true
-var intro_completed = true
+var intro_completed = false
 
 var level = Level.EoP
 

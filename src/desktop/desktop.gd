@@ -46,9 +46,12 @@ func _input(event) -> void:
 		if len(terminal_input.strip_edges()) == 0:
 			GameProgress.terminal_text += "\nPlease enter something first."
 		elif not terminal_input.strip_edges() in TerminalCommands.COMMANDS:
-			GameProgress.terminal_text += str("\nHm I somehow have yet to learn what [i]", terminal_input, "[/i] means. Sorry about that ...\nEnter HELP to see an overview of my supported commands.")
+			GameProgress.terminal_text += str("\nHm... I somehow have yet to learn what [i]", terminal_input, "[/i] means. Sorry about that ...\nEnter HELP to see an overview of my supported commands.")
 		elif terminal_input == TerminalCommands.MIN:
 			_terminal_toggle()
+		elif terminal_input == TerminalCommands.CLEAR:
+			GameProgress.terminal_text = START_LINE
+			terminal_display.bbcode_text = GameProgress.terminal_text
 		elif terminal_input == TerminalCommands.GRAB_COFFEE:
 			_toggle_overlay_displayed(true)
 			self.emit_signal("overlay_triggered", 0)
@@ -81,7 +84,9 @@ func _input(event) -> void:
 			_print_command(terminal_input, TerminalData.CHECK_IDS_VALUES, 11)
 		elif terminal_input == TerminalCommands.CHECK_EXPLOITS:
 			_print_command(terminal_input, TerminalData.CHECK_EXPLOITS_VALUES, 13)
-		_add_text_to_terminal(str("\n", START_LINE if not overlay_displayed else ""))
+		
+		if terminal_input != TerminalCommands.CLEAR:
+			_add_text_to_terminal(str("\n", START_LINE if not overlay_displayed else ""))
 		
 		if level == GameProgress.Level.TUTORIAL and not GameProgress.get_current_tasks()[0][1] and terminal_input in TerminalData.SUPPORTED_COMMANDS[level]:
 			GameProgress.get_current_tasks()[0][1] = true

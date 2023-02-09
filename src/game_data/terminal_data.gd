@@ -19,11 +19,11 @@ const INTRO_DIALOGUE := [
 ]
 
 const SUPPORTED_COMMANDS := {
-	GameProgress.Level.TUTORIAL: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN], 
-	GameProgress.Level.RANSOMWARE: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.LISTEN_REQUESTS, TerminalCommands.CREATE_FIREWALL, TerminalCommands.TOGGLE_HARDMODE],
-	GameProgress.Level.DDoS: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_CAPACITY, TerminalCommands.ENABLE_IDS, TerminalCommands.TOGGLE_HARDMODE],
-	GameProgress.Level.SOCIAL_ENGINEERING: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_IDS, TerminalCommands.TOGGLE_HARDMODE],
-	GameProgress.Level.EoP: [TerminalCommands.MIN, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_EXPLOITS, TerminalCommands.TOGGLE_HARDMODE]
+	GameProgress.Level.TUTORIAL: [TerminalCommands.MIN, TerminalCommands.CLEAR, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN], 
+	GameProgress.Level.RANSOMWARE: [TerminalCommands.MIN, TerminalCommands.CLEAR, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.LISTEN_REQUESTS, TerminalCommands.CREATE_FIREWALL, TerminalCommands.TOGGLE_HARDMODE],
+	GameProgress.Level.DDoS: [TerminalCommands.MIN, TerminalCommands.CLEAR, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_CAPACITY, TerminalCommands.ENABLE_IDS, TerminalCommands.TOGGLE_HARDMODE],
+	GameProgress.Level.SOCIAL_ENGINEERING: [TerminalCommands.MIN, TerminalCommands.CLEAR, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_IDS, TerminalCommands.TOGGLE_HARDMODE],
+	GameProgress.Level.EoP: [TerminalCommands.MIN, TerminalCommands.CLEAR, TerminalCommands.GRAB_COFFEE, TerminalCommands.HELP, TerminalCommands.BACKSTORY, TerminalCommands.LIST_TERMS, TerminalCommands.EXPLAIN, TerminalCommands.CHECK_EXPLOITS, TerminalCommands.TOGGLE_HARDMODE]
 }
 
 const BACKSTORY_VALUES = {
@@ -128,6 +128,8 @@ func generate_help_text(level: int) -> String:
 	var help_text = "I understand the following commands ..."
 	if TerminalCommands.MIN in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]MIN[/b]: Minimises me. Not that you'd ever want to do that."
+	if TerminalCommands.CLEAR in SUPPORTED_COMMANDS[level]:
+		help_text += "\n[b]CLEAR[/b]: Clears our entire chat history. Please don't do it if you don't want to hurt my feelings :)."
 	if TerminalCommands.GRAB_COFFEE in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]GRAB COFFEE[/b]: Humans also need a sometimes break (even though I don't understand why - they're so unproductive). Might have side effects."
 	if TerminalCommands.BACKSTORY in SUPPORTED_COMMANDS[level]:
