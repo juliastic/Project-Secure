@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/social_engineering/card_data.gd"
 }, {
-"base": "Button",
-"class": "DefaultButton",
-"language": "GDScript",
-"path": "res://src/helpers/default_button.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "EoPPlayer",
 "language": "GDScript",
@@ -48,16 +43,21 @@ _global_script_classes=[ {
 "class": "RichTextCustomFade",
 "language": "GDScript",
 "path": "res://src/helpers/fade_richtexteffect.gd"
+}, {
+"base": "RichTextEffect",
+"class": "RichTextGhost",
+"language": "GDScript",
+"path": "res://src/helpers/fade_ghosttexteffect.gd"
 } ]
 _global_script_class_icons={
 "Attacker": "",
 "CardData": "",
-"DefaultButton": "",
 "EoPPlayer": "",
 "GitAPI": "",
 "RequestColumnContainer": "",
 "RequestData": "",
-"RichTextCustomFade": ""
+"RichTextCustomFade": "",
+"RichTextGhost": ""
 }
 
 [application]

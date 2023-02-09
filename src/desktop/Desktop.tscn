@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=2]
+[gd_scene load_steps=154 format=2]
 
 [ext_resource path="res://src/network/FirewallOverlay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/level_finished/level_finished.gd" type="Script" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_3.png" type="Texture" id=5]
 [ext_resource path="res://src/social_engineering/SocialEngineeringMiniGame.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/desktop/desktop.gd" type="Script" id=7]
-[ext_resource path="res://src/helpers/fade_richtexteffect.gd" type="Script" id=8]
+[ext_resource path="res://src/helpers/fade_ghosttexteffect.gd" type="Script" id=8]
 [ext_resource path="res://src/tasks/task_container.gd" type="Script" id=9]
 [ext_resource path="res://src/desktop/terminal_intro_display.gd" type="Script" id=10]
 [ext_resource path="res://font/bold_font_big_overlay.tres" type="DynamicFont" id=11]
@@ -137,9 +137,6 @@ bg_color = Color( 0, 0, 0, 1 )
 [sub_resource type="Theme" id=6]
 RichTextLabel/styles/normal = SubResource( 5 )
 
-[sub_resource type="RichTextEffect" id=44]
-script = ExtResource( 8 )
-
 [sub_resource type="Animation" id=17]
 resource_name = "Fade"
 length = 1.5
@@ -171,7 +168,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="RichTextEffect" id=45]
+[sub_resource type="RichTextEffect" id=43]
 script = ExtResource( 8 )
 
 [sub_resource type="Animation" id=4]
@@ -495,7 +492,6 @@ custom_fonts/normal_font = ExtResource( 59 )
 bbcode_enabled = true
 fit_content_height = true
 scroll_following = true
-custom_effects = [ SubResource( 44 ) ]
 script = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IntroNode/TerminalIntroDisplay"]
@@ -514,7 +510,7 @@ custom_fonts/bold_font = ExtResource( 55 )
 custom_fonts/normal_font = ExtResource( 59 )
 bbcode_enabled = true
 scroll_following = true
-custom_effects = [ SubResource( 45 ) ]
+custom_effects = [ SubResource( 43 ) ]
 
 [node name="TerminalAnimationPlayer" type="AnimationPlayer" parent="TerminalDisplay"]
 root_node = NodePath("../..")

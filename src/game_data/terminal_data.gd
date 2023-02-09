@@ -129,7 +129,7 @@ func generate_help_text(level: int) -> String:
 	if TerminalCommands.MIN in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]MIN[/b]: Minimises me. Not that you'd ever want to do that."
 	if TerminalCommands.CLEAR in SUPPORTED_COMMANDS[level]:
-		help_text += "\n[b]CLEAR[/b]: Clears our entire chat history. Please don't do it if you don't want to hurt my feelings :)."
+		help_text += "\n[b]CLEAR[/b]: Clears our entire chat history. Please don't do it if you don't want to hurt my feelings :)"
 	if TerminalCommands.GRAB_COFFEE in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]GRAB COFFEE[/b]: Humans also need a sometimes break (even though I don't understand why - they're so unproductive). Might have side effects."
 	if TerminalCommands.BACKSTORY in SUPPORTED_COMMANDS[level]:

@@ -2,7 +2,7 @@ tool
 extends RichTextEffect
 class_name RichTextCustomFade
 
-# Syntax: [fade_in speed=10.0][/ghost]
+# Syntax: [fade_in speed=10.0][/fade_in]
 
 # Define the tag name.
 var bbcode = "fade_in"

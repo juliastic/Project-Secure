@@ -12,10 +12,11 @@ onready var network_info_text = $Network/InfoText
 
 const TASK_COMPLETION_SOUND := preload("res://sounds/task_completed.mp3")
 const BACKGROUND_IMG := preload("res://assets/background_computer.png")
-const BACKGROUND := preload("res://assets/bg_clouds.png")
 
 const START_LINE = ">> "
 const NEW_LINE = str("\n", START_LINE)
+const GHOST_HIGHLIGHTER = "[ghost]|[/ghost]"
+
 var terminal_input = ""
 var overlay_displayed = false
 var _current_coffee_fade_step = 0
@@ -32,7 +33,7 @@ func _ready() -> void:
 	var animations = [$Coffee, $MachineGun, $LevelNode]
 	for animation in animations:
 		animation.set_modulate(lerp(get_modulate(), Color(1, 1, 1, 0), 1))
-	terminal_display.text = GameProgress.terminal_text
+	terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER)
 	if not GameProgress.intro_completed:
 		$TransitionRect.queue_free()
 
@@ -51,7 +52,7 @@ func _input(event) -> void:
 			_terminal_toggle()
 		elif terminal_input == TerminalCommands.CLEAR:
 			GameProgress.terminal_text = START_LINE
-			terminal_display.bbcode_text = GameProgress.terminal_text
+			terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER)
 		elif terminal_input == TerminalCommands.GRAB_COFFEE:
 			_toggle_overlay_displayed(true)
 			self.emit_signal("overlay_triggered", 0)
@@ -86,7 +87,7 @@ func _input(event) -> void:
 			_print_command(terminal_input, TerminalData.CHECK_EXPLOITS_VALUES, 13)
 		
 		if terminal_input != TerminalCommands.CLEAR:
-			_add_text_to_terminal(str("\n", START_LINE if not overlay_displayed else ""))
+			_add_text_to_terminal(str("\n", START_LINE if not overlay_displayed else ""), terminal_input != TerminalCommands.GRAB_COFFEE)
 		
 		if level == GameProgress.Level.TUTORIAL and not GameProgress.get_current_tasks()[0][1] and terminal_input in TerminalData.SUPPORTED_COMMANDS[level]:
 			GameProgress.get_current_tasks()[0][1] = true
@@ -94,11 +95,11 @@ func _input(event) -> void:
 	elif terminal_input.length() > 0 and event.scancode == KEY_BACKSPACE or event.scancode == KEY_DELETE:
 		GameProgress.terminal_text = GameProgress.terminal_text.left(GameProgress.terminal_text.length() - 1)
 		terminal_input = terminal_input.left(terminal_input.length() - 1)
-		terminal_display.bbcode_text = GameProgress.terminal_text
+		terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER)
 	elif event.scancode in KeyConstants.KEY_MAP && GameProgress.terminal_shown:
 		var letter = KeyConstants.KEY_MAP[event.scancode]
 		GameProgress.terminal_text += letter
-		terminal_display.bbcode_text = GameProgress.terminal_text
+		terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER)
 		terminal_input += letter
 
 
@@ -189,7 +190,7 @@ func _handle_level_switch() -> void:
 	else:
 		_toggle_overlay_displayed(false)
 	yield(get_tree().create_timer(0.4), "timeout")
-	_add_text_to_terminal(str("\n...\n[b]", TerminalData.BACKSTORY_VALUES[GameProgress.level], "[/b]", NEW_LINE))
+	_add_text_to_terminal(str("\n...\n[b]", TerminalData.BACKSTORY_VALUES[GameProgress.level], "[/b]", NEW_LINE), true)
 
 
 func _trigger_level_start() -> void:
@@ -214,12 +215,12 @@ func _trigger_level_start() -> void:
 	animated_sprite.queue_free()
 	_add_text_to_terminal(str("[b]", TerminalData.BACKSTORY_VALUES[GameProgress.level], "[/b]"))
 	_toggle_overlay_displayed(false)
-	_add_text_to_terminal(NEW_LINE)
+	_add_text_to_terminal(NEW_LINE, true)
 
 
-func _add_text_to_terminal(text: String) -> void:
+func _add_text_to_terminal(text: String, highlighter = false) -> void:
 	GameProgress.terminal_text += text
-	terminal_display.bbcode_text = GameProgress.terminal_text
+	terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER if highlighter else "")
 
 
 func _toggle_overlay_displayed(enable: bool) -> void:
@@ -258,7 +259,8 @@ func _handle_coffee_overlay_finished() -> void:
 		_add_text_to_terminal(str("...", NEW_LINE))
 		yield(get_tree().create_timer(1.0), "timeout")
 	_toggle_overlay_displayed(false)
-	terminal_display.bbcode_text = GameProgress.terminal_text
+	terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER)
+	
 
 
 func _on_Minigame_visibility_changed(level) -> void:
@@ -295,4 +297,4 @@ func _on_Desktop_tree_entered() -> void:
 
 
 func _on_TaskContainer_in_game_backstory_triggered(index: int) -> void:
-	_add_text_to_terminal(str("...\n", TerminalData.IN_LEVEL_BACKSTORY_VALUES[GameProgress.level][index], NEW_LINE))
+	_add_text_to_terminal(str("...\n", TerminalData.IN_LEVEL_BACKSTORY_VALUES[GameProgress.level][index], NEW_LINE), true)
