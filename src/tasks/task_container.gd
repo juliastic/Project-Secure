@@ -31,14 +31,14 @@ func _process(_delta):
 		i += 1
 	
 	if GameProgress.level == GameProgress.Level.RANSOMWARE:
-		if not self._update_tasks([5, 6], [7], 1):
-			self._update_tasks([3, 4], [5, 6])
+		if not _update_tasks([5, 6], [7], 1):
+			_update_tasks([3, 4], [5, 6])
 	elif GameProgress.level == GameProgress.Level.DDoS:
-		self._update_tasks([8, 9], [10])
+		_update_tasks([8, 9], [10])
 	elif GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING:
-		self._update_tasks([11], [12])
+		_update_tasks([11], [12])
 	elif GameProgress.level == GameProgress.Level.EoP:
-		self._update_tasks([13], [14])
+		_update_tasks([13], [14])
 	
 	if GameProgress.is_level_completed():
 		level_transition_active = true
@@ -55,7 +55,7 @@ func _update_tasks(task_ids = [], unlock_ids = [], index = 0):
 			return false
 	for task_id in unlock_ids:
 		GameProgress.get_current_tasks()[task_id][2] = true
-	self._trigger_in_game_backstory(index)
+	_trigger_in_game_backstory(index)
 	return true
 
 
@@ -69,7 +69,7 @@ func reset_nodes() -> void:
 	for task in current_tasks.values():
 		var task_instance = TASK_ENTRY.instance()
 		task_instance.add_to_group("tasks")
-		self._update_entry_text(task_instance, task)
+		_update_entry_text(task_instance, task)
 		self.add_child(task_instance)
 
 

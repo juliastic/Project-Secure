@@ -73,7 +73,7 @@ const _tasks_ddos := {
 
 const _tasks_social_engineering := {
 	11: ["Check if an intruder has breached the system", false, true],
-	12: ["Safe the system!", "0", "0"]
+	12: ["Safe the system!", false, false]
 }
 
 const _tasks_eop := {

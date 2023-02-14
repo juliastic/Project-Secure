@@ -25,18 +25,19 @@ func _on_Request_pressed(request: RequestColumnContainer) -> void:
 func _on_LineButton_button_down(block: bool) -> void:
 	if _pressed_request == null:
 		return
+
 	$MainRequestContainer/RequestContainer/Timer.stop()
 	if block:
 		Requests.blocked_requests.append(_pressed_request)
-		self._check_game_won()
+		_check_game_won()
 	else:
 		for index in Requests.blocked_requests.size():
 			if Requests.blocked_requests[index].request_data.unique_id == _pressed_request.request_data.unique_id:
 				Requests.blocked_requests.remove(index)
 				break
-		self._check_game_won()
-	self._update_progress_label()
-	self._toggle_line_buttons(false, false)
+		_check_game_won()
+	_update_progress_label()
+	_toggle_line_buttons(false, false)
 	self.emit_signal("request_toggled", _pressed_request)
 	_pressed_request = null
 	$MainRequestContainer/RequestContainer/Timer.start()
@@ -74,14 +75,14 @@ func _on_GameStart_pressed():
 	$MainRequestContainer.show()
 	$GameStartNode.set_modulate(lerp(get_modulate(), Color(1, 1, 1, 1), 1))
 	$GameStartNode.hide()
-	self.reset_level()
+	reset_level()
 	$MainRequestContainer/RequestContainer.reset_level()
 
 
 func _on_LevelFinishedNode_level_reset_triggered() -> void:
 	if GameProgress.level != GameProgress.Level.RANSOMWARE:
 		return
-	self.reset_level()
+	reset_level()
 	$MainRequestContainer/RequestContainer.reset_level()
 
 

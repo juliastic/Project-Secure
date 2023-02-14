@@ -11,7 +11,7 @@ const X_STEP = 250
 const Y_STEP = 320
 
 var open_cards = []
-var level_time = 60
+var level_time = 180
 var id = 0
 
 func prepare_level() -> void:
@@ -44,7 +44,7 @@ func prepare_level() -> void:
 func reset_level() -> void:
 	open_cards = []
 	$LevelTimer.start()
-	level_time = 60
+	level_time = 180
 	GameProgress.level_score[GameProgress.level] = 0
 	get_tree().call_group("cards", "queue_free")
 	self.prepare_level()

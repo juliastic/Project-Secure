@@ -96,7 +96,7 @@ func _input(event) -> void:
 		GameProgress.terminal_text = GameProgress.terminal_text.left(GameProgress.terminal_text.length() - 1)
 		terminal_input = terminal_input.left(terminal_input.length() - 1)
 		terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER)
-	elif event.scancode in KeyConstants.KEY_MAP && GameProgress.terminal_shown:
+	elif event.scancode in KeyConstants.KEY_MAP and GameProgress.terminal_shown:
 		var letter = KeyConstants.KEY_MAP[event.scancode]
 		GameProgress.terminal_text += letter
 		terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER)
@@ -118,7 +118,7 @@ func _on_NetworkButton_pressed() -> void:
 	if GameProgress.level == GameProgress.Level.TUTORIAL:
 		GameProgress.get_current_tasks()[1][1] = true
 	var current_tasks = GameProgress.get_current_tasks()
-	var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and not(current_tasks[3][1] and current_tasks[4][1])
+	var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and (not current_tasks[3][1] or not current_tasks[4][1])
 	var first_stage_ddos = GameProgress.level == GameProgress.Level.DDoS and not(current_tasks[8][1] and current_tasks[9][1])
 	var first_stage_social_engineering = GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING and not current_tasks[11][1]
 	var first_stage_eop = GameProgress.level == GameProgress.Level.EoP and not current_tasks[13][1]
@@ -140,10 +140,6 @@ func _toggle_node(node: Node, show: bool) -> void:
 	node.call("show" if show else "hide")
 
 
-func _on_Network_hide() -> void:
-	pass
-
-
 func _on_TerminalButton_pressed() -> void:
 	_terminal_toggle()
 
@@ -163,12 +159,14 @@ func _on_TaskContainer_level_completed():
 
 
 func _on_TaskContainer_task_completed():
-	if !$AudioPlayer.is_playing():
-		$AudioPlayer.stream = TASK_COMPLETION_SOUND
-		$AudioPlayer.play()
+	if $AudioPlayer.is_playing():
+		return
+	$AudioPlayer.stream = TASK_COMPLETION_SOUND
+	$AudioPlayer.play()
 
 
 func _handle_level_switch() -> void:
+	terminal_input = ""
 	_toggle_overlay_displayed(true)
 	GameProgress.set_next_level()
 	if GameProgress.get_level_name() == "":
@@ -186,11 +184,10 @@ func _handle_level_switch() -> void:
 	$LevelNode.hide()
 	if GameProgress.level == GameProgress.Level.DDoS or GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING:
 		_trigger_level_start()
-		return
 	else:
 		_toggle_overlay_displayed(false)
-	yield(get_tree().create_timer(0.4), "timeout")
-	_add_text_to_terminal(str("\n...\n[b]", TerminalData.BACKSTORY_VALUES[GameProgress.level], "[/b]", NEW_LINE), true)
+		yield(get_tree().create_timer(0.4), "timeout")
+		_add_text_to_terminal(str("\n...\n[b]", TerminalData.BACKSTORY_VALUES[GameProgress.level], "[/b]", NEW_LINE), true)
 
 
 func _trigger_level_start() -> void:
@@ -203,7 +200,7 @@ func _trigger_level_start() -> void:
 	if animated_sprite == null:
 		return
 		
-	_add_text_to_terminal("\n...\n[b]")
+	_add_text_to_terminal("\n...\n")
 	_toggle_overlay_displayed(true)
 	animated_sprite.show()
 	animated_sprite.get_node("AnimationPlayer").play_backwards("Fade")
@@ -218,9 +215,9 @@ func _trigger_level_start() -> void:
 	_add_text_to_terminal(NEW_LINE, true)
 
 
-func _add_text_to_terminal(text: String, highlighter = false) -> void:
+func _add_text_to_terminal(text: String, show_highlighter: bool = false) -> void:
 	GameProgress.terminal_text += text
-	terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER if highlighter else "")
+	terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER if show_highlighter else "")
 
 
 func _toggle_overlay_displayed(enable: bool) -> void:
@@ -260,7 +257,6 @@ func _handle_coffee_overlay_finished() -> void:
 		yield(get_tree().create_timer(1.0), "timeout")
 	_toggle_overlay_displayed(false)
 	terminal_display.bbcode_text = str(GameProgress.terminal_text, GHOST_HIGHLIGHTER)
-	
 
 
 func _on_Minigame_visibility_changed(level) -> void:
@@ -276,6 +272,10 @@ func _on_Minigame_visibility_changed(level) -> void:
 			node = $Network/EoPMiniGame
 	if node != null:
 		_toggle_overlay_displayed(node.is_visible_in_tree())
+		if not node.is_visible_in_tree() and not terminal_display.bbcode_text.ends_with(GHOST_HIGHLIGHTER):
+			terminal_display.bbcode_text += GHOST_HIGHLIGHTER
+		elif node.is_visible_in_tree() and terminal_display.bbcode_text.ends_with(GHOST_HIGHLIGHTER):
+			terminal_display.bbcode_text = terminal_display.bbcode_text.left(len(terminal_display.bbcode_text) - len(GHOST_HIGHLIGHTER))
 
 
 func _on_MiniGame_game_won() -> void:
@@ -297,4 +297,4 @@ func _on_Desktop_tree_entered() -> void:
 
 
 func _on_TaskContainer_in_game_backstory_triggered(index: int) -> void:
-	_add_text_to_terminal(str("...\n", TerminalData.IN_LEVEL_BACKSTORY_VALUES[GameProgress.level][index], NEW_LINE), true)
+	_add_text_to_terminal(str("\n...\n", TerminalData.IN_LEVEL_BACKSTORY_VALUES[GameProgress.level][index], NEW_LINE), true)

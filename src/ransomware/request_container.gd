@@ -68,7 +68,7 @@ func _on_Column_toggled(button_pressed: bool, key: String) -> void:
 	
 	var all_containers = get_tree().get_nodes_in_group("incoming_requests") + get_tree().get_nodes_in_group("blocked_requests")
 	for request_container in all_containers:
-		self._toggle_node(button_pressed, request_container.get_node("RequestContainer").get_node(key))
+		_toggle_node(button_pressed, request_container.get_node("RequestContainer").get_node(key))
 
 
 func _toggle_node(toggle: bool, node: Node) -> void:
@@ -111,7 +111,7 @@ func reset_level() -> void:
 	for child in $FilterContainer.get_children():
 		if child is Button:
 			child.toggle_mode = true
-	self._preload_requests()
+	_preload_requests()
 	$Timer.start()
 
 

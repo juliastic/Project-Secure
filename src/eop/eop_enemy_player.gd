@@ -12,7 +12,7 @@ onready var sprite = $AnimatedSprite
 
 
 func _physics_process(_delta) -> void:
-	if not get_parent().is_visible_in_tree() and not end:
+	if not get_parent().is_visible_in_tree() or end:
 		return
 		
 	_velocity.x = SPEED

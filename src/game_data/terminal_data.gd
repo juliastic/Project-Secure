@@ -12,7 +12,7 @@ const INTRO_DIALOGUE := [
 		"Interacting with the terminal is straight forward. Enter any of the available commands to trigger certain actions.",
 		"The commands might seem a bit meta sometimes, but trust me - it's good that they are.",
 		"This way I always know what you are doing. If you need any guidance, enter [i]HELP[/i]."),
-	str("\n>>You must complete challenges to defend our systems. These challenges share similarities with traditional minigames but don't be fooled: The system relies on your good performance."),
+	str("\n>> You must complete challenges to defend our systems. These challenges share similarities with traditional minigames but don't be fooled: The system relies on your good performance."),
 	str("\n>> Your current tasks are displayed on the bottom right corner of the screen.",
 	"Entering [i]BACKSTORY[/i] should give you an idea of the state of our current system.",
 	"Today will start relatively slow. Your goal is to get acquainted with the system and play around.")
@@ -37,7 +37,7 @@ const BACKSTORY_VALUES = {
 const IN_LEVEL_BACKSTORY_VALUES = {
 	GameProgress.Level.RANSOMWARE: {
 		0: "Well done. Now get the firewall and the honeypot file ready!",
-		1: "Don't worry about the name of the honeypot file. It's good enoguh to get the job done. [b]NOW SCAN OUR SYSTEM![/b]"
+		1: "Don't worry about the name of the honeypot file. It's good enough to get the job done. [b]NOW SCAN OUR SYSTEM![/b]"
 	},
 	GameProgress.Level.DDoS: {
 		0: "You're ready to go. Go full on defense mode!"

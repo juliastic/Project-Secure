@@ -47,7 +47,6 @@ window_title = "Defend from Cups"
 script = ExtResource( 5 )
 
 [node name="GameStartNode" type="Node2D" parent="."]
-visible = false
 modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameStartNode"]

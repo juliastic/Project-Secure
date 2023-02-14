@@ -760,7 +760,6 @@ anims/RESET = SubResource( 39 )
 [connection signal="pressed" from="ButtonContainer/NetworkButton" to="." method="_on_NetworkButton_pressed"]
 [connection signal="pressed" from="ButtonContainer/TerminalButton" to="." method="_on_TerminalButton_pressed"]
 [connection signal="overlay_finished" from="OverlayNode/GenericOverlayDisplay" to="." method="_on_GenericOverlayDisplay_overlay_finished"]
-[connection signal="hide" from="Network" to="." method="_on_Network_hide"]
 [connection signal="game_lost" from="Network/RansomwareRequestMiniGame" to="." method="_on_MiniGame_game_lost"]
 [connection signal="game_won" from="Network/RansomwareRequestMiniGame" to="." method="_on_MiniGame_game_won"]
 [connection signal="visibility_changed" from="Network/RansomwareRequestMiniGame" to="." method="_on_Minigame_visibility_changed" binds= [ 2 ]]

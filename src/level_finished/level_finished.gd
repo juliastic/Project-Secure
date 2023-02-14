@@ -18,7 +18,7 @@ func _input(event) -> void:
 		else:
 			GameProgress.complete_level()
 			var network = get_parent().get_node("Network")
-			get_parent().get_node("Network").hide()
+			network.hide()
 			if GameProgress.level == GameProgress.Level.RANSOMWARE:
 				network.get_node("RansomwareRequestMiniGame").queue_free()
 			elif GameProgress.level == GameProgress.Level.DDoS:
@@ -27,6 +27,7 @@ func _input(event) -> void:
 				network.get_node("SocialEngineeringMiniGame").queue_free()
 			elif GameProgress.level == GameProgress.Level.EoP:
 				GameProgress.reset_game()
+				get_tree().paused = false
 				if get_tree().change_scene("res://src/main/Main.tscn") != OK:
 					print("Couldn't switch to scene Main Scene")
 				return

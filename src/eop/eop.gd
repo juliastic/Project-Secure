@@ -14,7 +14,7 @@ func _on_GameStart_pressed():
 	level.show()
 
 
-func _on_EoPMiniGame_hide():
+func _on_EoPMiniGame_hide(): 
 	$GameStartNode.show()
 	$ViewportLevel.hide()
 	level.hide()
