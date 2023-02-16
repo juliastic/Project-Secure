@@ -19,7 +19,7 @@ var terminal_text = str(
 var terminal_shown = true
 var intro_completed = false
 
-var level = Level.EoP
+var level = Level.TUTORIAL
 
 var hardmode_enabled = false
 
@@ -50,7 +50,7 @@ var _initial_honeypot_settings = honeypot_settings.duplicate(true)
 
 const _tasks_tutorial := {
 	0: ["Execute one command in the terminal", false, true], 
-	1: ["Open the Network Tab", false, true]
+	1: ["Open and Close the Network Tab", false, true]
 }
 
 const _tasks_ransomware_trigger := {
@@ -95,6 +95,7 @@ var _initial_tasks = tasks.duplicate(true)
 
 func get_level_name() -> String:
 	match (level):
+		1: return "NORMAL DAY?"
 		2: return "RANSOMWARE"
 		3: return "DISTRIBUTED DENIAL OF SERVICE"
 		4: return "SOCIAL ENGINEERING"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=2]
+[gd_scene load_steps=155 format=2]
 
 [ext_resource path="res://src/network/FirewallOverlay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/level_finished/level_finished.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://font/bold_font_big_overlay.tres" type="DynamicFont" id=11]
 [ext_resource path="res://font/bold_font_medium_overlay.tres" type="DynamicFont" id=12]
 [ext_resource path="res://src/network/network.gd" type="Script" id=13]
+[ext_resource path="res://font/bold_italic_font_medium.tres" type="DynamicFont" id=14]
 [ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_4.png" type="Texture" id=15]
 [ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_5.png" type="Texture" id=16]
 [ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_6.png" type="Texture" id=17]
@@ -505,6 +506,7 @@ margin_right = 1220.0
 margin_bottom = 730.0
 rect_pivot_offset = Vector2( 1068, 826 )
 theme = SubResource( 6 )
+custom_fonts/bold_italics_font = ExtResource( 14 )
 custom_fonts/italics_font = ExtResource( 61 )
 custom_fonts/bold_font = ExtResource( 55 )
 custom_fonts/normal_font = ExtResource( 59 )
@@ -760,6 +762,7 @@ anims/RESET = SubResource( 39 )
 [connection signal="pressed" from="ButtonContainer/NetworkButton" to="." method="_on_NetworkButton_pressed"]
 [connection signal="pressed" from="ButtonContainer/TerminalButton" to="." method="_on_TerminalButton_pressed"]
 [connection signal="overlay_finished" from="OverlayNode/GenericOverlayDisplay" to="." method="_on_GenericOverlayDisplay_overlay_finished"]
+[connection signal="hide" from="Network" to="." method="_on_Network_hide"]
 [connection signal="game_lost" from="Network/RansomwareRequestMiniGame" to="." method="_on_MiniGame_game_lost"]
 [connection signal="game_won" from="Network/RansomwareRequestMiniGame" to="." method="_on_MiniGame_game_won"]
 [connection signal="visibility_changed" from="Network/RansomwareRequestMiniGame" to="." method="_on_Minigame_visibility_changed" binds= [ 2 ]]

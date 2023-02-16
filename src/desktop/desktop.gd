@@ -23,6 +23,7 @@ var _current_coffee_fade_step = 0
 var _current_level_overlay_fade_step = 0
 var _trigger_coffee = true
 var _trigger_level_overlay = true
+var _network_button_pressed = false
 
 var rng = RandomNumberGenerator.new()
 
@@ -114,9 +115,9 @@ func _print_command(command: String, data_list, task_id: int) -> void:
 
 
 func _on_NetworkButton_pressed() -> void:
-	var tutorial_active = GameProgress.level == GameProgress.Level.TUTORIAL or GameProgress.level == GameProgress.Level.RANSOMWARE_TRIGGER
 	if GameProgress.level == GameProgress.Level.TUTORIAL:
-		GameProgress.get_current_tasks()[1][1] = true
+		_network_button_pressed = true
+	var tutorial_active = GameProgress.level == GameProgress.Level.TUTORIAL or GameProgress.level == GameProgress.Level.RANSOMWARE_TRIGGER
 	var current_tasks = GameProgress.get_current_tasks()
 	var first_stage_ransomware = GameProgress.level == GameProgress.Level.RANSOMWARE and (not current_tasks[3][1] or not current_tasks[4][1])
 	var first_stage_ddos = GameProgress.level == GameProgress.Level.DDoS and not(current_tasks[8][1] and current_tasks[9][1])
@@ -169,6 +170,7 @@ func _handle_level_switch() -> void:
 	terminal_input = ""
 	_toggle_overlay_displayed(true)
 	GameProgress.set_next_level()
+	network_window.hide()
 	if GameProgress.get_level_name() == "":
 		self.emit_signal("level_started")
 		_toggle_overlay_displayed(false)
@@ -179,7 +181,6 @@ func _handle_level_switch() -> void:
 	yield(get_tree().create_timer(1.5), "timeout")
 	$LevelNode/AnimationPlayer.play("Fade")
 	self.emit_signal("level_started")
-	$Network.hide()
 	yield(get_node("LevelNode/AnimationPlayer"), "animation_finished")
 	$LevelNode.hide()
 	if GameProgress.level == GameProgress.Level.DDoS or GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING:
@@ -298,3 +299,8 @@ func _on_Desktop_tree_entered() -> void:
 
 func _on_TaskContainer_in_game_backstory_triggered(index: int) -> void:
 	_add_text_to_terminal(str("\n...\n", TerminalData.IN_LEVEL_BACKSTORY_VALUES[GameProgress.level][index], NEW_LINE), true)
+
+
+func _on_Network_hide() -> void:
+	if GameProgress.level == GameProgress.Level.TUTORIAL and _network_button_pressed:
+		GameProgress.get_current_tasks()[1][1] = true
