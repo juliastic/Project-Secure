@@ -534,7 +534,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 58 )
 enabled_focus_mode = 0
-text = "Network"
+text = "Network Activities"
 
 [node name="TerminalButton" type="Button" parent="ButtonContainer"]
 margin_left = 965.0

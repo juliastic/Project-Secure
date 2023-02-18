@@ -47,7 +47,7 @@ func reset_level() -> void:
 	level_time = 180
 	GameProgress.level_score[GameProgress.level] = 0
 	get_tree().call_group("cards", "queue_free")
-	self.prepare_level()
+	prepare_level()
 
 
 func on_Card_toggled(card_data: CardData) -> void:
@@ -68,6 +68,8 @@ func on_Card_toggled(card_data: CardData) -> void:
 		GameProgress.level_score[GameProgress.level] += 5
 		$GameInformationContainer/Score.bbcode_text = str("Points: ", GameProgress.level_score[GameProgress.level])
 		if get_tree().get_nodes_in_group("cards").size() == 2:
+			get_tree().call_group("cards", "flip_cards") # flip the remaining cards
+			yield(get_tree().create_timer(1.0), "timeout")
 			self.emit_signal("game_won")
 	get_tree().set_group("cards", "ignore_input", false)
 
@@ -82,4 +84,4 @@ func _on_LevelTimer_timeout() -> void:
 func _on_LevelFinishedNode_level_reset_triggered() -> void:
 	if GameProgress.level != GameProgress.Level.SOCIAL_ENGINEERING:
 		return
-	self.reset_level()
+	reset_level()

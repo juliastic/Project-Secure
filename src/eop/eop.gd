@@ -5,6 +5,7 @@ signal game_lost()
 
 onready var level := $ViewportLevel/Viewport/Level
 
+
 func _on_GameStart_pressed():
 	$GameStartNode/AnimationPlayer.play("Fade")
 	yield($GameStartNode.get_node("AnimationPlayer"), "animation_finished")

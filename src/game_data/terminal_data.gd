@@ -38,7 +38,7 @@ const BACKSTORY_VALUES = {
 const IN_LEVEL_BACKSTORY_VALUES = {
 	GameProgress.Level.RANSOMWARE: {
 		0: "Well done. Now get the firewall and the honeypot file ready!",
-		1: "Don't worry about the name of the honeypot file. It's good enough to get the job done. [b]NOW SCAN OUR SYSTEM![/b]"
+		1: "Don't worry about the name of the honeypot file. [i]%[/i] is good enough to get the job done. [b]NOW SCAN OUR SYSTEM![/b]"
 	},
 	GameProgress.Level.DDoS: {
 		0: "You're ready to go. Go full on defense mode!"
@@ -56,7 +56,11 @@ const GRAB_COFFEE_VALUES = {
 }
 
 const EXPLAIN_VALUES = {
-	GameProgress.Level.TUTORIAL: {},
+	GameProgress.Level.TUTORIAL: {
+		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.",
+		"FIREWALL": "A type of network protection to filter incoming network traffic.",
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns."
+	},
 	GameProgress.Level.RANSOMWARE: {
 		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.",
 		"FIREWALL": "A type of network protection to filter incoming network traffic.",
@@ -149,13 +153,15 @@ func generate_help_text(level: int) -> String:
 		help_text += "\n[b]CHECK IDS[/b]: Checks whether the [i]IDS[/i] has found an intruder."
 	if TerminalCommands.CHECK_CAPACITY in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]CHECK CAPACITY[/b]: Displays the currenty request capacity of ours servers. The closer it is to 100%, the closer our system is to failure. If it's over 9000, all is lost."
+	if TerminalCommands.CHECK_EXPLOITS in SUPPORTED_COMMANDS[level]:
+		help_text += "\n[b]CHECK EXPLOITS[/b]: Checks whether exploits have been performed in our system. I'm so good I just know! Just kidding: The firewall is doing the heavy lifting!"
 	if TerminalCommands.TOGGLE_HARDMODE in SUPPORTED_COMMANDS[level]:
 		help_text += "\n[b]TOGGLE HARDMODE[/b]: For developers who want the extra challenge. If enabled, increases the difficulty of challenges thrown your way. Can be disabled any time by re-entering the command."
 	return help_text
 
 
 func generate_list_terms(level: int) -> String:
-	var term_list = "I can give you more information on the following terms:"
+	var term_list = "\nI give you more information on the following terms:"
 	for term in EXPLAIN_VALUES[level].keys():
-		term_list += str("\n...[b]", term, "[/b]")
+		term_list += str("\n... [b]", term, "[/b]")
 	return term_list

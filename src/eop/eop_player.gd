@@ -5,6 +5,7 @@ var _velocity = Vector2.ZERO
 var player_triggered_end = false
 
 const PLAYER_SPEED = Vector2(250.0, 200.0)
+const SCALE = 0.208
 
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
 onready var platform_detector = $PlatformDetector
@@ -38,9 +39,9 @@ func _physics_process(delta) -> void:
 	
 	if direction.x != 0:
 		if direction.x > 0:
-			sprite.scale.x = 1
+			sprite.scale.x = SCALE
 		else:
-			sprite.scale.x = -1
+			sprite.scale.x = -SCALE
 	
 	_velocity.y += gravity * delta
 	if _velocity.y > 0:
@@ -71,5 +72,6 @@ func _on_Enemy_player_triggered_end():
 
 
 func reset() -> void:
-	position = Vector2(163, 670)
+	position = Vector2(190, 670)
+	sprite.scale.x = SCALE
 	player_triggered_end = false

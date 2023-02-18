@@ -19,7 +19,7 @@ var terminal_text = str(
 var terminal_shown = true
 var intro_completed = false
 
-var level = Level.TUTORIAL
+var level = Level.EoP
 
 var hardmode_enabled = false
 
@@ -94,7 +94,7 @@ var _initial_tasks = tasks.duplicate(true)
 
 
 func get_level_name() -> String:
-	match (level):
+	match(level):
 		1: return "NORMAL DAY?"
 		2: return "RANSOMWARE"
 		3: return "DISTRIBUTED DENIAL OF SERVICE"

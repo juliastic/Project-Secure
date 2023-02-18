@@ -1,34 +1,44 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/final_challenge_background.PNG" type="Texture" id=1]
 [ext_resource path="res://assets/tileset/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://src/eop/eop_mini_game_level.gd" type="Script" id=3]
 [ext_resource path="res://font/bold_font_medium_overlay.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/eop/parallel_scrolling_background.gd" type="Script" id=5]
-[ext_resource path="res://assets/run-cycle-animation/run cycle 48x54.png" type="Texture" id=6]
-[ext_resource path="res://assets/run-cycle-animation/run cycle 48x52.png" type="Texture" id=7]
-[ext_resource path="res://assets/run-cycle-animation/run cycle 48x49.png" type="Texture" id=8]
-[ext_resource path="res://assets/run-cycle-animation/run cycle 48x48.png" type="Texture" id=9]
-[ext_resource path="res://assets/run-cycle-animation/run cycle 48x55.png" type="Texture" id=10]
-[ext_resource path="res://assets/run-cycle-animation/run cycle 48x51.png" type="Texture" id=11]
-[ext_resource path="res://assets/run-cycle-animation/run cycle 48x50.png" type="Texture" id=12]
-[ext_resource path="res://assets/run-cycle-animation/run cycle 48x53.png" type="Texture" id=13]
+[ext_resource path="res://assets/running-terminal-animation/running_term3.png" type="Texture" id=6]
+[ext_resource path="res://assets/running-terminal-animation/running_term4.png" type="Texture" id=7]
+[ext_resource path="res://assets/running-terminal-animation/running_term1.png" type="Texture" id=8]
+[ext_resource path="res://assets/running-terminal-animation/running_term2.png" type="Texture" id=9]
+[ext_resource path="res://assets/running-cup-animation/running_cup1.png" type="Texture" id=10]
+[ext_resource path="res://assets/running-cup-animation/running_cup4.png" type="Texture" id=11]
+[ext_resource path="res://assets/running-cup-animation/running_cup3.png" type="Texture" id=12]
+[ext_resource path="res://assets/running-cup-animation/running_cup2.png" type="Texture" id=13]
 [ext_resource path="res://src/eop/eop_player.gd" type="Script" id=14]
 [ext_resource path="res://src/eop/eop_enemy_player.gd" type="Script" id=27]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 13 ), ExtResource( 6 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
-"speed": 10.0
+"speed": 4.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 16.0
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 25.1875, 25.2969 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=11]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 57.75, 30.5 )
+extents = Vector2( 56.375, 40 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 652.5, 76 )
@@ -103,16 +113,16 @@ bbcode_text = "Time: 20"
 text = "Time: 20"
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 163, 670 )
+position = Vector2( 190, 670 )
 script = ExtResource( 14 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
-position = Vector2( 0, 7 )
+scale = Vector2( 0.208333, 0.1875 )
 frames = SubResource( 1 )
-frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 2 )
+position = Vector2( 0, 0.703125 )
+shape = SubResource( 9 )
 
 [node name="PlatformDetector" type="RayCast2D" parent="Player"]
 enabled = true
@@ -123,12 +133,12 @@ position = Vector2( 500, 303 )
 script = ExtResource( 27 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PlayerEnemy"]
-position = Vector2( 0, 7 )
-frames = SubResource( 1 )
-frame = 2
+position = Vector2( -32, 4 )
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEnemy"]
-shape = SubResource( 2 )
+shape = SubResource( 11 )
 
 [node name="WallDetector" type="RayCast2D" parent="PlayerEnemy"]
 enabled = true
@@ -138,7 +148,7 @@ cast_to = Vector2( 60, 0 )
 position = Vector2( -500, -300 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEnemy/Area2D"]
-position = Vector2( 457, 304 )
+position = Vector2( 461, 296 )
 shape = SubResource( 6 )
 
 [node name="WallOfDeath" type="Area2D" parent="."]

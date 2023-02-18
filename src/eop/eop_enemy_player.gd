@@ -6,6 +6,7 @@ var _velocity = Vector2.ZERO
 var end = false
 
 const SPEED = 200
+const SCALE = 0.2
 
 onready var wall_detector := $WallDetector
 onready var sprite = $AnimatedSprite
@@ -13,14 +14,19 @@ onready var sprite = $AnimatedSprite
 
 func _physics_process(_delta) -> void:
 	if not get_parent().is_visible_in_tree() or end:
+		if $AnimatedSprite.playing:
+			$AnimatedSprite.stop()
 		return
+		
+	if not $AnimatedSprite.playing:
+		$AnimatedSprite.play()
 		
 	_velocity.x = SPEED
 	
 	_velocity = move_and_slide(_velocity)
 	
 	if wall_detector.is_colliding():
-		sprite.scale.x = -1
+		sprite.scale.x = -SCALE
 		end = true
 		
 
@@ -32,5 +38,5 @@ func _on_Area2D_body_entered(body):
 
 func reset() -> void:
 	position = Vector2(500, 303)
-	sprite.scale.x = 1
+	sprite.scale.x = SCALE
 	end = false

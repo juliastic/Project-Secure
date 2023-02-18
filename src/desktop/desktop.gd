@@ -47,7 +47,7 @@ func _input(event) -> void:
 	if event.scancode == KEY_ENTER:
 		if len(terminal_input.strip_edges()) == 0:
 			GameProgress.terminal_text += "\nPlease enter something first."
-		elif not terminal_input.strip_edges() in TerminalCommands.COMMANDS:
+		elif not terminal_input.strip_edges() in TerminalCommands.COMMANDS and not terminal_input.strip_edges().begins_with(TerminalCommands.EXPLAIN):
 			GameProgress.terminal_text += str("\nHm... I somehow have yet to learn what [i]", terminal_input, "[/i] means. Sorry about that ...\nEnter HELP to see an overview of my supported commands.")
 		elif terminal_input == TerminalCommands.MIN:
 			_terminal_toggle()
@@ -298,7 +298,10 @@ func _on_Desktop_tree_entered() -> void:
 
 
 func _on_TaskContainer_in_game_backstory_triggered(index: int) -> void:
-	_add_text_to_terminal(str("\n...\n", TerminalData.IN_LEVEL_BACKSTORY_VALUES[GameProgress.level][index], NEW_LINE), true)
+	var backstory_text = TerminalData.IN_LEVEL_BACKSTORY_VALUES[GameProgress.level][index]
+	if GameProgress.level == GameProgress.Level.RANSOMWARE and index == 1:
+		backstory_text = backstory_text.replace("%", GameProgress.honeypot_settings["file_name"])
+	_add_text_to_terminal(str("\n...\n", backstory_text, NEW_LINE), true)
 
 
 func _on_Network_hide() -> void:
