@@ -28,6 +28,7 @@ func _on_WallOfDeath_body_entered(body) -> void:
 
 
 func reset_level() -> void:
+	position = Vector2.ZERO
 	camera.position = Vector2.ZERO
 	wall_of_death.position = Vector2.ZERO
 	$Player.reset()

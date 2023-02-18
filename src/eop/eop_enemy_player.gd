@@ -32,4 +32,5 @@ func _on_Area2D_body_entered(body):
 
 func reset() -> void:
 	position = Vector2(500, 303)
+	sprite.scale.x = 1
 	end = false
