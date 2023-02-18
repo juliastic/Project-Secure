@@ -35,5 +35,5 @@ func remove_card() -> void:
 
 
 func _on_Button_pressed() -> void:
-	self.flip_card()
+	flip_card()
 	self.emit_signal("card_toggled", card_data)

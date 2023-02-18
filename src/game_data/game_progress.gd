@@ -19,7 +19,7 @@ var terminal_text = str(
 var terminal_shown = true
 var intro_completed = false
 
-var level = Level.EoP
+var level = Level.TUTORIAL
 
 var hardmode_enabled = false
 
