@@ -78,7 +78,7 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Get ready to defend our system from the invaders. Think Space Invaders but much more tense.
 Try to eliminate as many invaders as possible whilst surviving the attack.
-[b]MOVE: LEFT & RIGHT | SHOOT: SPACE[/b]
+MOVE: LEFT & RIGHT | SHOOT: SPACE
 Press START to trigger the event.[/center]"
 text = "Get ready to defend our system from the invaders. Think Space Invaders but much more tense.
 Try to eliminate as many invaders as possible whilst surviving the attack.

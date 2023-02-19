@@ -74,8 +74,11 @@ func _input(event) -> void:
 			GameProgress.terminal_text += str("\n", TerminalData.CHECK_CAPACITY_VALUES[level][rng.randi_range(0, 2)])
 			GameProgress.get_current_tasks()[9][1] = true
 		elif terminal_input == TerminalCommands.TOGGLE_HARDMODE and TerminalCommands.TOGGLE_HARDMODE in TerminalData.SUPPORTED_COMMANDS[level]:
-			GameProgress.hardmode_enabled = !GameProgress.hardmode_enabled
-			GameProgress.terminal_text += str("\nHardmode", " enabled" if GameProgress.hardmode_enabled else " disabled", ".")
+			GameProgress.hardmode_enabled = not GameProgress.hardmode_enabled
+			if GameProgress.level == GameProgress.Level.EoP:
+				GameProgress.terminal_text += "\nHarmode does nothing here ... [b]JUST CATCH THE CUP![/b]"
+			else:
+				GameProgress.terminal_text += str("\nHardmode", " enabled" if GameProgress.hardmode_enabled else " disabled", ".")
 		elif terminal_input == TerminalCommands.CREATE_FIREWALL:
 			_print_command(terminal_input, TerminalData.CREATE_FIREWALL_VALUES, 3)
 		elif terminal_input == TerminalCommands.LISTEN_REQUESTS:
@@ -146,7 +149,7 @@ func _on_TerminalButton_pressed() -> void:
 
 
 func _terminal_toggle() -> void:
-	GameProgress.terminal_shown = !GameProgress.terminal_shown
+	GameProgress.terminal_shown = not GameProgress.terminal_shown
 	if GameProgress.terminal_shown:
 		terminal_display.show()
 		terminal_animation_player.play_backwards("MinimiseTerminal")
@@ -248,7 +251,7 @@ func _handle_coffee_overlay_finished() -> void:
 		terminal_display.add_text("...\n")
 		yield(get_tree().create_timer(1.0), "timeout")
 		_add_text_to_terminal(TerminalData.GRAB_COFFEE_VALUES[GameProgress.level])
-		yield(get_tree().create_timer(1.0), "timeout")
+		yield(get_tree().create_timer(2.5), "timeout")
 		$Coffee/AnimationPlayer.play("Fade")
 		self.emit_signal("coffee_completed")
 		_handle_level_switch()

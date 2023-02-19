@@ -204,7 +204,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=11]
 resource_name = "Fade"
-length = 1.5
+length = 2.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -212,7 +212,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
+"times": PoolRealArray( 0, 2.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -483,7 +483,7 @@ z_index = 1
 modulate = Color( 0, 0, 0, 1 )
 margin_top = 15.0
 margin_right = 1936.0
-margin_bottom = 1069.0
+margin_bottom = 1070.0
 rect_scale = Vector2( 0.997697, 1.0253 )
 rect_pivot_offset = Vector2( 879, 536 )
 theme = SubResource( 6 )
@@ -575,7 +575,7 @@ margin_left = 680.0
 margin_top = 398.0
 margin_right = 1270.0
 margin_bottom = 653.0
-window_title = "Network Settings"
+window_title = "Network Activities"
 script = ExtResource( 13 )
 
 [node name="RansomwareRequestMiniGame" parent="Network" instance=ExtResource( 4 )]

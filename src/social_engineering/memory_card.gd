@@ -20,7 +20,7 @@ func init(p_card_data: CardData) -> void:
 
 
 func flip_card() -> void:
-	card_data.open = !card_data.open
+	card_data.open = not card_data.open
 	self.play("default", not card_data.open)
 	if card_data.open:
 		animation_player.play("Fade")

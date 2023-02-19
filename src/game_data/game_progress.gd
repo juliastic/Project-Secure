@@ -11,7 +11,7 @@ enum Level {
 }
 
 var terminal_text = str(
-	"Welcome, as you know: I'm Bob. I know that this Terminal Thing might be a bit confusing to you. ",
+	"Welcome, as you know: I'm Bob. I know that this Terminal Thing might be a bit confusing to you.\n",
 	"As a little heads up: Type HELP and press ENTER to understand how to use my features or if you are lost. I should be able to help you.\n>> ")
 
 # core game variables
@@ -135,7 +135,7 @@ func reset_level() -> void:
 
 func reset_game() -> void:
 	terminal_text = str(
-		"Welcome, as you know: I'm Bob. I know that this Terminal Thing might be a bit confusing to you. ",
+		"Welcome, as you know: I'm Bob. I know that this Terminal Thing might be a bit confusing to you.\n",
 		"As a little heads up: Type HELP and press ENTER to understand how to use my features or if you are lost. I should be able to help you.\n>> ")
 	terminal_shown = true
 	intro_completed = false

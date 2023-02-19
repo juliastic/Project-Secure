@@ -4,7 +4,7 @@ extends KinematicBody2D
 var _velocity = Vector2.ZERO
 var player_triggered_end = false
 
-const PLAYER_SPEED = Vector2(250.0, 200.0)
+const PLAYER_SPEED = Vector2(180.0, 430.0)
 const SCALE = 0.208
 
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
@@ -21,33 +21,24 @@ func _physics_process(delta) -> void:
 
 	if not player_triggered_end:
 		direction = get_direction()
-
+	
 	var is_jump_interrupted = Input.is_action_just_released("ui_accept") and _velocity.y < 0.0
 	_velocity = self.calculate_move_velocity(_velocity, direction, PLAYER_SPEED, is_jump_interrupted)
 
 	if direction.y == 0.0:
 		snap_vector = Vector2.DOWN * 10.0
 	
-	if direction.x != 0 and not $AnimatedSprite.playing:
-		$AnimatedSprite.play()
+	if direction.x != 0 and not sprite.playing:
+		sprite.play()
 	elif direction.x == 0:
-		$AnimatedSprite.stop()
-
-	_velocity.x = PLAYER_SPEED.x * direction.x
-
+		sprite.stop()
+	
 	_velocity = move_and_slide_with_snap(_velocity, snap_vector, Vector2.UP, true, 4, 0.9, false)
 	
 	if direction.x != 0:
-		if direction.x > 0:
-			sprite.scale.x = SCALE
-		else:
-			sprite.scale.x = -SCALE
+		sprite.scale.x = SCALE if direction.x > 0 else -SCALE
 	
-	_velocity.y += gravity * delta
-	if _velocity.y > 0:
-		_velocity += Vector2.DOWN * gravity * 10 * delta
-	elif _velocity.y < 0 and is_jump_interrupted:
-		_velocity += Vector2.DOWN * gravity * 0.8 * delta
+	_velocity.y += gravity * delta * 10
 
 
 func get_direction() -> Vector2:
