@@ -105,7 +105,7 @@ func _on_RansomwareRequestMiniGame_hide() -> void:
 func reset_level() -> void:
 	current_key = 0
 	$FilterContainer/FilterText.text = ""
-	$Timer.wait_time = 1.3 if GameProgress.hardmode_enabled else 1.5
+	$Timer.wait_time = 1.5 if GameProgress.hardmode_enabled else 1.8
 	for value in _toggle_state.values():
 		value = true
 	for child in $FilterContainer.get_children():
