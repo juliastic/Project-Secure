@@ -47,6 +47,7 @@ window_title = "Defend from Cups"
 script = ExtResource( 5 )
 
 [node name="GameStartNode" type="Node2D" parent="."]
+visible = false
 modulate = Color( 0.9375, 0.9375, 0.9375, 0.9375 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameStartNode"]
@@ -63,18 +64,18 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Get ready to sort to find out more about the invaders.
 If you think you've found the bad request, select it and move it to the blocked section. 
-Don't forget: You only win if you block the correct requests!
+Don't forget: You only win if you block the correct request!
 Press START to trigger the event.[/center]"
 text = "Get ready to sort to find out more about the invaders.
 If you think you've found the bad request, select it and move it to the blocked section. 
-Don't forget: You only win if you block the correct requests!
+Don't forget: You only win if you block the correct request!
 Press START to trigger the event."
 
 [node name="Button" type="Button" parent="GameStartNode"]
 margin_left = 700.0
-margin_top = 300.0
+margin_top = 395.0
 margin_right = 900.0
-margin_bottom = 370.0
+margin_bottom = 465.0
 rect_min_size = Vector2( 200, 70 )
 custom_fonts/font = ExtResource( 2 )
 text = "START"

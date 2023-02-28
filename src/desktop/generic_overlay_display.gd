@@ -8,6 +8,8 @@ func _ready() -> void:
 func _on_Desktop_overlay_triggered(id) -> void:
 	if id == 0:
 		match(GameProgress.level):
+			GameProgress.Level.TUTORIAL:
+				self.bbcode_text = "[center]Don't you want to work a bit first?[/center]"
 			GameProgress.Level.RANSOMWARE_TRIGGER:
 				self.bbcode_text = "[center]YAY, coffee ... finally[/center]"
 			GameProgress.Level.RANSOMWARE:
