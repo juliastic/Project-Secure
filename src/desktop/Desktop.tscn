@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=2]
+[gd_scene load_steps=157 format=2]
 
 [ext_resource path="res://src/network/FirewallOverlay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/level_finished/level_finished.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_8.png" type="Texture" id=19]
 [ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_9.png" type="Texture" id=20]
 [ext_resource path="res://assets/machine-gun-animation/machine-gun-cup_DDOS_10.png" type="Texture" id=21]
+[ext_resource path="res://src/helpers/offset_richttexteffect.gd" type="Script" id=22]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_17.png" type="Texture" id=23]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_2.png" type="Texture" id=24]
 [ext_resource path="res://assets/get-coffee-animation/get-coffee-animation_final_43.png" type="Texture" id=25]
@@ -137,6 +138,9 @@ bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Theme" id=6]
 RichTextLabel/styles/normal = SubResource( 5 )
+
+[sub_resource type="RichTextEffect" id=44]
+script = ExtResource( 22 )
 
 [sub_resource type="Animation" id=17]
 resource_name = "Fade"
@@ -493,6 +497,7 @@ custom_fonts/normal_font = ExtResource( 59 )
 bbcode_enabled = true
 fit_content_height = true
 scroll_following = true
+custom_effects = [ SubResource( 44 ) ]
 script = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IntroNode/TerminalIntroDisplay"]

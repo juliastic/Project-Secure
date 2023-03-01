@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "RichTextGhost",
 "language": "GDScript",
 "path": "res://src/helpers/fade_ghosttexteffect.gd"
+}, {
+"base": "RichTextEffect",
+"class": "RichTextOffset",
+"language": "GDScript",
+"path": "res://src/helpers/offset_richttexteffect.gd"
 } ]
 _global_script_class_icons={
 "Attacker": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "RequestColumnContainer": "",
 "RequestData": "",
 "RichTextCustomFade": "",
-"RichTextGhost": ""
+"RichTextGhost": "",
+"RichTextOffset": ""
 }
 
 [application]

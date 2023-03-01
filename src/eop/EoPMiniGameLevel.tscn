@@ -161,7 +161,7 @@ shape = SubResource( 7 )
 position = Vector2( -115, 380 )
 shape = SubResource( 8 )
 
-[connection signal="player_triggered_end" from="PlayerEnemy" to="Player" method="_on_Enemy_player_triggered_end"]
 [connection signal="player_triggered_end" from="PlayerEnemy" to="." method="_on_Enemy_player_triggered_end"]
+[connection signal="player_triggered_end" from="PlayerEnemy" to="Player" method="_on_Enemy_player_triggered_end"]
 [connection signal="body_entered" from="PlayerEnemy/Area2D" to="PlayerEnemy" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="WallOfDeath" to="." method="_on_WallOfDeath_body_entered"]
