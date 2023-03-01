@@ -63,6 +63,7 @@ func _input(event) -> void:
 			var term_to_explain = terminal_input.replace(str(TerminalCommands.EXPLAIN, " "), "")
 			if term_to_explain in TerminalData.EXPLAIN_VALUES[level]:
 				GameProgress.terminal_text += str("\n", TerminalData.EXPLAIN_VALUES[level][term_to_explain])
+				terminal_input = TerminalCommands.EXPLAIN
 			else:
 				GameProgress.terminal_text += str("\nSorry I don't know [i]", term_to_explain, "[/i] ...")
 		elif terminal_input == TerminalCommands.LIST_TERMS:
@@ -93,9 +94,6 @@ func _input(event) -> void:
 		if terminal_input != TerminalCommands.CLEAR:
 			_add_text_to_terminal(str("\n", START_LINE if not overlay_displayed else ""), terminal_input != TerminalCommands.GRAB_COFFEE)
 		
-		if terminal_input.begins_with(TerminalCommands.EXPLAIN):
-			terminal_input = TerminalCommands.EXPLAIN
-
 		if level == GameProgress.Level.TUTORIAL and not GameProgress.get_current_tasks()[0][1] and terminal_input in TerminalData.SUPPORTED_COMMANDS[level]:
 			GameProgress.get_current_tasks()[0][1] = true
 		terminal_input = ""

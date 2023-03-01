@@ -13,8 +13,8 @@ const INTRO_DIALOGUE := [
 		"The commands might seem a bit meta sometimes, but trust me - it's good that they are. ",
 		"This way I always know what you are doing. If you need any guidance, enter [i]HELP[/i]."),
 	str("\n>> You must complete challenges to defend our systems. These challenges share similarities with traditional minigames but don't be fooled: The system relies on your good performance."),
-	str("\n>> Your current tasks are displayed on the bottom right corner of the screen.",
-	"Entering [i]BACKSTORY[/i] should give you an idea of the state of our current system.",
+	str("\n>> Your current tasks are displayed on the bottom right corner of the screen. ",
+	"Entering [i]BACKSTORY[/i] should give you an idea of the state of our current system. ",
 	"Today will start relatively slow. Your goal is to get acquainted with the system and play around.[/offset]")
 ]
 
