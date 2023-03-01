@@ -93,6 +93,9 @@ func _input(event) -> void:
 		if terminal_input != TerminalCommands.CLEAR:
 			_add_text_to_terminal(str("\n", START_LINE if not overlay_displayed else ""), terminal_input != TerminalCommands.GRAB_COFFEE)
 		
+		if terminal_input.begins_with(TerminalCommands.EXPLAIN):
+			terminal_input = TerminalCommands.EXPLAIN
+
 		if level == GameProgress.Level.TUTORIAL and not GameProgress.get_current_tasks()[0][1] and terminal_input in TerminalData.SUPPORTED_COMMANDS[level]:
 			GameProgress.get_current_tasks()[0][1] = true
 		terminal_input = ""
