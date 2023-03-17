@@ -178,7 +178,6 @@ script = ExtResource( 8 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "MinimiseTerminal"
-step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("TerminalDisplay:rect_scale")
 tracks/0/interp = 1
@@ -198,7 +197,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.9 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -549,7 +548,6 @@ rect_min_size = Vector2( 250, 140 )
 focus_mode = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 58 )
-shortcut_in_tooltip = false
 enabled_focus_mode = 0
 text = "Terminal"
 

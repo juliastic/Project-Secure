@@ -62,7 +62,7 @@ func _update_progress_label() -> void:
 
 
 func _on_Score_update():
-	GameProgress.level_score[GameProgress.level] -= 5
+	GameProgress.level_score[GameProgress.level] -= 2.5
 	score_label.bbcode_text = str("[right]Points: ", GameProgress.level_score[GameProgress.level], "[/right]")
 	if GameProgress.level_score[GameProgress.level] == 0:
 		self.emit_signal("game_lost")
