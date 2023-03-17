@@ -186,6 +186,7 @@ text = "Which file to lure attackers with?"
 margin_top = 136.0
 margin_right = 417.0
 margin_bottom = 160.0
+placeholder_text = "Enter any name"
 
 [node name="HoneypotSaveButton" type="Button" parent="HoneypotOverlay/CheckboxContainer"]
 margin_top = 164.0
