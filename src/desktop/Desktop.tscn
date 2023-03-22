@@ -681,7 +681,7 @@ bbcode_enabled = true
 [node name="BrokenCup" type="AnimatedSprite" parent="LevelFinishedNode"]
 visible = false
 modulate = Color( 1, 1, 1, 0.875 )
-position = Vector2( 1600, 500 )
+position = Vector2( 1600, 678 )
 scale = Vector2( 10, 10 )
 frames = SubResource( 42 )
 

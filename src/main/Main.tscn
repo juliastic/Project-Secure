@@ -90,7 +90,7 @@ margin_bottom = 433.0
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center][color=black][shake rate=20 level=20]... one task at a time[/shake][/color][center]"
-text = "... one task at a time"
+text = "[center][color=black][shake rate=20 level=20]... one task at a time[/shake][/color][center]"
 
 [node name="GameButton" type="Button" parent="."]
 margin_left = 808.0
@@ -105,7 +105,7 @@ text = "Start Game"
 position = Vector2( 1660, 204 )
 scale = Vector2( 5.60938, 4.4375 )
 frames = SubResource( 3 )
-frame = 3
+frame = 11
 playing = true
 
 [node name="TransitionRect" type="ColorRect" parent="."]
