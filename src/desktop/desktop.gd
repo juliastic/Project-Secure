@@ -152,11 +152,9 @@ func _on_TerminalButton_pressed() -> void:
 func _terminal_toggle() -> void:
 	GameProgress.terminal_shown = not GameProgress.terminal_shown
 	if GameProgress.terminal_shown:
-		terminal_display.show()
 		terminal_animation_player.play_backwards("MinimiseTerminal")
 	else:
 		terminal_animation_player.play("MinimiseTerminal")
-	yield(terminal_animation_player, "animation_finished")
 
 
 func _on_TaskContainer_level_completed():

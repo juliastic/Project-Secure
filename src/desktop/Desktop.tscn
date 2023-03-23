@@ -190,20 +190,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ), Vector2( 0.01, 0.01 ), Vector2( 0.01, 0.01 ) ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("TerminalDisplay")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.9 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "hide"
-} ]
-}
 
 [sub_resource type="Animation" id=11]
 resource_name = "Fade"
@@ -520,7 +506,6 @@ custom_effects = [ SubResource( 43 ) ]
 
 [node name="TerminalAnimationPlayer" type="AnimationPlayer" parent="TerminalDisplay"]
 root_node = NodePath("../..")
-reset_on_save = false
 anims/MinimiseTerminal = SubResource( 4 )
 
 [node name="ButtonContainer" type="HBoxContainer" parent="."]
@@ -556,10 +541,10 @@ z_index = 11
 
 [node name="GenericOverlayDisplay" type="RichTextLabel" parent="OverlayNode"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 486.0
-margin_top = 276.513
-margin_right = 1536.0
-margin_bottom = 702.513
+margin_left = 3.0
+margin_top = 277.0
+margin_right = 1929.0
+margin_bottom = 703.0
 custom_fonts/normal_font = ExtResource( 12 )
 bbcode_enabled = true
 bbcode_text = "
@@ -634,7 +619,7 @@ margin_top = 567.0
 margin_right = 1909.0
 margin_bottom = 1067.0
 rect_min_size = Vector2( 350, 500 )
-rect_pivot_offset = Vector2( 403, 500 )
+rect_pivot_offset = Vector2( 600, 509 )
 alignment = 2
 script = ExtResource( 9 )
 
