@@ -4,8 +4,8 @@ const INTRO_DIALOGUE := [
 	"[offset x=10]>> Hello ... nice to see meet you. I'm guessing this is your first day? [i]Press ENTER or RETURN to continue[/i]",
 	"\n>> Either way: I'm Bob, your new partner.",
 	"\n>> Your job is to support the company with defending against attacks on our system. You'll be using this computer as your working device.",
-	str("\n>> We've been regularly receiving threats ever since our CEO tweeted about a random celebrity. Don't ask me, I can't understand human emotions.",
-		"Such a waste of time when you could be working.\nAnyway, I'll be here to support you and lend you my expertise and knowledge.",
+	str("\n>> We've been regularly receiving threats ever since our CEO tweeted about a random celebrity. Don't ask me, I can't understand human emotions. ",
+		"Such a waste of time when you could be working.\nAnyway, I'll be here to support you and lend you my expertise and knowledge. ",
 		"You'll be focusing on different types of threats on different days. Unfortunately I don't have a body yet so I'll be stuck in this terminal for the time being."),
 	"\n>> Customers can store their data on our servers for free. Funnily enough, People think they're not the product. Funny, I know.",
 	str("\n>> The terminal acts as the main interaction point between you and me.",
@@ -116,7 +116,7 @@ const LISTEN_REQUESTS_VALUES = {
 }
 
 const CHECK_CAPACITY_VALUES = {
-	GameProgress.Level.DDoS: ["We're at 0%.", "We're at 10%.", "ITS OVER 9000%."]
+	GameProgress.Level.DDoS: ["We're at 0%. Calm before the storm?", "We're at 60%. Are some requests secretly malicious? I couldn't tell you (yet). Need to complete some internal analysis first.", "ITS OVER 9000%. WE'RE BEING OVERRUN. DO SOMETHING."]
 }
 
 const ENABLE_IDS_VALUES = {
