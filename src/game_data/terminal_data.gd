@@ -60,17 +60,17 @@ const EXPLAIN_VALUES = {
 	GameProgress.Level.TUTORIAL: {
 		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.",
 		"FIREWALL": "A type of network protection to filter incoming network traffic.",
-		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns."
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to give an understanding of attack patterns."
 	},
 	GameProgress.Level.RANSOMWARE_TRIGGER: {
 		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.",
 		"FIREWALL": "A type of network protection to filter incoming network traffic.",
-		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns."
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to give an understanding of attack patterns."
 	},
 	GameProgress.Level.RANSOMWARE: {
 		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.",
 		"FIREWALL": "A type of network protection to filter incoming network traffic.",
-		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns."
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to give an understanding of attack patterns."
 	},
 	GameProgress.Level.DDoS: {
 		"DDOS": "Distributed Denial of Service\nAttackers send a lot of requests to a single server with the goal of overwhelming it and forcing it to go offline.",
@@ -78,7 +78,7 @@ const EXPLAIN_VALUES = {
 		"IDS": "INTRUSION DETECTION SYSTEM\nIt can be used to detect and alert on suspicious or malicious traffic on the network.", 
 		"IPS": "INTRUSION PREVENTION SYSTEM\nIt can automatically block malicious traffic in real-time.",
 		"FIREWALL": "A type of network protection to filter incoming network traffic.",
-		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns."
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to give an understanding of attack patterns."
 	},
 	GameProgress.Level.SOCIAL_ENGINEERING: {
 		"SOCIAL ENGINEERING": "A type of system attack to either manipulate people into performing actions or accessing confidential information through other people's accounts. Access can be gained in many ways, i.e. through manipulating people into giving the attacker their credentials.",
@@ -86,7 +86,7 @@ const EXPLAIN_VALUES = {
 		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.", 
 		"IDS": "INTRUSION DETECTION SYSTEM\nIt can be used to detect and alert on suspicious or malicious traffic on the network.", 
 		"IPS": "INTRUSION PREVENTION SYSTEM\nIt can automatically block malicious traffic in real-time.",
-		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns.",
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to give an understanding of attack patterns.",
 		"FIREWALL": "A type of network protection to filter incoming network traffic."
 	},
 	GameProgress.Level.EoP: {
@@ -96,7 +96,7 @@ const EXPLAIN_VALUES = {
 		"RANSOMWARE": "A type of malicious software that tries to gain access to a computer, fetch sensitive data and block access.", 
 		"IDS": "INTRUSION DETECTION SYSTEM\nIt can be used to detect and alert on suspicious or malicious traffic on the network.", 
 		"IPS": "INTRUSION PREVENTION SYSTEM\nIt can automatically block malicious traffic in real-time.",
-		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to gian an understanding of attack patterns.",
+		"HONEYPOT": "A type of system to deliberately attract attacks. The system looks normal from an attacker's point of view but it is not used. Instead, it watches the actions of the attacker to give an understanding of attack patterns.",
 		"FIREWALL": "A type of network protection to filter incoming network traffic."
 	}
 }
