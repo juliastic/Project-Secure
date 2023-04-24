@@ -41,7 +41,7 @@ animations = [ {
 extents = Vector2( 56.375, 40 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 652.5, 76 )
+extents = Vector2( 997.75, 76 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 35.75, 382 )
@@ -154,7 +154,7 @@ shape = SubResource( 6 )
 [node name="WallOfDeath" type="Area2D" parent="."]
 
 [node name="CollisionShapeBottom" type="CollisionShape2D" parent="WallOfDeath"]
-position = Vector2( 655, 1118 )
+position = Vector2( 1000.25, 1118 )
 shape = SubResource( 7 )
 
 [node name="CollisionShapeLeft" type="CollisionShape2D" parent="WallOfDeath"]
