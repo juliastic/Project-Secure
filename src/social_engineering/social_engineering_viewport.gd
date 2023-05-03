@@ -17,13 +17,14 @@ var id = 0
 func prepare_level() -> void:
 	$GameInformationContainer/Time.bbcode_text = str("Time: ", level_time)
 	$GameInformationContainer/Score.bbcode_text = str("Points: ", GameProgress.level_score[GameProgress.level])
+	var memory_cards = MemoryData.cards
 	if not GameProgress.hardmode_enabled:
 		for _i in range(0, 6):
-			MemoryData.cards.remove(0)
+			memory_cards.remove(0)
 	randomize()
-	MemoryData.cards.shuffle()
+	memory_cards.shuffle()
 	var current_card_position = Vector2(125, 200)
-	for card_data in MemoryData.cards:
+	for card_data in memory_cards:
 		card_data.open = false
 		card_data.unique_id += id
 		id += 10

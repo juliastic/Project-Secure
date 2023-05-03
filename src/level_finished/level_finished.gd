@@ -50,7 +50,7 @@ func _on_Desktop_level_finished_triggered(game_over) -> void:
 			$Display.bbcode_text = "[center]\nTHANK YOU SO MUCH!\nYou've saved our system!\n\nPress anywhere to be forwarded to the evaluation and return to the main menu.[/center]"
 			$BrokenCup.show()
 		elif GameProgress.level == GameProgress.Level.SOCIAL_ENGINEERING:
-			$Display.bbcode_text = str("[center]\nYou've scored ", GameProgress.level_score[GameProgress.level], " points!\nMore importantly: We finally know what the attacker is up to. FIND THEM[/center]")
+			$Display.bbcode_text = str("[center]\nYou've scored ", GameProgress.level_score[GameProgress.level], " points!\nMore importantly: We finally know what the attacker is up to.\nFIND THEM!!![/center]")
 		elif GameProgress.level == GameProgress.Level.RANSOMWARE:
 			$Display.bbcode_text = str("[center]\nYou've scored ", GameProgress.level_score[GameProgress.level], " points!\nInteresting things that are going on in the honeypot ...[/center]")
 		elif GameProgress.level == GameProgress.Level.DDoS:
