@@ -105,7 +105,7 @@ text = "Start Game"
 position = Vector2( 1660, 204 )
 scale = Vector2( 5.60938, 4.4375 )
 frames = SubResource( 3 )
-frame = 12
+frame = 16
 playing = true
 
 [node name="TransitionRect" type="ColorRect" parent="."]

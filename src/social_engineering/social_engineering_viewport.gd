@@ -17,7 +17,7 @@ var id = 0
 func prepare_level() -> void:
 	$GameInformationContainer/Time.bbcode_text = str("Time: ", level_time)
 	$GameInformationContainer/Score.bbcode_text = str("Points: ", GameProgress.level_score[GameProgress.level])
-	var memory_cards = MemoryData.cards
+	var memory_cards = MemoryData.cards + []
 	if not GameProgress.hardmode_enabled:
 		for _i in range(0, 6):
 			memory_cards.remove(0)
@@ -52,9 +52,14 @@ func reset_level() -> void:
 
 
 func on_Card_toggled(card_data: CardData) -> void:
+	if open_cards.size() == 1 and open_cards[0] == card_data:
+		return
+	
 	open_cards.append(card_data)
+
 	if open_cards.size() < 2:
 		return
+
 	get_tree().set_group("cards", "ignore_input", true)
 	yield(get_tree().create_timer(3.0), "timeout")
 	var cards_match = open_cards[0].id == open_cards[1].id
